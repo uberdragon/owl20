@@ -1,7 +1,9 @@
 // Owl20 - Beyond20 to Owlbear Bridge (Data Only)
 console.log('Owl20: Content script loaded');
 
-class Owl20Bridge {
+// Prevent multiple class declarations
+if (typeof window.Owl20Bridge === 'undefined') {
+  window.Owl20Bridge = class Owl20Bridge {
   constructor() {
     this.iframes = [];
     this.init();
@@ -101,6 +103,7 @@ class Owl20Bridge {
       }
     });
   }
+  };
 }
 
 // Initialize the bridge (prevent multiple initializations)
@@ -108,10 +111,10 @@ if (!window.owl20Bridge) {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       if (!window.owl20Bridge) {
-        window.owl20Bridge = new Owl20Bridge();
+        window.owl20Bridge = new window.Owl20Bridge();
       }
     });
   } else {
-    window.owl20Bridge = new Owl20Bridge();
+    window.owl20Bridge = new window.Owl20Bridge();
   }
 }
