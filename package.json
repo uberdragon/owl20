@@ -21,5 +21,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yourusername/owl20.git"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/owl20/issues"
+  },
+  "homepage": "https://github.com/yourusername/owl20#readme"
 }
