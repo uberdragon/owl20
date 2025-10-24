@@ -89,7 +89,7 @@ class Owl20Bridge {
             detail: [rollData]
           });
           iframeDoc.dispatchEvent(event);
-          console.log('Owl20: Sent roll data to same-origin iframe');
+          console.log('Owl20: Sent roll data to same-origin iframe:', iframe.src);
         }
       } catch (error) {
         // Cross-origin, use postMessage
@@ -97,7 +97,7 @@ class Owl20Bridge {
           type: 'Beyond20_Roll',
           data: rollData
         }, '*');
-        console.log('Owl20: Sent roll data to cross-origin iframe via postMessage');
+        console.log('Owl20: Sent roll data to cross-origin iframe via postMessage:', iframe.src);
       }
     });
   }
