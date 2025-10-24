@@ -20,10 +20,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/owl20.git"
+    "url": "git+https://github.com/uberdragon/owl20.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/owl20/issues"
+    "url": "https://github.com/uberdragon/owl20/issues"
   },
-  "homepage": "https://github.com/yourusername/owl20#readme"
+  "homepage": "https://github.com/uberdragon/owl20#readme"
 }
