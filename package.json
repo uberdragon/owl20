@@ -1,0 +1,25 @@
+{
+  "name": "owl20-beyond20-owlbear-bridge",
+  "version": "1.0.0",
+  "description": "Chrome extension that bridges Beyond20 dice rolls to Owlbear Rodeo iframes",
+  "main": "content.js",
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0",
+    "lint": "echo \"No linting configured\" && exit 0"
+  },
+  "keywords": [
+    "chrome-extension",
+    "beyond20",
+    "owlbear-rodeo",
+    "dnd",
+    "dice",
+    "vtt",
+    "iframe"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/owl20.git"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Owl20 - Beyond20 to Owlbear Bridge",
+  "version": "1.0.0",
+  "description": "Bridges Beyond20 dice rolls to Owlbear Rodeo iframes for shared roll display",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.owlbear.rodeo/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.owlbear.rodeo/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Owl20 - Beyond20 Bridge"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
