@@ -103,11 +103,15 @@ class Owl20Bridge {
   }
 }
 
-// Initialize the bridge
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
+// Initialize the bridge (prevent multiple initializations)
+if (!window.owl20Bridge) {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!window.owl20Bridge) {
+        window.owl20Bridge = new Owl20Bridge();
+      }
+    });
+  } else {
     window.owl20Bridge = new Owl20Bridge();
-  });
-} else {
-  window.owl20Bridge = new Owl20Bridge();
+  }
 }
