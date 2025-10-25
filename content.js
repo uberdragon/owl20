@@ -1,6 +1,3 @@
-// Owl20 - Beyond20 to Owlbear Bridge (Data Only)
-console.log('Owl20: Content script loaded');
-
 // Prevent multiple class declarations
 if (typeof window.Owl20Bridge === 'undefined') {
   window.Owl20Bridge = class Owl20Bridge {
@@ -63,14 +60,21 @@ if (typeof window.Owl20Bridge === 'undefined') {
   findIframes() {
     const iframes = document.querySelectorAll('iframe');
     iframes.forEach(iframe => this.addIframe(iframe));
-    console.log(`Owl20: Found ${iframes.length} iframes`);
   }
 
   addIframe(iframe) {
     if (this.iframes.includes(iframe)) return;
     
-    this.iframes.push(iframe);
-    console.log('Owl20: Added iframe', iframe.src);
+    // Only add iframes that contain "owl20" or "localhost" in their URL
+    if (this.shouldIncludeIframe(iframe)) {
+      this.iframes.push(iframe);
+      console.log('Owl20: Found iframe to owl20-owlbear', iframe.src);
+    } 
+  }
+
+  shouldIncludeIframe(iframe) {
+    const url = iframe.src || '';
+    return url.includes('owl20') || url.includes('localhost');
   }
 
   handleBeyond20Roll(rollData) {
