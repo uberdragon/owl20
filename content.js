@@ -72,10 +72,8 @@ if (typeof window.Owl20Bridge === 'undefined') {
     // Only add iframes that contain "owl20" or "localhost" in their URL
     if (this.shouldIncludeIframe(iframe)) {
       this.iframes.push(iframe);
-      console.log('Owl20: Added iframe', iframe.src);
-    } else {
-      console.log('Owl20: Skipping iframe (does not match filter):', iframe.src);
-    }
+      console.log('Owl20: Added iframe to owl20-owlbear', iframe.src);
+    } 
   }
 
   shouldIncludeIframe(iframe) {
