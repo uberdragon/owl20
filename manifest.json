@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Owl20 - Beyond20 to Owlbear Bridge",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Shane Kretzmann",
   "description": "Bridges Beyond20 dice roll data to Owlbear Rodeo iframes",
   "permissions": [],
