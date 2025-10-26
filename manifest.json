@@ -4,6 +4,11 @@
   "version": "1.1.0",
   "author": "Shane Kretzmann",
   "description": "Bridges Beyond20 dice roll data to Owlbear Rodeo iframes",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "owl20@uberdragon.com"
+    }
+  },
   "permissions": [],
   "host_permissions": [
     "https://www.owlbear.rodeo/*"
