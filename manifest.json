@@ -16,7 +16,8 @@
     }
   ],
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"],
+    "type": "module"
   },
   "icons": {
     "16": "icons/owl20-16.png",
