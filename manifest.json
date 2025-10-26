@@ -6,7 +6,7 @@
   "description": "Bridges Beyond20 dice roll data to Owlbear Rodeo iframes",
   "browser_specific_settings": {
     "gecko": {
-      "id": "owl20@uberdragon.com"
+      "id": "owl20@uberdragon.net"
     }
   },
   "permissions": [],
