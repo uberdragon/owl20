@@ -2,6 +2,7 @@
   "manifest_version": 3,
   "name": "Owl20 - Beyond20 to Owlbear Bridge",
   "version": "1.0.0",
+  "author": "Shane Kretzmann",
   "description": "Bridges Beyond20 dice roll data to Owlbear Rodeo iframes",
   "permissions": [
     "scripting"
@@ -20,9 +21,10 @@
     "service_worker": "background.js"
   },
   "icons": {
-    "16": "icons/icon16.png",
-    "32": "icons/icon32.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
+    "16": "icons/owl20-16.png",
+    "24": "icons/owl20-24.png",
+    "32": "icons/owl20-32.png",
+    "48": "icons/owl20-48.png",
+    "128": "icons/owl20-128.png"
   }
 }

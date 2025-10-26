@@ -28,7 +28,7 @@ A Chrome extension that bridges Beyond20 dice roll data to Owlbear Rodeo iframes
 The extension automatically:
 - Scans for iframes when the page loads
 - Monitors for new iframes added dynamically
-- Passes roll data to all iframes without visual modification
+- Passes roll data to owl20 iframe if detected
 
 ## Installation
 
@@ -42,7 +42,7 @@ The extension automatically:
 
 ### Production Installation
 
-*Coming soon - will be available on the Chrome Web Store*
+*Coming soon - will be available on the Chrome Web Store - Submission Process Started.*
 
 ## Setup Instructions
 
@@ -62,6 +62,9 @@ The extension automatically:
    - All iframes on the Owlbear Rodeo page
    - Same-origin iframes receive `Beyond20_Roll` custom events
    - Cross-origin iframes receive postMessage with roll data
+
+### Owl20-Owlbear
+This extension requires the Owl20-Owlbear extension be installed AND toggled on in the Owlbear Rodeo Room.
 
 ## Data Format
 
