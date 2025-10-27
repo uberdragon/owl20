@@ -42,7 +42,12 @@ The extension automatically:
 
 ### Production Installation
 
-*Coming soon - will be available on the Chrome Web Store - Submission Process Started.*
+**Coming soon!** The extension has been submitted to:
+- Chrome Web Store
+- Microsoft Edge Add-ons
+- Firefox Add-ons (AMO)
+
+Once approved, it will be available for installation directly from your browser's extension store.
 
 ## Setup Instructions
 
@@ -126,7 +131,6 @@ The extension listens for these Beyond20 events:
 owl20/
 ├── manifest.json          # Extension manifest
 ├── content.js             # Main content script (data bridge)
-├── background.js          # Background service worker
 ├── icons/                 # Extension icons
 ├── .gitignore            # Git ignore file
 ├── package.json          # NPM package configuration
