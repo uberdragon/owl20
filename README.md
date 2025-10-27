@@ -170,6 +170,7 @@ owl20/
 
 - Chrome (Manifest V3)
 - Edge (Chromium-based)
+- Firefox
 - Other Chromium-based browsers
 
 ## Contributing
