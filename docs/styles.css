@@ -132,8 +132,9 @@ body {
 .hero p {
     font-size: 1.25rem;
     color: var(--text-secondary);
-    max-width: 600px;
+    max-width: 900px;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
 /* Quick Start */
