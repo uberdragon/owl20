@@ -64,12 +64,12 @@ Once approved, it will be available for installation directly from your browser'
 1. Open an Owlbear Rodeo session
 2. Open a D&D Beyond character sheet in another tab
 3. Make rolls using Beyond20 - the roll data will be transmitted to:
-   - All iframes on the Owlbear Rodeo page
+   - OBR Extension iframes that contain owl20 in the url
    - Same-origin iframes receive `Beyond20_Roll` custom events
    - Cross-origin iframes receive postMessage with roll data
 
 ### Owl20-Owlbear
-This extension requires the Owl20-Owlbear extension be installed AND toggled on in the Owlbear Rodeo Room.
+This extension requires the [Owl20-Owlbear](https://github.com/mvoncken/owl20-owlbear) OBR extension be installed AND toggled on in the Owlbear Rodeo Room you are playing in.
 
 ## Data Format
 
