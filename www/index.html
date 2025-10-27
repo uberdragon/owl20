@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owl20 - Beyond20 to Owlbear Rodeo Bridge</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>🦉 Owl20</h1>
+                <p class="tagline">Bridge Between Beyond20 & Owlbear Rodeo</p>
+            </div>
+            <div class="badges">
+                <a href="#" class="badge chrome" title="Chrome Web Store">Chrome</a>
+                <a href="#" class="badge edge" title="Microsoft Edge">Edge</a>
+                <a href="#" class="badge firefox" title="Firefox Add-ons">Firefox</a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Seamlessly Connect D&D Beyond to Your VTT</h2>
+            <p>Owl20 bridges Beyond20 dice rolls to Owlbear Rodeo, making tabletop gaming smoother and more integrated.</p>
+        </section>
+
+        <!-- Quick Start -->
+        <section class="quick-start">
+            <h3>🚀 Quick Start</h3>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Install Browser Extension</h4>
+                        <p>Install Owl20 from your browser's extension store</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Configure Beyond20</h4>
+                        <p>Add Owlbear Rodeo to Beyond20's custom domains</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Set Up OBR Extension</h4>
+                        <p>DM installs Owl20-Owlbear OBR extension</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Instructions -->
+        <section class="instructions">
+            <h3>📖 Detailed Setup Instructions</h3>
+
+            <!-- Player Setup -->
+            <div class="section-card">
+                <div class="card-header" onclick="toggleSection(this)">
+                    <h4>👤 Player Setup - Browser Extension</h4>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="sub-section">
+                        <h5>Step 1: Install Owl20 Browser Extension</h5>
+                        <p>Install the Owl20 extension from your browser's extension store:</p>
+                        <ul>
+                            <li><strong>Chrome:</strong> <a href="#" target="_blank">Chrome Web Store</a> (coming soon)</li>
+                            <li><strong>Edge:</strong> <a href="#" target="_blank">Microsoft Edge Add-ons</a> (coming soon)</li>
+                            <li><strong>Firefox:</strong> <a href="#" target="_blank">Firefox Add-ons</a> (coming soon)</li>
+                        </ul>
+                        <p class="note">💡 The extension is currently pending approval. Check back soon!</p>
+                    </div>
+
+                    <div class="sub-section">
+                        <h5>Step 2: Configure Beyond20</h5>
+                        <ol>
+                            <li>Open Beyond20 settings by clicking the Beyond20 icon in your browser toolbar</li>
+                            <li>Navigate to <strong>"More Options"</strong> or <strong>"Advanced Options"</strong></li>
+                            <li>Find the field: <strong>"List of custom domains to load Beyond20"</strong></li>
+                            <li>Add this URL: <code>https://www.owlbear.rodeo/*</code></li>
+                            <li>Save your settings</li>
+                        </ol>
+                        <p class="note">✅ This allows Beyond20 to work on Owlbear Rodeo pages</p>
+                    </div>
+
+                    <div class="sub-section">
+                        <h5>Step 3: Verify Installation</h5>
+                        <ol>
+                            <li>Open an Owlbear Rodeo session</li>
+                            <li>Open a D&D Beyond character sheet in another tab</li>
+                            <li>Make a dice roll using Beyond20</li>
+                            <li>The roll should appear in the Owlbear Rodeo room (if DM has OBR extension active)</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DM Setup -->
+            <div class="section-card">
+                <div class="card-header" onclick="toggleSection(this)">
+                    <h4>🎲 DM Setup - OBR Extension</h4>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="sub-section">
+                        <h5>Step 1: Install Owl20-Owlbear OBR Extension</h5>
+                        <p>The DM must install the Owl20-Owlbear OBR extension to display player rolls in the Owlbear Rodeo room.</p>
+                        
+                        <div class="info-box">
+                            <h6>🔗 Get the Extension</h6>
+                            <p>Visit the <a href="https://github.com/mvoncken/owl20-owlbear" target="_blank">Owl20-Owlbear GitHub repository</a> for installation instructions.</p>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <h5>Step 2: Add to Your Owlbear Rodeo Room</h5>
+                        <ol>
+                            <li>Open your Owlbear Rodeo room as the DM</li>
+                            <li>Click the <strong>"Extensions"</strong> button in the toolbar</li>
+                            <li>Find <strong>"Owl20-Owlbear"</strong> in your installed extensions</li>
+                            <li>Toggle it <strong>ON</strong> for your room</li>
+                        </ol>
+                    </div>
+
+                    <div class="sub-section">
+                        <h5>Step 3: Verify It's Working</h5>
+                        <ol>
+                            <li>Have a player make a dice roll using Beyond20</li>
+                            <li>The roll should appear in the Owlbear Rodeo room</li>
+                            <li>All participants should see the roll</li>
+                        </ol>
+                        <p class="note">✅ Player rolls will now display for everyone in the room</p>
+                    </div>
+
+                    <div class="info-box warning">
+                        <h6>⚠️ Important Notes for DMs</h6>
+                        <ul>
+                            <li>Only the DM needs to install and enable the OBR extension</li>
+                            <li>The extension must be enabled in each Owlbear Rodeo room</li>
+                            <li>Players only need the browser extension (not the OBR extension)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Troubleshooting -->
+            <div class="section-card">
+                <div class="card-header" onclick="toggleSection(this)">
+                    <h4>🔧 Troubleshooting</h4>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="sub-section">
+                        <h5>Rolls Not Appearing?</h5>
+                        <ul>
+                            <li><strong>Check Browser Extension:</strong> Ensure Owl20 is installed and enabled</li>
+                            <li><strong>Check Beyond20 Setup:</strong> Verify <code>https://www.owlbear.rodeo/*</code> is in Beyond20's custom domains list</li>
+                            <li><strong>Check OBR Extension:</strong> DM must have Owl20-Owlbear enabled in the room</li>
+                            <li><strong>Reload Pages:</strong> Refresh both Owlbear Rodeo and D&D Beyond</li>
+                            <li><strong>Check Console:</strong> Open browser DevTools (F12) and look for "Owl20:" messages</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-section">
+                        <h5>Extension Not Loading?</h5>
+                        <ul>
+                            <li>Ensure you're using a supported browser (Chrome, Edge, or Firefox)</li>
+                            <li>Try disabling and re-enabling the extension</li>
+                            <li>Check for browser updates</li>
+                            <li>Review extension permissions</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-section">
+                        <h5>Still Having Issues?</h5>
+                        <p>Visit our <a href="https://github.com/uberdragon/owl20/issues" target="_blank">GitHub Issues</a> page for help or to report bugs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Details -->
+            <div class="section-card">
+                <div class="card-header" onclick="toggleSection(this)">
+                    <h4>⚙️ Technical Details</h4>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="card-content">
+                    <div class="sub-section">
+                        <h5>How It Works</h5>
+                        <ol>
+                            <li>Player makes a roll in D&D Beyond</li>
+                            <li>Beyond20 processes the roll and sends it to custom domains</li>
+                            <li>Owl20 browser extension receives the <code>Beyond20_Roll</code> event</li>
+                            <li>Extension transmits the roll data to iframes containing "owl20" or "localhost" in their URL</li>
+                            <li>Owl20-Owlbear OBR extension receives the data and displays it to all room participants</li>
+                        </ol>
+                    </div>
+
+                    <div class="sub-section">
+                        <h5>Data Flow</h5>
+                        <p>The extension uses:</p>
+                        <ul>
+                            <li><strong>CustomEvent:</strong> For same-origin iframe communication</li>
+                            <li><strong>postMessage:</strong> For cross-origin iframe communication</li>
+                            <li><strong>MutationObserver:</strong> For automatic iframe detection</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-section">
+                        <h5>Requirements</h5>
+                        <ul>
+                            <li>Beyond20 browser extension installed and configured</li>
+                            <li>Owlbear Rodeo account</li>
+                            <li>One of: Chrome, Edge, or Firefox</li>
+                            <li>DM must have Owl20-Owlbear OBR extension installed and enabled</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources -->
+        <section class="resources">
+            <h3>🔗 Resources & Links</h3>
+            <div class="resource-grid">
+                <a href="https://github.com/uberdragon/owl20" target="_blank" class="resource-card">
+                    <h4>📦 Owl20 Repository</h4>
+                    <p>Browser Extension Source Code</p>
+                </a>
+                <a href="https://github.com/mvoncken/owl20-owlbear" target="_blank" class="resource-card">
+                    <h4>🎲 Owl20-Owlbear Repository</h4>
+                    <p>OBR Extension Source Code</p>
+                </a>
+                <a href="https://beyond20.here-for-more.info/" target="_blank" class="resource-card">
+                    <h4>🎯 Beyond20</h4>
+                    <p>Official Beyond20 Website</p>
+                </a>
+                <a href="https://www.owlbear.rodeo/" target="_blank" class="resource-card">
+                    <h4>🦉 Owlbear Rodeo</h4>
+                    <p>Official Owlbear Rodeo Website</p>
+                </a>
+                <a href="https://github.com/uberdragon/owl20/issues" target="_blank" class="resource-card">
+                    <h4>🐛 Report Issues</h4>
+                    <p>Bug Reports & Feature Requests</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>MIT License - Free and Open Source</p>
+        </footer>
+    </div>
+</body>
+</html>
