@@ -69,7 +69,7 @@ Once approved, it will be available for installation directly from your browser'
    - Cross-origin iframes receive postMessage with roll data
 
 ### Owl20-Owlbear
-This extension requires the [Owl20-Owlbear](https://github.com/mvoncken/owl20-owlbear) OBR extension be installed AND toggled on in the Owlbear Rodeo Room you are playing in.
+This extension supports the [Owl20-Owlbear](https://github.com/mvoncken/owl20-owlbear) OBR extension.  It must be installed AND toggled on in the Owlbear Rodeo Room you are playing in.
 
 ## Data Format
 
