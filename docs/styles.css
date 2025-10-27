@@ -48,6 +48,18 @@ body {
     gap: 1.5rem;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
+
 .logo h1 {
     font-size: 2.5rem;
     font-weight: 700;
@@ -55,6 +67,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    margin: 0;
 }
 
 .tagline {
