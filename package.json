@@ -1,7 +1,7 @@
 {
-  "name": "owl20-beyond20-owlbear-bridge",
+  "name": "owl20",
   "version": "1.1.1",
-  "description": "Chrome extension that bridges Beyond20 dice rolls to Owlbear Rodeo iframes",
+  "description": "Chrome extension that bridges Beyond20 dice rolls to Owlbear Rodeo Extensions via iframes",
   "main": "content.js",
   "scripts": {
     "test": "echo \"No tests specified\" && exit 0",
@@ -16,7 +16,7 @@
     "vtt",
     "iframe"
   ],
-  "author": "Your Name",
+  "author": "Shane Kretzmann",
   "license": "MIT",
   "repository": {
     "type": "git",
