@@ -15,6 +15,28 @@ function toggleSection(header) {
     }
 }
 
+// Copy manifest URL to clipboard
+function copyManifestUrl() {
+    const url = 'https://owl20.FriendlyMimic.com/manifest.json';
+    const button = event.target.closest('.copy-btn');
+    
+    navigator.clipboard.writeText(url).then(function() {
+        // Update button to show success
+        const icon = button.querySelector('.copy-icon');
+        icon.textContent = '✅';
+        button.title = 'Copied!';
+        
+        // Reset after 2 seconds
+        setTimeout(function() {
+            icon.textContent = '📋';
+            button.title = 'Copy URL';
+        }, 2000);
+    }).catch(function(err) {
+        console.error('Failed to copy URL:', err);
+        alert('Failed to copy URL. Please select and copy manually.');
+    });
+}
+
 // Add click listeners to all card headers on page load
 $(document).ready(function() {
     // Smooth animations on page load
