@@ -89,6 +89,34 @@ function closePendingApprovalModal(event) {
     }
 }
 
+// Open accordion section by ID
+function openSectionById(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        const header = section.querySelector('.card-header');
+        const content = section.querySelector('.card-content');
+        
+        // Close all other sections
+        $('.section-card').each(function() {
+            if (this.id !== sectionId) {
+                setSectionState(this, false);
+            }
+        });
+        
+        // Open the target section
+        header.classList.add('active');
+        content.classList.add('active');
+        
+        // Update URL hash
+        window.history.pushState({}, '', '#' + sectionId);
+        
+        // Scroll to the section
+        setTimeout(function() {
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+    }
+}
+
 // Helper function to toggle a section open/closed
 function setSectionState(sectionCard, isOpen) {
     const header = sectionCard.querySelector('.card-header');
