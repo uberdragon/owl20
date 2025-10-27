@@ -3,9 +3,22 @@ function toggleSection(header) {
     const content = header.nextElementSibling;
     const isActive = header.classList.contains('active');
     
+    // Get the parent section card to check its ID
+    const sectionCard = header.closest('.section-card');
+    const sectionId = sectionCard ? sectionCard.id : null;
+    
     // Toggle active class
     header.classList.toggle('active');
     content.classList.toggle('active');
+    
+    // Update URL hash if opening a section
+    if (!isActive && sectionId) {
+        // Update the URL with the section anchor
+        window.history.pushState({}, '', '#' + sectionId);
+    } else if (isActive && sectionId) {
+        // Remove the hash if closing the section
+        window.history.pushState({}, '', window.location.pathname + window.location.search);
+    }
     
     // Smooth scroll to section if opening
     if (!isActive) {
