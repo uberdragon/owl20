@@ -21,9 +21,9 @@
                 <p class="tagline">Bridge Between Beyond20 & Owlbear Rodeo</p>
             </div>
             <div class="badges">
-                <a href="#" class="badge chrome" title="Chrome Web Store">Chrome</a>
-                <a href="#" class="badge edge" title="Microsoft Edge">Edge</a>
-                <a href="#" class="badge firefox" title="Firefox Add-ons">Firefox</a>
+                <a href="#" class="badge chrome" title="Chrome Web Store" onclick="event.preventDefault(); showPendingApprovalModal(); return false;">Chrome</a>
+                <a href="#" class="badge edge" title="Microsoft Edge" onclick="event.preventDefault(); showPendingApprovalModal(); return false;">Edge</a>
+                <a href="#" class="badge firefox" title="Firefox Add-ons" onclick="event.preventDefault(); showPendingApprovalModal(); return false;">Firefox</a>
             </div>
         </header>
 
@@ -82,9 +82,9 @@
                         <h5>Step 1: Install Owl20 Browser Extension</h5>
                         <p>Install the Owl20 extension from your browser's extension store:</p>
                         <ul>
-                            <li><strong>Chrome:</strong> <a href="#" target="_blank">Chrome Web Store</a> (coming soon)</li>
-                            <li><strong>Edge:</strong> <a href="#" target="_blank">Microsoft Edge Add-ons</a> (coming soon)</li>
-                            <li><strong>Firefox:</strong> <a href="#" target="_blank">Firefox Add-ons</a> (coming soon)</li>
+                            <li><strong>Chrome:</strong> <a href="#" onclick="event.preventDefault(); showPendingApprovalModal(); return false;">Chrome Web Store</a> (coming soon)</li>
+                            <li><strong>Edge:</strong> <a href="#" onclick="event.preventDefault(); showPendingApprovalModal(); return false;">Microsoft Edge Add-ons</a> (coming soon)</li>
+                            <li><strong>Firefox:</strong> <a href="#" onclick="event.preventDefault(); showPendingApprovalModal(); return false;">Firefox Add-ons</a> (coming soon)</li>
                         </ul>
                         <p class="note">💡 The extension is currently pending approval. Check back soon!</p>
                     </div>
@@ -287,6 +287,23 @@
         <footer class="footer">
             <p></p>
         </footer>
+    </div>
+
+    <!-- Pending Approval Modal -->
+    <div id="pendingApprovalModal" class="modal-overlay" onclick="closePendingApprovalModal(event)">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePendingApprovalModal(event)">&times;</button>
+            <h3>Extension Pending Approval</h3>
+            <p>The Owl20 browser extension is currently pending approval from the various browser extension vetting teams.</p>
+            <p>We've submitted the extension to:</p>
+            <ul>
+                <li>Chrome Web Store</li>
+                <li>Microsoft Edge Add-ons</li>
+                <li>Firefox Add-ons</li>
+            </ul>
+            <p>Please check back soon! The extension will be available once approved by each browser's review process.</p>
+            <button class="modal-button" onclick="closePendingApprovalModal(event)">Got it!</button>
+        </div>
     </div>
 </body>
 </html>

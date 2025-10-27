@@ -72,6 +72,23 @@ function copyOwlbearUrl() {
     });
 }
 
+// Show pending approval modal
+function showPendingApprovalModal() {
+    const modal = document.getElementById('pendingApprovalModal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close pending approval modal
+function closePendingApprovalModal(event) {
+    // Only close if clicking the overlay or the button specifically
+    if (event.target.id === 'pendingApprovalModal' || event.target.classList.contains('modal-close') || event.target.classList.contains('modal-button')) {
+        const modal = document.getElementById('pendingApprovalModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
 // Helper function to toggle a section open/closed
 function setSectionState(sectionCard, isOpen) {
     const header = sectionCard.querySelector('.card-header');
