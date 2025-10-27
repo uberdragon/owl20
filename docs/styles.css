@@ -333,6 +333,15 @@ body {
     color: var(--accent-color);
 }
 
+.info-box ul {
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+}
+
+.info-box ul li {
+    margin-bottom: 0.5rem;
+}
+
 /* Resources Section */
 .resources {
     margin-bottom: 3rem;
