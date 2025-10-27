@@ -50,6 +50,28 @@ function copyManifestUrl() {
     });
 }
 
+// Copy Owlbear Rodeo URL to clipboard
+function copyOwlbearUrl() {
+    const url = 'https://www.owlbear.rodeo/*';
+    const button = event.target.closest('.copy-btn');
+    
+    navigator.clipboard.writeText(url).then(function() {
+        // Update button to show success
+        const icon = button.querySelector('.copy-icon');
+        icon.textContent = '✅';
+        button.title = 'Copied!';
+        
+        // Reset after 2 seconds
+        setTimeout(function() {
+            icon.textContent = '📋';
+            button.title = 'Copy URL';
+        }, 2000);
+    }).catch(function(err) {
+        console.error('Failed to copy URL:', err);
+        alert('Failed to copy URL. Please select and copy manually.');
+    });
+}
+
 // Helper function to toggle a section open/closed
 function setSectionState(sectionCard, isOpen) {
     const header = sectionCard.querySelector('.card-header');
