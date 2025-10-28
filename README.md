@@ -2,190 +2,283 @@
 
 A Chrome extension that bridges Beyond20 dice roll data to Owlbear Rodeo iframes. This extension focuses purely on data transmission - it listens for Beyond20 events and passes the raw JSON data to iframes without any visual display.
 
-## Features
+> **For end users**: Visit [owl20.uberdragon.org](https://owl20.uberdragon.org) for installation instructions and setup guide.
 
-- **Beyond20 Integration**: Listens for Beyond20 roll events on Owlbear Rodeo pages
-- **Iframe Support**: Automatically detects and passes data to all iframes on the page
-- **Cross-Origin Handling**: Uses postMessage for cross-origin iframe communication
-- **Same-Origin Support**: Uses CustomEvent for same-origin iframe communication
-- **Data-Only Transmission**: No visual elements - purely passes JSON data
-- **Minimal Permissions**: Only requires scripting permission and Owlbear host access
+## Architecture Overview
 
-## How It Works
+### Core Components
 
-### Beyond20 Event Flow
+- **Owl20Bridge Class**: Main data bridge logic in `content.js`
+- **Event Listeners**: Captures Beyond20 events (`Beyond20_RenderedRoll`, `Beyond20_Roll`, `Beyond20_Loaded`)
+- **Iframe Detection**: Automatic scanning and monitoring via MutationObserver
+- **Data Transmission**: Dual-mode communication (CustomEvent for same-origin, postMessage for cross-origin)
+
+### Data Flow
+
+```
+D&D Beyond → Beyond20 Extension → Owl20 Bridge → Owlbear Rodeo Owl20 Iframes
+```
 
 1. **User makes roll** in D&D Beyond character sheet
 2. **Beyond20 processes** the roll and sends it to custom domains
 3. **Owl20 Bridge receives** the `Beyond20_RenderedRoll` or `Beyond20_Roll` event
-4. **Bridge transmits** the raw roll data to:
-   - All detected iframes on the page
-   - Same-origin iframes via CustomEvent
-   - Cross-origin iframes via postMessage
+4. **Bridge transmits** the raw roll data to all detected iframes
 
-### Iframe Detection
+## Development Setup
 
-The extension automatically:
-- Scans for iframes when the page loads
-- Monitors for new iframes added dynamically
-- Passes roll data to owl20 iframe if detected
+### Prerequisites
 
-## Installation
+- Chrome/Edge/Firefox browser
+- Basic understanding of browser extensions and iframe communication
+- Beyond20 extension for testing
 
-### Development Installation
+### Installation
 
-1. Clone or download this repository
-2. Open Chrome and go to `chrome://extensions/`
-3. Enable "Developer mode" in the top right
-4. Click "Load unpacked" and select this directory
-5. The extension will be installed and ready to use
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/uberdragon/owl20.git
+   cd owl20
+   ```
 
-### Production Installation
+2. Load the extension in developer mode:
+   - Open `chrome://extensions/` (or equivalent for your browser)
+   - Enable "Developer mode"
+   - Click "Load unpacked" and select the project directory
 
-Install from your browser's extension store:
+3. Configure Beyond20 for testing:
+   - Add `https://www.owlbear.rodeo/*` to Beyond20's custom domains
+   - Visit an Owlbear Rodeo session to test
 
-- **Microsoft Edge:** [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/owl20-beyond20-to-owlbe/bofhilfebkhnchmngeaplaeodjobgdcf) ✅ Available now!
-- Chrome Web Store (coming soon)
-- Firefox Add-ons (AMO) (coming soon)
+## Technical Implementation
 
-Once approved by Chrome and Firefox, those versions will be available for installation directly from your browser's extension store.
-
-## Setup Instructions
-
-### Step 1: Configure Beyond20
-
-1. Open Beyond20 settings in your browser
-2. Go to "Advanced Options"
-3. Find "List of custom domains to load Beyond20"
-4. Add `https://www.owlbear.rodeo/*` to the list
-5. Save settings
-
-### Step 2: Use the Extension
-
-1. Open an Owlbear Rodeo session
-2. Open a D&D Beyond character sheet in another tab
-3. Make rolls using Beyond20 - the roll data will be transmitted to:
-   - OBR Extension iframes that contain owl20 in the url
-   - Same-origin iframes receive `Beyond20_Roll` custom events
-   - Cross-origin iframes receive postMessage with roll data
-
-### Owl20-Owlbear
-This extension supports the [Owl20-Owlbear](https://github.com/mvoncken/owl20-owlbear) OBR extension.  It must be installed AND toggled on in the Owlbear Rodeo Room you are playing in.
-
-## Data Format
-
-### Same-Origin Iframes
-Receive a `Beyond20_Roll` custom event:
-```javascript
-document.addEventListener('Beyond20_Roll', (event) => {
-  const rollData = event.detail[0]; // Raw Beyond20 roll data
-  // Process the roll data as needed
-});
-```
-
-### Cross-Origin Iframes
-Receive postMessage events:
-```javascript
-window.addEventListener('message', (event) => {
-  if (event.data.type === 'Beyond20_Roll') {
-    const rollData = event.data.data; // Raw Beyond20 roll data
-    // Process the roll data as needed
-  }
-});
-```
-
-## Technical Details
-
-### Event Listening
+### Event Handling
 
 The extension listens for these Beyond20 events:
-- `Beyond20_RenderedRoll`: Pre-rendered roll HTML from Beyond20
-- `Beyond20_Roll`: Raw roll data
-- `Beyond20_Loaded`: Beyond20 initialization complete
 
-### Iframe Handling
+```javascript
+// Primary events captured
+document.addEventListener('Beyond20_RenderedRoll', handleRoll);
+document.addEventListener('Beyond20_Roll', handleRoll);
+document.addEventListener('Beyond20_Loaded', handleLoaded);
+```
 
-- **Same-origin iframes**: CustomEvent dispatch with roll data
-- **Cross-origin iframes**: postMessage communication
-- **Dynamic iframes**: MutationObserver for detection
+### Iframe Communication
+
+#### Same-Origin Iframes
+Uses CustomEvent for direct communication:
+
+```javascript
+// Dispatch to same-origin iframes
+const event = new CustomEvent('Beyond20_Roll', {
+  detail: [rollData]
+});
+iframe.contentDocument.dispatchEvent(event);
+```
+
+#### Cross-Origin Iframes
+Uses postMessage for cross-origin communication:
+
+```javascript
+// Send to cross-origin iframes
+iframe.contentWindow.postMessage({
+  type: 'Beyond20_Roll',
+  data: rollData
+}, '*');
+```
 
 ### Message Format
 
+#### CustomEvent (Same-Origin)
 ```javascript
-// Sent to cross-origin iframes
+// Event detail structure
+{
+  detail: [{
+    character: 'Character Name',
+    html: '<div>Roll HTML</div>',
+    roll: {
+      dice: '1d20',
+      result: 15,
+      total: 18
+    },
+    // ... other Beyond20 roll properties
+  }]
+}
+```
+
+#### PostMessage (Cross-Origin)
+```javascript
+// Message structure
 {
   type: 'Beyond20_Roll',
   data: {
-    // Raw Beyond20 roll data object
     character: 'Character Name',
     html: '<div>Roll HTML</div>',
-    // ... other roll data properties
+    roll: {
+      dice: '1d20',
+      result: 15,
+      total: 18
+    },
+    // ... other Beyond20 roll properties
   }
 }
 ```
 
-## Development
-
-### Project Structure
+## Project Structure
 
 ```
 owl20/
-├── manifest.json          # Extension manifest
-├── content.js             # Main content script (data bridge)
-├── icons/                 # Extension icons
-├── .gitignore            # Git ignore file
-├── package.json          # NPM package configuration
-└── README.md             # This file
+├── manifest.json          # Extension manifest (Manifest V3)
+├── content.js             # Main content script (Owl20Bridge class)
+├── icons/                 # Extension icons (16px to 128px)
+│   ├── owl20-16.png
+│   ├── owl20-24.png
+│   ├── owl20-32.png
+│   ├── owl20-48.png
+│   ├── owl20-96.png
+│   └── owl20-128.png
+├── package.json           # NPM package configuration
+├── README.md             # This file
+└── docs/                 # Website documentation
+    ├── index.html        # User-facing documentation
+    ├── script.js         # Website functionality
+    └── styles.css        # Website styling
 ```
 
-### Key Components
+## Key Classes and Methods
 
-- **Owl20Bridge Class**: Main data bridge logic
-- **Iframe Detection**: Automatic iframe scanning
-- **Event Handling**: Beyond20 event listeners
-- **Data Transmission**: CustomEvent and postMessage handling
+### Owl20Bridge Class
 
-## Troubleshooting
+```javascript
+class Owl20Bridge {
+  constructor() {
+    this.iframes = new Set();
+    this.init();
+  }
+  
+  // Core methods
+  init()                    // Initialize event listeners
+  scanForIframes()         // Scan page for iframes
+  handleRoll(event)        // Process Beyond20 roll events
+  transmitToIframes(data)  // Send data to all iframes
+  isOwlbearIframe(iframe)  // Check if iframe is Owlbear-related
+}
+```
 
-### Data Not Transmitting
+## Testing
 
-1. Verify Beyond20 is configured with `https://www.owlbear.rodeo/*` in custom domains
-2. Check that the extension is enabled
-3. Reload the Owlbear Rodeo page
-4. Check browser console for error messages
+### Manual Testing
 
-### Iframes Not Receiving Data
+1. **Setup Test Environment**:
+   - Install Beyond20 extension
+   - Configure Beyond20 with `https://www.owlbear.rodeo/*`
+   - Load Owl20 extension in developer mode
 
-1. Check if iframes are cross-origin (use postMessage listener)
-2. Verify iframes are loading properly
-3. Check console for postMessage errors
-4. Ensure iframes are listening for the correct events
+2. **Test Scenarios**:
+   - Same-origin iframe communication
+   - Cross-origin iframe communication
+   - Dynamic iframe detection
+   - Multiple iframe handling
+   - Error handling and edge cases
 
-### Extension Not Working
+3. **Debug Tools**:
+   - Browser DevTools Console
+   - Extension DevTools
+   - Network tab for postMessage debugging
 
-1. Ensure you're on an Owlbear Rodeo page (`https://www.owlbear.rodeo/*`)
-2. Check that the extension has the necessary permissions
-3. Try reloading the extension in `chrome://extensions/`
+### Integration Testing
+
+Test with the [Owl20-Owlbear OBR Extension](https://github.com/mvoncken/owl20-owlbear):
+
+1. Install both extensions
+2. Create Owlbear Rodeo session
+3. Enable Owl20 OBR extension in room
+4. Make rolls from D&D Beyond character sheet
+5. Verify data appears in Owlbear Rodeo
 
 ## Browser Compatibility
 
-- Chrome (Manifest V3)
-- Edge (Chromium-based)
-- Firefox
-- Other Chromium-based browsers
+- **Chrome**: Manifest V3 support
+- **Edge**: Chromium-based (full compatibility)
+- **Firefox**: WebExtensions API
+- **Other Chromium browsers**: Should work with Manifest V3 support
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly with Beyond20 and Owlbear Rodeo
-5. Submit a pull request
+### Development Workflow
 
-## Support
+1. **Fork and Clone**:
+   ```bash
+   git clone https://github.com/your-username/owl20.git
+   cd owl20
+   ```
 
-For issues and feature requests, please create an issue in the [GitHub repository](https://github.com/uberdragon/owl20/issues).
+2. **Create Feature Branch**:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+3. **Make Changes**:
+   - Follow existing code style
+   - Add comments for complex logic
+   - Test thoroughly with Beyond20 and Owlbear Rodeo
+
+4. **Test Your Changes**:
+   - Load extension in developer mode
+   - Test all communication scenarios
+   - Verify error handling
+
+5. **Submit Pull Request**:
+   - Clear description of changes
+   - Reference any related issues
+   - Include testing notes
+
+### Code Style Guidelines
+
+- Use meaningful variable and function names
+- Add comments for complex iframe detection logic
+- Follow existing event handling patterns
+- Maintain backward compatibility with Beyond20 events
+
+### Areas for Contribution
+
+- **Performance**: Optimize iframe detection and scanning
+- **Error Handling**: Improve edge case handling
+- **Browser Support**: Add support for additional browsers
+- **Testing**: Add automated test suite
+- **Documentation**: Improve API documentation
+
+## Troubleshooting Development Issues
+
+### Common Development Problems
+
+1. **Extension Not Loading**:
+   - Check manifest.json syntax
+   - Verify file paths in manifest
+   - Check browser console for errors
+
+2. **Events Not Firing**:
+   - Verify Beyond20 is configured correctly
+   - Check if you're on an Owlbear Rodeo page
+   - Use console.log to debug event listeners
+
+3. **Iframe Communication Issues**:
+   - Check same-origin vs cross-origin
+   - Verify iframe is fully loaded before sending messages
+   - Use DevTools to inspect postMessage events
+
+### Debugging Tools
+
+- **Browser DevTools**: Console, Network, Sources tabs
+- **Extension DevTools**: chrome://extensions/ → Details → Inspect views
+- **Beyond20 Debug**: Check Beyond20 console messages
+- **PostMessage Debug**: Monitor window message events
 
 ## License
 
-MIT License - feel free to modify and distribute!
+MIT License - see LICENSE file for details.
+
+## Support
+
+- **Issues**: [GitHub Issues](https://github.com/uberdragon/owl20/issues)
+- **User Documentation**: [owl20.uberdragon.org](https://owl20.uberdragon.org)
+- **OBR Extension**: [Owl20-Owlbear Repository](https://github.com/mvoncken/owl20-owlbear)
