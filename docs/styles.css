@@ -147,6 +147,29 @@ body {
     }
 }
 
+/* Inline LED indicators for lists */
+.inline-led {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 0 4px;
+    vertical-align: middle;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.inline-led.status-green {
+    background: #10b981;
+    box-shadow: 0 0 4px #10b981, 0 0 6px #10b981;
+    animation: glow-green 2s infinite;
+}
+
+.inline-led.status-red {
+    background: #6b1f1f;
+    box-shadow: none;
+    opacity: 0.6;
+}
+
 
 /* Hero Section */
 .hero {
