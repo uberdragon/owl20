@@ -29,21 +29,8 @@ jobs:
         
       - name: Replace GTM ID
         run: |
-          # Debug: Show environment variable value
-          echo "GTMID variable value: '${{ vars.GTMID }}'"
-          
-          # Debug: Show current content before replacement
-          echo "Before replacement:"
-          grep -n "{{GTMID}}" docs/index.html || echo "No GTMID placeholder found"
-          
           # Replace the GTM placeholder with the environment variable
           sed -i "s/{{GTMID}}/${{ vars.GTMID }}/g" docs/index.html
-          
-          # Debug: Show content after replacement
-          echo "After replacement:"
-          grep -n "GTM-" docs/index.html || echo "No GTM ID found"
-          
-          echo "GTM ID replacement completed successfully"
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
