@@ -65,6 +65,15 @@ function copyManifestUrl() {
     const url = 'https://owl20.FriendlyMimic.com/manifest.json';
     const button = event.target.closest('.copy-btn');
     
+    // Push dataLayer event for GTM tracking
+    if (typeof dataLayer !== 'undefined') {
+        dataLayer.push({
+            'event': 'copy_manifest_url',
+            'url_copied': url,
+            'copy_location': 'dm_setup_section'
+        });
+    }
+    
     navigator.clipboard.writeText(url).then(function() {
         showToast('Added to Clipboard');
         
@@ -92,6 +101,15 @@ function copyManifestUrl() {
 function copyOwlbearUrl() {
     const url = 'https://www.owlbear.rodeo/*';
     const button = event.target.closest('.copy-btn');
+    
+    // Push dataLayer event for GTM tracking
+    if (typeof dataLayer !== 'undefined') {
+        dataLayer.push({
+            'event': 'copy_owlbear_url',
+            'url_copied': url,
+            'copy_location': 'player_setup_section'
+        });
+    }
     
     navigator.clipboard.writeText(url).then(function() {
         showToast('Added to Clipboard');
