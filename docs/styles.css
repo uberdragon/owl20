@@ -149,14 +149,16 @@ body {
 
 /* LED list styling */
 .led-list {
-    list-style: none;
-    padding-left: 0;
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
 }
 
 .led-list li {
-    display: flex;
+    display: flex !important;
     align-items: center;
     margin-bottom: 0.5rem;
+    list-style: none !important;
 }
 
 /* Inline LED indicators for lists */
