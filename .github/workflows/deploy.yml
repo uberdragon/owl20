@@ -1,0 +1,55 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+        
+      - name: Replace GTM ID
+        run: |
+          # Debug: Show environment variable value
+          echo "GTMID variable value: '${{ vars.GTMID }}'"
+          
+          # Debug: Show current content before replacement
+          echo "Before replacement:"
+          grep -n "{{GTMID}}" docs/index.html || echo "No GTMID placeholder found"
+          
+          # Replace the GTM placeholder with the environment variable
+          sed -i "s/{{GTMID}}/${{ vars.GTMID }}/g" docs/index.html
+          
+          # Debug: Show content after replacement
+          echo "After replacement:"
+          grep -n "GTM-" docs/index.html || echo "No GTM ID found"
+          
+          echo "GTM ID replacement completed successfully"
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './docs'
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
