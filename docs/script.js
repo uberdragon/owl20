@@ -28,25 +28,63 @@ function toggleSection(header) {
     }
 }
 
+// Show toast notification
+function showToast(message) {
+    // Remove existing toast if any
+    const existingToast = document.querySelector('.toast-notification');
+    if (existingToast) {
+        existingToast.remove();
+    }
+    
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.innerHTML = '<span class="toast-icon">✓</span><span class="toast-message">' + message + '</span>';
+    
+    // Add to body
+    document.body.appendChild(toast);
+    
+    // Trigger animation
+    setTimeout(function() {
+        toast.classList.add('show');
+    }, 10);
+    
+    // Remove after animation
+    setTimeout(function() {
+        toast.classList.remove('show');
+        setTimeout(function() {
+            if (toast.parentNode) {
+                toast.remove();
+            }
+        }, 300);
+    }, 2000);
+}
+
 // Copy manifest URL to clipboard
 function copyManifestUrl() {
     const url = 'https://owl20.FriendlyMimic.com/manifest.json';
     const button = event.target.closest('.copy-btn');
     
     navigator.clipboard.writeText(url).then(function() {
-        // Update button to show success
-        const icon = button.querySelector('.copy-icon');
-        icon.textContent = '✅';
-        button.title = 'Copied!';
+        showToast('Added to Clipboard');
         
-        // Reset after 2 seconds
-        setTimeout(function() {
-            icon.textContent = '📋';
-            button.title = 'Copy URL';
-        }, 2000);
+        // Update button to show success if it exists
+        if (button) {
+            const icon = button.querySelector('.copy-icon');
+            if (icon) {
+                icon.textContent = '✅';
+                button.title = 'Copied!';
+                
+                // Reset after 2 seconds
+                setTimeout(function() {
+                    icon.textContent = '📋';
+                    button.title = 'Copy URL';
+                }, 2000);
+            }
+        }
     }).catch(function(err) {
         console.error('Failed to copy URL:', err);
-        alert('Failed to copy URL. Please select and copy manually.');
+        showToast('Failed to copy');
     });
 }
 
@@ -56,19 +94,25 @@ function copyOwlbearUrl() {
     const button = event.target.closest('.copy-btn');
     
     navigator.clipboard.writeText(url).then(function() {
-        // Update button to show success
-        const icon = button.querySelector('.copy-icon');
-        icon.textContent = '✅';
-        button.title = 'Copied!';
+        showToast('Added to Clipboard');
         
-        // Reset after 2 seconds
-        setTimeout(function() {
-            icon.textContent = '📋';
-            button.title = 'Copy URL';
-        }, 2000);
+        // Update button to show success if it exists
+        if (button) {
+            const icon = button.querySelector('.copy-icon');
+            if (icon) {
+                icon.textContent = '✅';
+                button.title = 'Copied!';
+                
+                // Reset after 2 seconds
+                setTimeout(function() {
+                    icon.textContent = '📋';
+                    button.title = 'Copy URL';
+                }, 2000);
+            }
+        }
     }).catch(function(err) {
         console.error('Failed to copy URL:', err);
-        alert('Failed to copy URL. Please select and copy manually.');
+        showToast('Failed to copy');
     });
 }
 
