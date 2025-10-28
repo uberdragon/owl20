@@ -29,9 +29,16 @@ jobs:
         
       - name: Replace GTM ID
         run: |
+          # Debug: Show environment variable value
+          echo "GTMID variable value: '${{ vars.GTMID }}'"
+          echo "Variable length: ${#GTMID}"
+          
           # Debug: Show current content before replacement
           echo "Before replacement:"
           grep -n "{{GTMID}}" docs/index.html || echo "No GTMID placeholder found"
+          
+          # Show the exact sed command that will run
+          echo "Running sed command: sed -i \"s/{{GTMID}}/${{ vars.GTMID }}/g\" docs/index.html"
           
           # Replace the GTM placeholder with the environment variable
           sed -i "s/{{GTMID}}/${{ vars.GTMID }}/g" docs/index.html
@@ -40,7 +47,10 @@ jobs:
           echo "After replacement:"
           grep -n "GTM-" docs/index.html || echo "No GTM ID found"
           
-          echo "GTM ID replaced with: ${{ vars.GTMID }}"
+          # Show the specific lines that should have been replaced
+          echo "Checking specific replacement lines:"
+          grep -A1 -B1 "dataLayer" docs/index.html
+          grep -A1 -B1 "ns.html" docs/index.html
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
