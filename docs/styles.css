@@ -83,6 +83,7 @@ body {
 }
 
 .badge {
+    position: relative;
     padding: 0.5rem 1rem;
     border-radius: 8px;
     text-decoration: none;
@@ -112,6 +113,40 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
+
+.badge-indicator {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    overflow: visible;
+    z-index: 1;
+}
+
+.badge-indicator.status-green {
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981, 0 0 12px #10b981;
+    animation: glow-green 2s infinite;
+}
+
+.badge-indicator.status-red {
+    background: #6b1f1f;
+    box-shadow: none;
+    opacity: 0.6;
+}
+
+@keyframes glow-green {
+    0%, 100% {
+        box-shadow: 0 0 8px #10b981, 0 0 12px #10b981;
+    }
+    50% {
+        box-shadow: 0 0 12px #10b981, 0 0 20px #10b981, 0 0 24px #10b981;
+    }
+}
+
 
 /* Hero Section */
 .hero {
