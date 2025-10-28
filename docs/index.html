@@ -30,7 +30,25 @@
         <!-- Hero Section -->
         <section class="hero">
             <h2>Seamlessly Connect D&D Beyond to Owlbear</h2>
-            <p>Owl20 connects DnDBeyond.com with Owlbear Rodeo by capturing roll data from the Beyond20 extension and sending it to the Owl20 Owlbear Extension, allowing dice rolls from your D&D Beyond character sheet to instantly appear in Owlbear Rodeo</p>
+            <p>Owl20 connects DnDBeyond.com with Owlbear Rodeo VTT by capturing roll data from the Beyond20 extension and sending it to the Owl20 Owlbear Extension, allowing dice rolls from your D&D Beyond character sheet to instantly appear in Owlbear Rodeo</p>
+        </section>
+
+        <!-- Video Section -->
+        <section class="video-section">
+            <div class="video-wrapper">
+                <video id="demoVideo" class="demo-video" poster="owl20-128.png" controls>
+                    <source src="Owl20-Beyond20-OwlbearRodeo-Video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="play-overlay" id="playOverlay" onclick="playVideo()">
+                    <button class="play-button">
+                        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="30" r="30" fill="rgba(255, 255, 255, 0.9)"/>
+                            <path d="M25 20 L25 40 L40 30 Z" fill="var(--primary-color)"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </section>
 
         <!-- Quick Start -->
@@ -106,7 +124,7 @@
                         <ol start="5">
                             <li>Save your settings</li>
                         </ol>
-                        <p class="note">✅ This allows Beyond20 to work on Owlbear Rodeo pages</p>
+                        <p class="note">✅ This allows Beyond20 to send roll data to Owlbear Rodeo pages</p>
                     </div>
 
                     <div class="sub-section">
@@ -186,6 +204,7 @@
                             <li><strong>Check Beyond20 Setup:</strong> Verify <code>https://www.owlbear.rodeo/*</code> is in Beyond20's custom domains list</li>
                             <li><strong>Check OBR Extension:</strong> DM must have Owl20 Owlbear extension enabled in the room</li>
                             <li><strong>Reload Pages:</strong> Refresh both Owlbear Rodeo and D&D Beyond</li>
+                            <li><strong>New Owlbear tab:</strong> Try closing the current owlbear tab and reopening in a new tab</li>
                             <li><strong>Check Console:</strong> Open browser DevTools (F12) and look for "Owl20:" messages</li>
                         </ul>
                     </div>
@@ -293,11 +312,10 @@
         <div class="modal-content">
             <button class="modal-close" onclick="closePendingApprovalModal(event)">&times;</button>
             <h3>Extension Pending Approval</h3>
-            <p>The Owl20 browser extension is currently pending approval from the various browser extension vetting teams.</p>
+            <p>The Owl20 browser extension is currently pending approval from the following browser extension vetting teams.</p>
             <p>We've submitted the extension to:</p>
             <ul>
                 <li>Chrome Web Store</li>
-                <li>Microsoft Edge Add-ons</li>
                 <li>Firefox Add-ons</li>
             </ul>
             <p>Please check back soon! The extension will be available once approved by each browser's review process.</p>

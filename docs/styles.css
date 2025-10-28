@@ -137,6 +137,83 @@ body {
     padding: 0 1rem;
 }
 
+/* Video Section */
+.video-section {
+    margin-bottom: 4rem;
+}
+
+.video-wrapper {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.demo-video {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: var(--bg-secondary);
+    aspect-ratio: 16 / 9;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.play-overlay:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.play-overlay.hidden {
+    display: none;
+}
+
+.play-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.play-button:hover {
+    transform: scale(1.1);
+}
+
+.play-button:active {
+    transform: scale(0.95);
+}
+
+.play-button svg {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
 /* Quick Start */
 .quick-start {
     background: var(--bg-secondary);
@@ -415,6 +492,19 @@ body {
 
     .hero p {
         font-size: 1.125rem;
+    }
+
+    .video-section {
+        margin-bottom: 2rem;
+    }
+
+    .video-wrapper {
+        border-radius: 15px;
+    }
+
+    .play-button svg {
+        width: 60px;
+        height: 60px;
     }
 
     .steps {
