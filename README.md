@@ -42,12 +42,13 @@ The extension automatically:
 
 ### Production Installation
 
-**Coming soon!** The extension has been submitted to:
-- Chrome Web Store
-- Microsoft Edge Add-ons
-- Firefox Add-ons (AMO)
+Install from your browser's extension store:
 
-Once approved, it will be available for installation directly from your browser's extension store.
+- **Microsoft Edge:** [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/owl20-beyond20-to-owlbe/bofhilfebkhnchmngeaplaeodjobgdcf) ✅ Available now!
+- Chrome Web Store (coming soon)
+- Firefox Add-ons (AMO) (coming soon)
+
+Once approved by Chrome and Firefox, those versions will be available for installation directly from your browser's extension store.
 
 ## Setup Instructions
 
