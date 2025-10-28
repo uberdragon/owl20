@@ -31,6 +31,12 @@ jobs:
         run: |
           # Replace the GTM placeholder with the environment variable
           sed -i "s/{{GTMID}}/${{ vars.GTMID }}/g" docs/index.html
+          
+          # Debug: Show what's being deployed
+          echo "Files in docs directory:"
+          ls -la docs/
+          echo "Content of index.html after replacement:"
+          grep -n "GTM-" docs/index.html || echo "No GTM ID found"
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
