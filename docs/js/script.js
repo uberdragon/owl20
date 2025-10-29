@@ -281,6 +281,8 @@ $(document).ready(function() {
     $('.faq-item').each(function(index) {
         $(this).css('animation-delay', (index * 0.05) + 's');
     });
+    
+    initStarfield();
 });
 
 // Add fade-in animation to cards and handle anchors

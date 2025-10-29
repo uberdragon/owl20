@@ -22,21 +22,85 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, var(--bg-color) 0%, #0a0f1f 100%);
+    background-color: var(--bg-color);
+    background-image: linear-gradient(135deg, var(--bg-color) 0%, #0a0f1f 100%);
     color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
     padding: 2rem 1rem;
+    position: relative;
+    overflow-x: hidden;
 }
 
 .container {
     max-width: 1000px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-repeat: repeat;
+    background-position: center;
+    z-index: 0;
+    will-change: opacity;
+}
+
+body::before {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%22400%22%20height=%22400%22%20viewBox=%220%200%20400%20400%22%3E%3Crect%20width=%22400%22%20height=%22400%22%20fill=%22none%22/%3E%3Cg%20fill=%22%23ffffff%22%3E%3Ccircle%20cx=%2230%22%20cy=%2250%22%20r=%221.1%22/%3E%3Ccircle%20cx=%22180%22%20cy=%2290%22%20r=%221.3%22/%3E%3Ccircle%20cx=%22320%22%20cy=%2260%22%20r=%221.2%22/%3E%3Ccircle%20cx=%2290%22%20cy=%22140%22%20r=%221.1%22/%3E%3Ccircle%20cx=%22250%22%20cy=%22160%22%20r=%221.4%22/%3E%3Ccircle%20cx=%2260%22%20cy=%22220%22%20r=%221.2%22/%3E%3Ccircle%20cx=%22310%22%20cy=%22230%22%20r=%221.3%22/%3E%3Ccircle%20cx=%22150%22%20cy=%22280%22%20r=%221.2%22/%3E%3Ccircle%20cx=%22360%22%20cy=%22320%22%20r=%221.4%22/%3E%3Ccircle%20cx=%22120%22%20cy=%22360%22%20r=%221.1%22/%3E%3Ccircle%20cx=%22200%22%20cy=%2240%22%20r=%221.5%22/%3E%3C/g%3E%3Cg%20fill=%22%23ffffff%22%20opacity=%220.7%22%3E%3Ccircle%20cx=%2270%22%20cy=%2230%22%20r=%220.9%22/%3E%3Ccircle%20cx=%22210%22%20cy=%22110%22%20r=%220.8%22/%3E%3Ccircle%20cx=%22340%22%20cy=%22150%22%20r=%221%22/%3E%3Ccircle%20cx=%2250%22%20cy=%22310%22%20r=%220.9%22/%3E%3Ccircle%20cx=%22280%22%20cy=%22280%22%20r=%220.8%22/%3E%3Ccircle%20cx=%2220%22%20cy=%22190%22%20r=%220.7%22/%3E%3Ccircle%20cx=%22190%22%20cy=%22350%22%20r=%220.9%22/%3E%3Ccircle%20cx=%22330%22%20cy=%2220%22%20r=%220.8%22/%3E%3Ccircle%20cx=%22240%22%20cy=%2260%22%20r=%220.7%22/%3E%3Ccircle%20cx=%22110%22%20cy=%22210%22%20r=%220.8%22/%3E%3C/g%3E%3Cg%20fill=%22%238ab5ff%22%20opacity=%220.5%22%3E%3Ccircle%20cx=%22140%22%20cy=%2240%22%20r=%220.7%22/%3E%3Ccircle%20cx=%22260%22%20cy=%22200%22%20r=%220.9%22/%3E%3Ccircle%20cx=%2280%22%20cy=%22180%22%20r=%220.8%22/%3E%3Ccircle%20cx=%22300%22%20cy=%22340%22%20r=%220.7%22/%3E%3Ccircle%20cx=%2220%22%20cy=%22360%22%20r=%220.6%22/%3E%3Ccircle%20cx=%22370%22%20cy=%22200%22%20r=%220.8%22/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 680px 680px;
+    opacity: 0.55;
+    animation: twinkle 14s ease-in-out infinite alternate;
+    mix-blend-mode: screen;
+}
+
+body::after {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%22500%22%20height=%22500%22%20viewBox=%220%200%20500%20500%22%3E%3Crect%20width=%22500%22%20height=%22500%22%20fill=%22none%22/%3E%3Cg%20fill=%22%23ffffff%22%3E%3Ccircle%20cx=%2240%22%20cy=%2270%22%20r=%221.2%22/%3E%3Ccircle%20cx=%22250%22%20cy=%2240%22%20r=%221.4%22/%3E%3Ccircle%20cx=%22420%22%20cy=%22100%22%20r=%221.3%22/%3E%3Ccircle%20cx=%22110%22%20cy=%22200%22%20r=%221.1%22/%3E%3Ccircle%20cx=%22300%22%20cy=%22220%22%20r=%221.5%22/%3E%3Ccircle%20cx=%2270%22%20cy=%22340%22%20r=%221.2%22/%3E%3Ccircle%20cx=%22430%22%20cy=%22360%22%20r=%221.3%22/%3E%3Ccircle%20cx=%22200%22%20cy=%22430%22%20r=%221.4%22/%3E%3Ccircle%20cx=%22360%22%20cy=%22250%22%20r=%221.2%22/%3E%3Ccircle%20cx=%22470%22%20cy=%22450%22%20r=%221.5%22/%3E%3Ccircle%20cx=%22150%22%20cy=%2290%22%20r=%221.2%22/%3E%3C/g%3E%3Cg%20fill=%22%23ffffff%22%20opacity=%220.65%22%3E%3Ccircle%20cx=%2290%22%20cy=%2230%22%20r=%220.8%22/%3E%3Ccircle%20cx=%22210%22%20cy=%22150%22%20r=%220.9%22/%3E%3Ccircle%20cx=%22380%22%20cy=%22200%22%20r=%220.8%22/%3E%3Ccircle%20cx=%2240%22%20cy=%22420%22%20r=%220.9%22/%3E%3Ccircle%20cx=%22320%22%20cy=%22380%22%20r=%220.8%22/%3E%3Ccircle%20cx=%2210%22%20cy=%22230%22%20r=%220.7%22/%3E%3Ccircle%20cx=%22260%22%20cy=%22470%22%20r=%221%22/%3E%3Ccircle%20cx=%22470%22%20cy=%2230%22%20r=%220.8%22/%3E%3Ccircle%20cx=%22340%22%20cy=%2260%22%20r=%220.7%22/%3E%3Ccircle%20cx=%22150%22%20cy=%22260%22%20r=%220.8%22/%3E%3Ccircle%20cx=%22400%22%20cy=%22440%22%20r=%220.9%22/%3E%3C/g%3E%3Cg%20fill=%22%239fb9ff%22%20opacity=%220.4%22%3E%3Ccircle%20cx=%22180%22%20cy=%2260%22%20r=%220.7%22/%3E%3Ccircle%20cx=%22280%22%20cy=%22320%22%20r=%220.9%22/%3E%3Ccircle%20cx=%22100%22%20cy=%22260%22%20r=%220.8%22/%3E%3Ccircle%20cx=%22360%22%20cy=%22420%22%20r=%220.7%22/%3E%3Ccircle%20cx=%2260%22%20cy=%22470%22%20r=%220.6%22/%3E%3Ccircle%20cx=%22480%22%20cy=%22260%22%20r=%220.8%22/%3E%3Ccircle%20cx=%22220%22%20cy=%22210%22%20r=%220.7%22/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 900px 900px;
+    opacity: 0.35;
+    animation: twinkle-slow 20s ease-in-out infinite alternate;
+    mix-blend-mode: screen;
+}
+
+@keyframes twinkle {
+    0% {
+        opacity: 0.35;
+    }
+    45% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0.4;
+    }
+}
+
+@keyframes twinkle-slow {
+    0% {
+        opacity: 0.25;
+    }
+    50% {
+        opacity: 0.45;
+    }
+    100% {
+        opacity: 0.3;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    body::after {
+        animation: none;
+    }
 }
 
 /* Header */
 .header {
-    background: var(--bg-secondary);
+    background: rgba(30, 41, 59, 0.7);
     border-radius: 20px;
     padding: 2rem;
     margin-bottom: 3rem;
@@ -289,7 +353,7 @@ body {
 
 /* Quick Start */
 .quick-start {
-    background: var(--bg-secondary);
+    background: rgba(30, 41, 59, 0.7);
     border-radius: 20px;
     padding: 2.5rem;
     margin-bottom: 3rem;
@@ -343,7 +407,7 @@ body {
 }
 
 .section-card {
-    background: var(--bg-card);
+    background: rgba(30, 41, 59, 0.7);
     border-radius: 15px;
     margin-bottom: 1.5rem;
     border: 1px solid var(--border-color);
@@ -361,7 +425,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--bg-secondary);
+    background: rgba(30, 41, 59, 0.7);
     transition: background 0.3s ease;
     user-select: none;
 }
@@ -509,7 +573,7 @@ body {
 }
 
 .resource-card {
-    background: var(--bg-card);
+    background: rgba(30, 41, 59, 0.7);
     border: 1px solid var(--border-color);
     border-radius: 15px;
     padding: 1.5rem;
@@ -803,7 +867,7 @@ html {
 }
 
 .faq-item {
-    background: var(--bg-card);
+    background: rgba(30, 41, 59, 0.2);
     border: 1px solid var(--border-color);
     border-radius: 15px;
     overflow: hidden;
@@ -821,7 +885,7 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--bg-secondary);
+    background: rgba(30, 41, 59, 0.2);
     transition: all 0.3s ease;
     user-select: none;
 }
