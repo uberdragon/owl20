@@ -197,9 +197,9 @@ body::after {
 }
 
 .badge-indicator.status-red {
-    background: #6b1f1f;
+    background: #991b1b;
     box-shadow: none;
-    opacity: 0.6;
+    opacity: 1;
 }
 
 @keyframes glow-green {
@@ -244,9 +244,9 @@ body::after {
 }
 
 .inline-led.status-red {
-    background: #6b1f1f;
+    background: #991b1b;
     box-shadow: none;
-    opacity: 0.6;
+    opacity: 1;
 }
 
 
