@@ -28,6 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="script.js"></script>
+    
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -339,6 +340,162 @@
                     <h4><img src="https://www.enworld.org/media/ampersand-transparent-png.55177/full" alt="D&D Beyond Logo" style="height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> D&D Beyond</h4>
                     <p>Official D&D digital toolset for character creation, dice rolling, and campaign management.</p>
                 </a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h3>❓ Frequently Asked Questions</h3>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>What is Owl20?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Owl20 is a browser extension that bridges Beyond20 dice roll data to Owlbear Rodeo iframes. It connects D&D Beyond character sheets to Owlbear Rodeo VTT by capturing roll data from the Beyond20 extension and sending it to the Owl20 Owlbear Extension.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>How do I install Owl20?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Install Owl20 from your browser's extension store: Microsoft Edge (available now), Google Chrome (pending approval), or Mozilla Firefox (pending approval). You must also have the Beyond20 browser extension installed and configured first.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>How do I configure Beyond20 for Owl20?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Open Beyond20 settings, navigate to 'More Options' > 'Advanced Options', find 'List of custom domains to load Beyond20', and add 'https://www.owlbear.rodeo/*' to the list. Save your settings.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>How do I install the Owl20 OBR Extension?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Follow the instructions at <a href="https://extensions.owlbear.rodeo/guide" target="_blank">https://extensions.owlbear.rodeo/guide</a> for adding a custom extension. Use the installation link: <code>https://owl20.FriendlyMimic.com/manifest.json</code>. Only the DM needs to install and enable the OBR extension.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>How do I enable the Owl20 extension in Owlbear Rodeo?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Open your Owlbear Rodeo room as the DM, click the 'Extensions' button in the toolbar, find 'Owl20' in your installed extensions, and toggle it ON for your room. The extension must be enabled in each Owlbear Rodeo room.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>Why aren't my dice rolls appearing in Owlbear Rodeo?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Check that Owl20 browser extension is installed and enabled, verify 'https://www.owlbear.rodeo/*' is in Beyond20's custom domains list, ensure the DM has Owl20 Owlbear extension enabled in the room, reload both pages, try opening Owlbear in a new tab, and check browser DevTools (F12) for 'Owl20:' messages.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>What browsers does Owl20 support?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Owl20 supports Chrome (Manifest V3), Edge (Chromium-based), Firefox (WebExtensions API), and other Chromium-based browsers with Manifest V3 support.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>Do I need Beyond20 to use Owl20?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, Beyond20 is required for Owl20 to work. You must have the Beyond20 browser extension installed and configured first. Owl20 bridges the data from Beyond20 to Owlbear Rodeo.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>Who needs to install what?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Players need: Beyond20 browser extension + Owl20 browser extension. DM needs: Beyond20 browser extension + Owl20 browser extension + Owl20 OBR extension (enabled in each room). Only the DM needs the OBR extension.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>How does Owl20 work technically?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Player makes a roll in D&D Beyond → Beyond20 processes the roll and sends it to custom domains → Owl20 browser extension receives the Beyond20_Roll event and sends to OBR extension → Owl20 Owlbear Rodeo extension receives the data and displays it to all room participants.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>What if the extension isn't loading?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ensure you're using a supported browser (Chrome, Edge, or Firefox), try disabling and re-enabling the extension, check for browser updates, and review extension permissions.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>Is Owl20 free?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, Owl20 is completely free. It's available at no cost from the browser extension stores.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>Where can I get help or report issues?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Visit the GitHub Issues page at <a href="https://github.com/mvoncken/owl20-owlbear/issues" target="_blank">https://github.com/mvoncken/owl20-owlbear/issues</a> for help or to report bugs. You can also join the Starry Shores D&D Community Discord servers for support.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>What data does Owl20 transmit?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Owl20 focuses purely on data transmission - it listens for Beyond20 events and passes the raw JSON roll data to iframes without any visual display. It uses CustomEvent for same-origin iframe communication and postMessage for cross-origin iframe communication.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>What permissions does Owl20 require?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Owl20 has minimal permissions - only requires scripting permission and Owlbear host access. It doesn't collect personal data or require extensive permissions.</p>
+                    </div>
+                </div>
             </div>
         </section>
 

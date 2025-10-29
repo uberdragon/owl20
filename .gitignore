@@ -30,3 +30,6 @@ Thumbs.db
 # Build outputs
 dist/
 build/
+
+# Schema files (keep local for GTM implementation)
+docs/*schema*

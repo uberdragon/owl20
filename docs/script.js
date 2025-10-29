@@ -228,6 +228,32 @@ function setSectionState(sectionCard, isOpen) {
     }
 }
 
+// Toggle FAQ accordion
+function toggleFAQ(questionElement) {
+    const faqItem = questionElement.closest('.faq-item');
+    const answer = faqItem.querySelector('.faq-answer');
+    const isActive = questionElement.classList.contains('active');
+    
+    // Toggle active class
+    questionElement.classList.toggle('active');
+    answer.classList.toggle('active');
+    
+    // Optional: Close other FAQ items (accordion behavior)
+    // Uncomment the following lines if you want only one FAQ open at a time
+    /*
+    if (!isActive) {
+        document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) {
+                const otherQuestion = item.querySelector('.faq-question');
+                const otherAnswer = item.querySelector('.faq-answer');
+                otherQuestion.classList.remove('active');
+                otherAnswer.classList.remove('active');
+            }
+        });
+    }
+    */
+}
+
 // Add click listeners to all card headers on page load
 $(document).ready(function() {
     // Initialize video player
@@ -238,15 +264,28 @@ $(document).ready(function() {
         setSectionState(this, false);
     });
     
+    // Ensure all FAQ items start closed by default
+    $('.faq-item').each(function() {
+        const question = this.querySelector('.faq-question');
+        const answer = this.querySelector('.faq-answer');
+        question.classList.remove('active');
+        answer.classList.remove('active');
+    });
+    
     // Smooth animations on page load
     $('.section-card').each(function(index) {
         $(this).css('animation-delay', (index * 0.1) + 's');
+    });
+    
+    // Smooth animations for FAQ items
+    $('.faq-item').each(function(index) {
+        $(this).css('animation-delay', (index * 0.05) + 's');
     });
 });
 
 // Add fade-in animation to cards and handle anchors
 $(window).on('load', function() {
-    $('.section-card').addClass('fade-in');
+    $('.section-card, .faq-item').addClass('fade-in');
     
     // Handle URL anchor to auto-open sections (after page fully loads)
     const hash = window.location.hash.substring(1); // Remove the # symbol
@@ -273,7 +312,7 @@ $(window).on('load', function() {
 // Add CSS for fade-in animation dynamically
 const style = document.createElement('style');
 style.textContent = `
-    .section-card {
+    .section-card, .faq-item {
         opacity: 0;
         animation: fadeIn 0.5s ease forwards;
     }

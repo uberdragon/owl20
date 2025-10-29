@@ -786,6 +786,115 @@ html {
     transform: translateY(0);
 }
 
+/* FAQ Section */
+.faq-section {
+    margin-bottom: 3rem;
+}
+
+.faq-section h3 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+}
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow);
+    border-color: var(--primary-color);
+}
+
+.faq-question {
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-secondary);
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.faq-question:hover {
+    background: var(--bg-color);
+}
+
+.faq-question h4 {
+    font-size: 1rem;
+    margin: 0;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.faq-toggle {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.faq-question.active .faq-toggle {
+    transform: rotate(45deg);
+    background: var(--primary-color);
+    color: white;
+}
+
+.faq-answer {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.faq-answer.active {
+    padding: 0 1.25rem 1rem 1.25rem;
+    max-height: 500px;
+}
+
+.faq-answer p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.faq-answer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.faq-answer a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.faq-answer code {
+    background: var(--bg-color);
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    color: var(--secondary-color);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
 /* Toast Notification */
 .toast-notification {
     position: fixed;
