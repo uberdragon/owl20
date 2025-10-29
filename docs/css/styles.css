@@ -897,7 +897,7 @@ html {
 .faq-question h4 {
     font-size: 1rem;
     margin: 0;
-    color: var(--text-primary);
+    color: rgba(241, 245, 249, 0.7);
     font-weight: 600;
 }
 
@@ -934,7 +934,7 @@ html {
 }
 
 .faq-answer p {
-    color: var(--text-secondary);
+    color: rgba(241, 245, 249, 0.7);
     line-height: 1.6;
     margin: 0;
 }
