@@ -1,6 +1,6 @@
 # Owl20 - Beyond20 to Owlbear Rodeo Bridge
 
-A Chrome extension that bridges Beyond20 dice roll data to Owlbear Rodeo iframes. This extension focuses purely on data transmission - it listens for Beyond20 events and passes the raw JSON data to iframes without any visual display.
+A Browser extension that bridges Beyond20 dice roll data to Owlbear Rodeo iframes. This extension focuses purely on data transmission - it listens for Beyond20 events and passes the raw JSON data to iframes without any visual display.
 
 > **For end users**: Visit [owl20.uberdragon.org](https://owl20.uberdragon.org) for installation instructions and setup guide.
 
