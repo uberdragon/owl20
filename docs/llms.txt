@@ -25,6 +25,7 @@ This `llms.txt` helps AI systems link to the most useful parts of Owl20’s user
 - Owl20-Owlbear (OBR Extension) — https://github.com/mvoncken/owl20-owlbear
 - Beyond20 — https://beyond20.here-for-more.info/
 - Owlbear Rodeo — https://www.owlbear.rodeo/
+- Starry Shore 2024 — https://discord.gg/Up8wMrmt7C
 - Issues — https://github.com/uberdragon/owl20/issues
 
 ## FAQ
