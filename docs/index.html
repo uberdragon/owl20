@@ -61,9 +61,9 @@
                     Edge
                     <span class="badge-indicator status-green"></span>
                 </a>
-                <a href="#" class="badge firefox" title="Firefox Add-ons" onclick="event.preventDefault(); showPendingApprovalModal(); return false;">
+                <a href="https://addons.mozilla.org/en-US/firefox/addon/owl20-beyond20-owlbear-bridge/" class="badge firefox" title="Firefox Add-ons" target="_blank">
                     Firefox
-                    <span class="badge-indicator status-red"></span>
+                    <span class="badge-indicator status-green"></span>
                 </a>
             </div>
         </header>
@@ -143,9 +143,9 @@
                         <ul class="led-list">
                             <li><span class="inline-led status-green"></span><strong> Google Chrome:</strong>&nbsp;<a href="https://chromewebstore.google.com/detail/owl20-beyond20-to-owlbear/lpogdhcmmpkmafhdlbonpfjfmgcilhjp" target="_blank">Web Store</a></li>
                             <li><span class="inline-led status-green"></span><strong> Microsoft Edge:&nbsp;</strong> <a href="https://microsoftedge.microsoft.com/addons/detail/owl20-beyond20-to-owlbe/bofhilfebkhnchmngeaplaeodjobgdcf" target="_blank">Edge Add-ons</a></li>
-                            <li><span class="inline-led status-red"></span><strong> Mozilla Firefox:&nbsp;</strong> <a href="#" onclick="event.preventDefault(); showPendingApprovalModal(); return false;">Firefox Add-ons</a></li>
+                            <li><span class="inline-led status-green"></span><strong> Mozilla Firefox:&nbsp;</strong> <a href="https://addons.mozilla.org/en-US/firefox/addon/owl20-beyond20-owlbear-bridge/" target="_blank">Firefox Add-ons</a></li>
                         </ul>
-                        <p class="note">💡 We are still waiting on approval from Firefox. Chrome is live!</p>
+                        <p class="note">✅ Available on Chrome, Edge, and Firefox.</p>
                     </div>
 
                     <div class="sub-section">
@@ -366,7 +366,7 @@
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Install Owl20 from your browser's extension store: Microsoft Edge (available now), Google Chrome (available now), or Mozilla Firefox (pending approval). You must also have the Beyond20 browser extension installed and configured first. The installation process is simple - just search for "Owl20" in your browser's extension marketplace, click install, and follow the setup instructions. This extension works with D&D Beyond integration and requires Beyond20 to function properly.</p>
+                        <p>Install Owl20 from your browser's extension store: Microsoft Edge (available now), Google Chrome (available now), or Mozilla Firefox (available now). You must also have the Beyond20 browser extension installed and configured first. The installation process is simple - just search for "Owl20" in your browser's extension marketplace, click install, and follow the setup instructions. This extension works with D&D Beyond integration and requires Beyond20 to function properly.</p>
                     </div>
                 </div>
 
@@ -446,7 +446,7 @@
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Submission is pending approval. Firefox support will be available once approved in the Add-ons store.</p>
+                        <p>Yes. Install from Firefox Add-ons: <a href="https://addons.mozilla.org/en-US/firefox/addon/owl20-beyond20-owlbear-bridge/" target="_blank">https://addons.mozilla.org/en-US/firefox/addon/owl20-beyond20-owlbear-bridge/</a></p>
                     </div>
                 </div>
 
@@ -572,13 +572,10 @@
     <div id="pendingApprovalModal" class="modal-overlay" onclick="closePendingApprovalModal(event)">
         <div class="modal-content">
             <button class="modal-close" onclick="closePendingApprovalModal(event)">&times;</button>
-            <h3>Extension Pending Approval</h3>
-            <p>The Owl20 browser extension is currently pending approval from the following browser extension vetting team.</p>
-            <ul>
-                <li>Firefox Add-ons</li>
-            </ul>
-            <p>Please check back soon! The extension will be available once approved by each browser's review process.</p>
-            <button class="modal-button" onclick="closePendingApprovalModal(event)">Got it!</button>
+            <h3>Firefox Add-ons</h3>
+            <p>Owl20 is now available on the Firefox Add-ons store.</p>
+            <p><a href="https://addons.mozilla.org/en-US/firefox/addon/owl20-beyond20-owlbear-bridge/" target="_blank">Open Firefox Add-ons page</a></p>
+            <button class="modal-button" onclick="closePendingApprovalModal(event)">Close</button>
         </div>
     </div>
 </body>
