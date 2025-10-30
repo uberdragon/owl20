@@ -1,15 +1,37 @@
-# llms.txt - Guidelines for AI/LLM crawlers
+# Owl20 Documentation Overview
 
-User-agent: *
-Allow: /
-Crawl-delay: 2
+> Bridge Beyond20 dice roll data to Owlbear Rodeo. This page explains installation, setup for players/DMs, troubleshooting, and technical details.
 
-# Project metadata
-Owner: Owl20 (Starry Shores D&D Community)
-Repository: https://github.com/uberdragon/owl20
-Contact: https://github.com/uberdragon/owl20/issues
+This `llms.txt` helps AI systems link to the most useful parts of Owl20’s user documentation hosted at `https://owl20.uberdragon.org/`. The site is a single-page guide with collapsible sections; some sections have explicit anchors.
 
-# Usage policy for AI crawlers
-# You may crawl and index this site for search, summarization, and QA purposes.
-# Do not use this content for model training without prior permission.
+## Guides
+- Player Setup — https://owl20.uberdragon.org/#player
+  - Install Owl20 (browser extension) and configure Beyond20 with Owlbear domains.
+- DM Setup — https://owl20.uberdragon.org/#dm
+  - Install and enable the Owl20 OBR extension in an Owlbear Rodeo room.
+- Quick Start — https://owl20.uberdragon.org/
+  - Three-step overview (install extensions, configure Beyond20, enable OBR extension).
+
+## Troubleshooting
+- Troubleshooting Section — https://owl20.uberdragon.org/
+  - Guidance for rolls not appearing, extension loading issues, and debugging tips.
+
+## Technical Details
+- How It Works — https://owl20.uberdragon.org/
+  - Data flow and mechanisms: CustomEvent for same-origin iframes, postMessage for cross-origin, MutationObserver for iframe detection.
+
+## Resources
+- Owl20 Repository — https://github.com/uberdragon/owl20
+- Owl20-Owlbear (OBR Extension) — https://github.com/mvoncken/owl20-owlbear
+- Beyond20 — https://beyond20.here-for-more.info/
+- Owlbear Rodeo — https://www.owlbear.rodeo/
+- Issues — https://github.com/uberdragon/owl20/issues
+
+## FAQ
+- FAQ Section — https://owl20.uberdragon.org/
+  - Common questions on installation, configuration, browser support, and permissions.
+
+## Optional
+- Demo Video — https://owl20.uberdragon.org/Owl20-Beyond20-OwlbearRodeo-Video.mp4
+  - Short demonstration of Owl20 connecting D&D Beyond to Owlbear Rodeo.
 
