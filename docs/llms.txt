@@ -1,0 +1,15 @@
+# llms.txt - Guidelines for AI/LLM crawlers
+
+User-agent: *
+Allow: /
+Crawl-delay: 2
+
+# Project metadata
+Owner: Owl20 (Starry Shores D&D Community)
+Repository: https://github.com/uberdragon/owl20
+Contact: https://github.com/uberdragon/owl20/issues
+
+# Usage policy for AI crawlers
+# You may crawl and index this site for search, summarization, and QA purposes.
+# Do not use this content for model training without prior permission.
+
