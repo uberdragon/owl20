@@ -7,8 +7,7 @@ const STARFIELD_CONFIG = {
     MAX_DELAY: 1700,
     MIN_DURATION: 1300,
     MAX_DURATION: 2600,
-    PLANET_COUNT: 3,  // Add a few distant planets
-    GALAXY_COUNT: 2,  // Distant galaxies
+    NEBULA_COUNT: 3,  // Beautiful cosmic nebulae
     CONSTELLATION_COUNT: 4  // Star constellations
 };
 
@@ -142,14 +141,14 @@ function initStarfield() {
     }
 }
 
-function initPlanets() {
-    if (document.body.dataset.planetsInit === 'true') {
+function initNebulae() {
+    if (document.body.dataset.nebulaeInit === 'true') {
         return;
     }
 
     const reduceMotionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
     if (reduceMotionQuery && reduceMotionQuery.matches) {
-        document.body.dataset.planetsInit = 'skipped';
+        document.body.dataset.nebulaeInit = 'skipped';
         return;
     }
 
@@ -158,108 +157,75 @@ function initPlanets() {
         return;
     }
 
-    const planetColors = [
-        'rgba(180, 160, 220, 0.15)',  // Purple planet
-        'rgba(160, 200, 255, 0.12)',  // Blue planet  
-        'rgba(255, 200, 160, 0.15)'   // Orange planet
+    // Define nebula color schemes based on real nebulae
+    const nebulaPalettes = [
+        // Purple-blue nebula
+        [
+            'rgba(180, 120, 220, 0.4)',
+            'rgba(120, 140, 220, 0.3)',
+            'rgba(80, 100, 180, 0.2)'
+        ],
+        // Blue-pink nebula
+        [
+            'rgba(200, 180, 255, 0.4)',
+            'rgba(255, 160, 200, 0.3)',
+            'rgba(180, 140, 255, 0.2)'
+        ],
+        // Red-orange nebula
+        [
+            'rgba(255, 180, 150, 0.4)',
+            'rgba(255, 140, 100, 0.3)',
+            'rgba(255, 100, 80, 0.2)'
+        ]
     ];
 
-    for (let i = 0; i < STARFIELD_CONFIG.PLANET_COUNT; i++) {
-        const planet = document.createElement('div');
-        planet.className = 'planet';
-        const size = (Math.random() * 80 + 40).toFixed(0); // 40-120px planets
+    for (let i = 0; i < STARFIELD_CONFIG.NEBULA_COUNT; i++) {
+        const nebula = document.createElement('div');
+        nebula.className = 'nebula';
+        
+        const width = (Math.random() * 250 + 300).toFixed(0); // 300-550px wide
+        const height = (Math.random() * 250 + 300).toFixed(0); // 300-550px tall
         const left = (Math.random() * 100).toFixed(2) + '%';
         const top = (Math.random() * 100).toFixed(2) + '%';
-        const color = planetColors[i % planetColors.length];
-        const blur = (Math.random() * 20 + 30).toFixed(0); // 30-50px blur
-        const driftDuration = (Math.random() * 80 + 160).toFixed(0); // 160-240s drift
+        const rotation = (Math.random() * 360).toFixed(0);
+        const palette = nebulaPalettes[i % nebulaPalettes.length];
+        const blur = (Math.random() * 30 + 40).toFixed(0); // 40-70px blur for soft look
         
-        planet.style.left = left;
-        planet.style.top = top;
-        planet.style.width = size + 'px';
-        planet.style.height = size + 'px';
-        planet.style.backgroundColor = color;
-        planet.style.filter = `blur(${blur}px)`;
-        planet.style.setProperty('--planet-drift-duration', driftDuration + 's');
+        nebula.style.left = left;
+        nebula.style.top = top;
+        nebula.style.width = width + 'px';
+        nebula.style.height = height + 'px';
+        nebula.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+        nebula.style.filter = `blur(${blur}px)`;
+        nebula.style.opacity = '0.6';
         
-        starfield.appendChild(planet);
+        // Create multi-layered gradient for depth
+        nebula.style.background = `
+            radial-gradient(ellipse 80% 100% at 20% 50%, ${palette[0]} 0%, transparent 60%),
+            radial-gradient(ellipse 100% 80% at 80% 50%, ${palette[1]} 0%, transparent 70%),
+            radial-gradient(ellipse 60% 100% at 50% 50%, ${palette[2]} 0%, transparent 80%)
+        `;
+        
+        starfield.appendChild(nebula);
     }
 
-    document.body.dataset.planetsInit = 'true';
+    document.body.dataset.nebulaeInit = 'true';
 
-    function handleReduceMotionChangePlanets(event) {
+    function handleReduceMotionChangeNebulae(event) {
         if (event.matches) {
-            document.querySelectorAll('.planet').forEach(p => p.remove());
-            document.body.dataset.planetsInit = 'skipped';
-        } else if (document.body.dataset.planetsInit === 'skipped') {
-            document.body.dataset.planetsInit = 'false';
-            initPlanets();
+            document.querySelectorAll('.nebula').forEach(n => n.remove());
+            document.body.dataset.nebulaeInit = 'skipped';
+        } else if (document.body.dataset.nebulaeInit === 'skipped') {
+            document.body.dataset.nebulaeInit = 'false';
+            initNebulae();
         }
     }
 
     if (reduceMotionQuery) {
         if (reduceMotionQuery.addEventListener) {
-            reduceMotionQuery.addEventListener('change', handleReduceMotionChangePlanets);
+            reduceMotionQuery.addEventListener('change', handleReduceMotionChangeNebulae);
         } else if (reduceMotionQuery.addListener) {
-            reduceMotionQuery.addListener(handleReduceMotionChangePlanets);
-        }
-    }
-}
-
-function initGalaxies() {
-    if (document.body.dataset.galaxiesInit === 'true') {
-        return;
-    }
-
-    const reduceMotionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
-    if (reduceMotionQuery && reduceMotionQuery.matches) {
-        document.body.dataset.galaxiesInit = 'skipped';
-        return;
-    }
-
-    const starfield = document.querySelector('.starfield');
-    if (!starfield) {
-        return;
-    }
-
-    for (let i = 0; i < STARFIELD_CONFIG.GALAXY_COUNT; i++) {
-        const galaxy = document.createElement('div');
-        galaxy.className = 'galaxy';
-        
-        const size = (Math.random() * 150 + 200).toFixed(0); // 200-350px galaxies
-        const left = (Math.random() * 100).toFixed(2) + '%';
-        const top = (Math.random() * 100).toFixed(2) + '%';
-        const rotation = (Math.random() * 360).toFixed(0); // Random rotation
-        const blur = (Math.random() * 20 + 25).toFixed(0); // 25-45px blur for visible galaxies
-        
-        galaxy.style.left = left;
-        galaxy.style.top = top;
-        galaxy.style.width = size + 'px';
-        galaxy.style.height = size + 'px';
-        galaxy.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
-        galaxy.style.filter = `blur(${blur}px)`;
-        galaxy.style.opacity = '0.15';
-        
-        starfield.appendChild(galaxy);
-    }
-
-    document.body.dataset.galaxiesInit = 'true';
-
-    function handleReduceMotionChangeGalaxies(event) {
-        if (event.matches) {
-            document.querySelectorAll('.galaxy').forEach(g => g.remove());
-            document.body.dataset.galaxiesInit = 'skipped';
-        } else if (document.body.dataset.galaxiesInit === 'skipped') {
-            document.body.dataset.galaxiesInit = 'false';
-            initGalaxies();
-        }
-    }
-
-    if (reduceMotionQuery) {
-        if (reduceMotionQuery.addEventListener) {
-            reduceMotionQuery.addEventListener('change', handleReduceMotionChangeGalaxies);
-        } else if (reduceMotionQuery.addListener) {
-            reduceMotionQuery.addListener(handleReduceMotionChangeGalaxies);
+            reduceMotionQuery.addListener(handleReduceMotionChangeNebulae);
         }
     }
 }

@@ -283,10 +283,9 @@ $(document).ready(function() {
     });
     
     initStarfield();
-    // Wait for starfield to be created before initializing planets, galaxies, and constellations
+    // Wait for starfield to be created before initializing nebulae and constellations
     setTimeout(function() {
-        initPlanets();
-        initGalaxies();
+        initNebulae();
         initConstellations();
     }, 100);
 });
