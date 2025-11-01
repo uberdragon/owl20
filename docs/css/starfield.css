@@ -51,8 +51,9 @@
     position: absolute;
     pointer-events: none;
     background: 
-        radial-gradient(ellipse 100% 50% at 50% 50%, rgba(200, 180, 255, 0.3) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 100% at 50% 50%, rgba(255, 200, 180, 0.2) 0%, transparent 70%);
+        radial-gradient(ellipse 100% 50% at 50% 50%, rgba(200, 180, 255, 1) 0%, rgba(200, 180, 255, 0.5) 30%, transparent 70%),
+        radial-gradient(ellipse 50% 100% at 50% 50%, rgba(255, 200, 180, 0.8) 0%, rgba(255, 200, 180, 0.4) 35%, transparent 75%);
+    border-radius: 50%;
 }
 
 /* Constellation Styles */

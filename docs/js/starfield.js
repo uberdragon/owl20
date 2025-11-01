@@ -226,18 +226,19 @@ function initGalaxies() {
         const galaxy = document.createElement('div');
         galaxy.className = 'galaxy';
         
-        const size = (Math.random() * 200 + 150).toFixed(0); // 150-350px galaxies
+        const size = (Math.random() * 150 + 200).toFixed(0); // 200-350px galaxies
         const left = (Math.random() * 100).toFixed(2) + '%';
         const top = (Math.random() * 100).toFixed(2) + '%';
         const rotation = (Math.random() * 360).toFixed(0); // Random rotation
-        const blur = (Math.random() * 40 + 50).toFixed(0); // 50-90px blur for very distant
+        const blur = (Math.random() * 20 + 25).toFixed(0); // 25-45px blur for visible galaxies
         
         galaxy.style.left = left;
         galaxy.style.top = top;
         galaxy.style.width = size + 'px';
         galaxy.style.height = size + 'px';
         galaxy.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
-        galaxy.style.filter = `blur(${blur}px) opacity(0.08)`;
+        galaxy.style.filter = `blur(${blur}px)`;
+        galaxy.style.opacity = '0.15';
         
         starfield.appendChild(galaxy);
     }
@@ -279,22 +280,44 @@ function initConstellations() {
         return;
     }
 
+    // Define recognizable constellation patterns
+    const constellationPatterns = [
+        // Big Dipper / Ursa Major
+        [
+            {x: 0, y: 0}, {x: 15, y: 5}, {x: 30, y: 8}, {x: 45, y: 12},
+            {x: 30, y: 25}, {x: 50, y: 30}, {x: 65, y: 35}
+        ],
+        // Orion's Belt
+        [
+            {x: 0, y: 0}, {x: 40, y: 0}, {x: 80, y: 0},
+            {x: 20, y: -30}, {x: 60, y: -30}
+        ],
+        // Cassiopeia (W-shape)
+        [
+            {x: 0, y: 0}, {x: 25, y: 20}, {x: 50, y: 0},
+            {x: 75, y: 20}, {x: 100, y: 0}
+        ],
+        // Leo (sickle shape)
+        [
+            {x: 0, y: 0}, {x: 25, y: 15}, {x: 50, y: 20},
+            {x: 65, y: 35}, {x: 80, y: 50}
+        ]
+    ];
+
     for (let i = 0; i < STARFIELD_CONFIG.CONSTELLATION_COUNT; i++) {
         const constellation = document.createElement('div');
         constellation.className = 'constellation';
         
-        const centerX = Math.random() * 100;
-        const centerY = Math.random() * 100;
-        const starCount = Math.floor(Math.random() * 5 + 5); // 5-10 stars per constellation
-        const constellationOpacity = (Math.random() * 0.1 + 0.15).toFixed(2); // 0.15-0.25
+        const centerX = Math.random() * 70 + 15; // Keep away from edges
+        const centerY = Math.random() * 60 + 20;
+        const pattern = constellationPatterns[i % constellationPatterns.length];
+        const constellationOpacity = '0.6'; // More visible
         
         let starsHTML = '';
-        for (let j = 0; j < starCount; j++) {
-            const angle = (j / starCount) * Math.PI * 2;
-            const radius = Math.random() * 20 + 15; // 15-35px radius
-            const x = centerX + Math.cos(angle) * radius;
-            const y = centerY + Math.sin(angle) * radius;
-            const starSize = (Math.random() * 1.5 + 1).toFixed(2); // 1-2.5px stars
+        for (let j = 0; j < pattern.length; j++) {
+            const x = centerX + pattern[j].x * 0.3; // Scale down the pattern
+            const y = centerY + pattern[j].y * 0.3;
+            const starSize = (Math.random() * 0.5 + 2).toFixed(2); // 2-2.5px stars
             
             starsHTML += `<span class="constellation-star" style="left: ${x}%; top: ${y}%; width: ${starSize}px; height: ${starSize}px;"></span>`;
         }
