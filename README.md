@@ -156,12 +156,9 @@ owl20/
     ├── css/
     │   ├── starfield.css # Twinkling star background styles
     │   └── styles.css    # Main website styling
-    ├── js/
-    │   ├── script.js     # Website functionality
-    │   └── starfield.js  # Animated starfield implementation
-    └── schema/           # Structured data schemas
-        ├── extension-schema.html
-        └── faq-schema.html
+    └── js/
+        ├── script.js     # Website functionality
+        └── starfield.js  # Animated starfield implementation
 ```
 
 ## Key Classes and Methods
