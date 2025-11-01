@@ -6,7 +6,8 @@ const STARFIELD_CONFIG = {
     MIN_DELAY: 450,
     MAX_DELAY: 1700,
     MIN_DURATION: 1300,
-    MAX_DURATION: 2600
+    MAX_DURATION: 2600,
+    PLANET_COUNT: 3  // Add a few distant planets
 };
 
 function randomBetween(min, max) {
@@ -135,6 +136,70 @@ function initStarfield() {
             reduceMotionQuery.addEventListener('change', handleReduceMotionChange);
         } else if (reduceMotionQuery.addListener) {
             reduceMotionQuery.addListener(handleReduceMotionChange);
+        }
+    }
+}
+
+function initPlanets() {
+    if (document.body.dataset.planetsInit === 'true') {
+        return;
+    }
+
+    const reduceMotionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    if (reduceMotionQuery && reduceMotionQuery.matches) {
+        document.body.dataset.planetsInit = 'skipped';
+        return;
+    }
+
+    const starfield = document.querySelector('.starfield');
+    if (!starfield) {
+        return;
+    }
+
+    const planetColors = [
+        'rgba(180, 160, 220, 0.15)',  // Purple planet
+        'rgba(160, 200, 255, 0.12)',  // Blue planet  
+        'rgba(255, 200, 160, 0.15)'   // Orange planet
+    ];
+
+    for (let i = 0; i < STARFIELD_CONFIG.PLANET_COUNT; i++) {
+        const planet = document.createElement('div');
+        planet.className = 'planet';
+        const size = (Math.random() * 80 + 40).toFixed(0); // 40-120px planets
+        const left = (Math.random() * 100).toFixed(2) + '%';
+        const top = (Math.random() * 100).toFixed(2) + '%';
+        const color = planetColors[i % planetColors.length];
+        const blur = (Math.random() * 20 + 30).toFixed(0); // 30-50px blur
+        const driftDuration = (Math.random() * 80 + 160).toFixed(0); // 160-240s drift
+        
+        planet.style.left = left;
+        planet.style.top = top;
+        planet.style.width = size + 'px';
+        planet.style.height = size + 'px';
+        planet.style.backgroundColor = color;
+        planet.style.filter = `blur(${blur}px)`;
+        planet.style.setProperty('--planet-drift-duration', driftDuration + 's');
+        
+        starfield.appendChild(planet);
+    }
+
+    document.body.dataset.planetsInit = 'true';
+
+    function handleReduceMotionChangePlanets(event) {
+        if (event.matches) {
+            document.querySelectorAll('.planet').forEach(p => p.remove());
+            document.body.dataset.planetsInit = 'skipped';
+        } else if (document.body.dataset.planetsInit === 'skipped') {
+            document.body.dataset.planetsInit = 'false';
+            initPlanets();
+        }
+    }
+
+    if (reduceMotionQuery) {
+        if (reduceMotionQuery.addEventListener) {
+            reduceMotionQuery.addEventListener('change', handleReduceMotionChangePlanets);
+        } else if (reduceMotionQuery.addListener) {
+            reduceMotionQuery.addListener(handleReduceMotionChangePlanets);
         }
     }
 }

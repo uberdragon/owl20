@@ -283,6 +283,8 @@ $(document).ready(function() {
     });
     
     initStarfield();
+    // Wait for starfield to be created before initializing planets
+    setTimeout(initPlanets, 100);
 });
 
 // Add fade-in animation to cards and handle anchors
