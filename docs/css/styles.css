@@ -37,6 +37,22 @@ body {
     margin: 0 auto;
     position: relative;
     z-index: 1;
+    animation: floatInSpace 20s ease-in-out infinite;
+}
+
+@keyframes floatInSpace {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px);
+    }
+    25% {
+        transform: translateY(-8px) translateX(6px);
+    }
+    50% {
+        transform: translateY(4px) translateX(-4px);
+    }
+    75% {
+        transform: translateY(-6px) translateX(-8px);
+    }
 }
 
 body::before,
@@ -94,6 +110,9 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
     body::before,
     body::after {
+        animation: none;
+    }
+    .container {
         animation: none;
     }
 }
