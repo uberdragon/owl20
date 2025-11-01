@@ -7,7 +7,9 @@ const STARFIELD_CONFIG = {
     MAX_DELAY: 1700,
     MIN_DURATION: 1300,
     MAX_DURATION: 2600,
-    PLANET_COUNT: 3  // Add a few distant planets
+    PLANET_COUNT: 3,  // Add a few distant planets
+    GALAXY_COUNT: 2,  // Distant galaxies
+    CONSTELLATION_COUNT: 4  // Star constellations
 };
 
 function randomBetween(min, max) {
@@ -200,6 +202,126 @@ function initPlanets() {
             reduceMotionQuery.addEventListener('change', handleReduceMotionChangePlanets);
         } else if (reduceMotionQuery.addListener) {
             reduceMotionQuery.addListener(handleReduceMotionChangePlanets);
+        }
+    }
+}
+
+function initGalaxies() {
+    if (document.body.dataset.galaxiesInit === 'true') {
+        return;
+    }
+
+    const reduceMotionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    if (reduceMotionQuery && reduceMotionQuery.matches) {
+        document.body.dataset.galaxiesInit = 'skipped';
+        return;
+    }
+
+    const starfield = document.querySelector('.starfield');
+    if (!starfield) {
+        return;
+    }
+
+    for (let i = 0; i < STARFIELD_CONFIG.GALAXY_COUNT; i++) {
+        const galaxy = document.createElement('div');
+        galaxy.className = 'galaxy';
+        
+        const size = (Math.random() * 200 + 150).toFixed(0); // 150-350px galaxies
+        const left = (Math.random() * 100).toFixed(2) + '%';
+        const top = (Math.random() * 100).toFixed(2) + '%';
+        const rotation = (Math.random() * 360).toFixed(0); // Random rotation
+        const blur = (Math.random() * 40 + 50).toFixed(0); // 50-90px blur for very distant
+        
+        galaxy.style.left = left;
+        galaxy.style.top = top;
+        galaxy.style.width = size + 'px';
+        galaxy.style.height = size + 'px';
+        galaxy.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+        galaxy.style.filter = `blur(${blur}px) opacity(0.08)`;
+        
+        starfield.appendChild(galaxy);
+    }
+
+    document.body.dataset.galaxiesInit = 'true';
+
+    function handleReduceMotionChangeGalaxies(event) {
+        if (event.matches) {
+            document.querySelectorAll('.galaxy').forEach(g => g.remove());
+            document.body.dataset.galaxiesInit = 'skipped';
+        } else if (document.body.dataset.galaxiesInit === 'skipped') {
+            document.body.dataset.galaxiesInit = 'false';
+            initGalaxies();
+        }
+    }
+
+    if (reduceMotionQuery) {
+        if (reduceMotionQuery.addEventListener) {
+            reduceMotionQuery.addEventListener('change', handleReduceMotionChangeGalaxies);
+        } else if (reduceMotionQuery.addListener) {
+            reduceMotionQuery.addListener(handleReduceMotionChangeGalaxies);
+        }
+    }
+}
+
+function initConstellations() {
+    if (document.body.dataset.constellationsInit === 'true') {
+        return;
+    }
+
+    const reduceMotionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    if (reduceMotionQuery && reduceMotionQuery.matches) {
+        document.body.dataset.constellationsInit = 'skipped';
+        return;
+    }
+
+    const starfield = document.querySelector('.starfield');
+    if (!starfield) {
+        return;
+    }
+
+    for (let i = 0; i < STARFIELD_CONFIG.CONSTELLATION_COUNT; i++) {
+        const constellation = document.createElement('div');
+        constellation.className = 'constellation';
+        
+        const centerX = Math.random() * 100;
+        const centerY = Math.random() * 100;
+        const starCount = Math.floor(Math.random() * 5 + 5); // 5-10 stars per constellation
+        const constellationOpacity = (Math.random() * 0.1 + 0.15).toFixed(2); // 0.15-0.25
+        
+        let starsHTML = '';
+        for (let j = 0; j < starCount; j++) {
+            const angle = (j / starCount) * Math.PI * 2;
+            const radius = Math.random() * 20 + 15; // 15-35px radius
+            const x = centerX + Math.cos(angle) * radius;
+            const y = centerY + Math.sin(angle) * radius;
+            const starSize = (Math.random() * 1.5 + 1).toFixed(2); // 1-2.5px stars
+            
+            starsHTML += `<span class="constellation-star" style="left: ${x}%; top: ${y}%; width: ${starSize}px; height: ${starSize}px;"></span>`;
+        }
+        
+        constellation.innerHTML = starsHTML;
+        constellation.style.opacity = constellationOpacity;
+        
+        starfield.appendChild(constellation);
+    }
+
+    document.body.dataset.constellationsInit = 'true';
+
+    function handleReduceMotionChangeConstellations(event) {
+        if (event.matches) {
+            document.querySelectorAll('.constellation').forEach(c => c.remove());
+            document.body.dataset.constellationsInit = 'skipped';
+        } else if (document.body.dataset.constellationsInit === 'skipped') {
+            document.body.dataset.constellationsInit = 'false';
+            initConstellations();
+        }
+    }
+
+    if (reduceMotionQuery) {
+        if (reduceMotionQuery.addEventListener) {
+            reduceMotionQuery.addEventListener('change', handleReduceMotionChangeConstellations);
+        } else if (reduceMotionQuery.addListener) {
+            reduceMotionQuery.addListener(handleReduceMotionChangeConstellations);
         }
     }
 }
