@@ -7,8 +7,7 @@ const STARFIELD_CONFIG = {
     MAX_DELAY: 1700,
     MIN_DURATION: 1300,
     MAX_DURATION: 2600,
-    NEBULA_COUNT: 3,  // Beautiful cosmic nebulae
-    CONSTELLATION_COUNT: 4  // Star constellations
+    CONSTELLATION_COUNT: 6  // Star constellations
 };
 
 function randomBetween(min, max) {
@@ -141,95 +140,6 @@ function initStarfield() {
     }
 }
 
-function initNebulae() {
-    if (document.body.dataset.nebulaeInit === 'true') {
-        return;
-    }
-
-    const reduceMotionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
-    if (reduceMotionQuery && reduceMotionQuery.matches) {
-        document.body.dataset.nebulaeInit = 'skipped';
-        return;
-    }
-
-    const starfield = document.querySelector('.starfield');
-    if (!starfield) {
-        return;
-    }
-
-    // Define nebula color schemes based on real nebulae
-    const nebulaPalettes = [
-        // Purple-blue nebula
-        [
-            'rgba(180, 120, 220, 0.4)',
-            'rgba(120, 140, 220, 0.3)',
-            'rgba(80, 100, 180, 0.2)'
-        ],
-        // Blue-pink nebula
-        [
-            'rgba(200, 180, 255, 0.4)',
-            'rgba(255, 160, 200, 0.3)',
-            'rgba(180, 140, 255, 0.2)'
-        ],
-        // Red-orange nebula
-        [
-            'rgba(255, 180, 150, 0.4)',
-            'rgba(255, 140, 100, 0.3)',
-            'rgba(255, 100, 80, 0.2)'
-        ]
-    ];
-
-    for (let i = 0; i < STARFIELD_CONFIG.NEBULA_COUNT; i++) {
-        const nebula = document.createElement('div');
-        nebula.className = 'nebula';
-        
-        const width = (Math.random() * 250 + 300).toFixed(0); // 300-550px wide
-        const height = (Math.random() * 250 + 300).toFixed(0); // 300-550px tall
-        const left = (Math.random() * 100).toFixed(2) + '%';
-        const top = (Math.random() * 100).toFixed(2) + '%';
-        const rotation = (Math.random() * 360).toFixed(0);
-        const palette = nebulaPalettes[i % nebulaPalettes.length];
-        const blur = (Math.random() * 30 + 40).toFixed(0); // 40-70px blur for soft look
-        
-        nebula.style.left = left;
-        nebula.style.top = top;
-        nebula.style.width = width + 'px';
-        nebula.style.height = height + 'px';
-        nebula.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
-        nebula.style.filter = `blur(${blur}px)`;
-        nebula.style.opacity = '0.6';
-        
-        // Create multi-layered gradient for depth
-        nebula.style.background = `
-            radial-gradient(ellipse 80% 100% at 20% 50%, ${palette[0]} 0%, transparent 60%),
-            radial-gradient(ellipse 100% 80% at 80% 50%, ${palette[1]} 0%, transparent 70%),
-            radial-gradient(ellipse 60% 100% at 50% 50%, ${palette[2]} 0%, transparent 80%)
-        `;
-        
-        starfield.appendChild(nebula);
-    }
-
-    document.body.dataset.nebulaeInit = 'true';
-
-    function handleReduceMotionChangeNebulae(event) {
-        if (event.matches) {
-            document.querySelectorAll('.nebula').forEach(n => n.remove());
-            document.body.dataset.nebulaeInit = 'skipped';
-        } else if (document.body.dataset.nebulaeInit === 'skipped') {
-            document.body.dataset.nebulaeInit = 'false';
-            initNebulae();
-        }
-    }
-
-    if (reduceMotionQuery) {
-        if (reduceMotionQuery.addEventListener) {
-            reduceMotionQuery.addEventListener('change', handleReduceMotionChangeNebulae);
-        } else if (reduceMotionQuery.addListener) {
-            reduceMotionQuery.addListener(handleReduceMotionChangeNebulae);
-        }
-    }
-}
-
 function initConstellations() {
     if (document.body.dataset.constellationsInit === 'true') {
         return;
@@ -246,27 +156,60 @@ function initConstellations() {
         return;
     }
 
-    // Define recognizable constellation patterns
+    // Define recognizable constellation patterns based on real star positions
     const constellationPatterns = [
-        // Big Dipper / Ursa Major
+        // Big Dipper / Ursa Major (7 main stars)
         [
-            {x: 0, y: 0}, {x: 15, y: 5}, {x: 30, y: 8}, {x: 45, y: 12},
-            {x: 30, y: 25}, {x: 50, y: 30}, {x: 65, y: 35}
+            {x: 10, y: 20},  // Dubhe
+            {x: 25, y: 15},  // Merak
+            {x: 35, y: 10},  // Phecda
+            {x: 45, y: 8},   // Megrez
+            {x: 55, y: 12},  // Alioth
+            {x: 60, y: 18},  // Mizar
+            {x: 65, y: 28}   // Alkaid
         ],
-        // Orion's Belt
+        // Orion (the Hunter)
         [
-            {x: 0, y: 0}, {x: 40, y: 0}, {x: 80, y: 0},
-            {x: 20, y: -30}, {x: 60, y: -30}
+            {x: 40, y: 80},  // Betelgeuse
+            {x: 60, y: 85},  // Bellatrix
+            {x: 45, y: 90},  // Mintaka
+            {x: 50, y: 90},  // Alnilam
+            {x: 55, y: 90},  // Alnitak
+            {x: 45, y: 95},  // Saiph
+            {x: 48, y: 100}  // Rigel
         ],
         // Cassiopeia (W-shape)
         [
-            {x: 0, y: 0}, {x: 25, y: 20}, {x: 50, y: 0},
-            {x: 75, y: 20}, {x: 100, y: 0}
+            {x: 20, y: 30},  // Gamma Cassiopeiae
+            {x: 35, y: 25},  // Schedar
+            {x: 50, y: 30},  // Navi
+            {x: 65, y: 35},  // Ruchbah
+            {x: 80, y: 30}   // Caph
         ],
-        // Leo (sickle shape)
+        // Leo (the Lion)
         [
-            {x: 0, y: 0}, {x: 25, y: 15}, {x: 50, y: 20},
-            {x: 65, y: 35}, {x: 80, y: 50}
+            {x: 30, y: 40},  // Regulus
+            {x: 38, y: 45},  // Algieba
+            {x: 50, y: 50},  // Algenubi
+            {x: 42, y: 55},  // Zosma
+            {x: 35, y: 60}   // Denebola
+        ],
+        // Cygnus (Northern Cross)
+        [
+            {x: 60, y: 25},  // Deneb
+            {x: 65, y: 35},  // Sadr
+            {x: 70, y: 45},  // Gienah
+            {x: 55, y: 45},  // Delta Cygni
+            {x: 68, y: 55}   // Albireo
+        ],
+        // Scorpius (the Scorpion)
+        [
+            {x: 75, y: 75},  // Antares
+            {x: 78, y: 78},  // Graffias
+            {x: 82, y: 80},  // Dschubba
+            {x: 85, y: 82},  // Sargas
+            {x: 88, y: 85},  // Shaula
+            {x: 87, y: 88}   // Lesath
         ]
     ];
 
@@ -274,22 +217,18 @@ function initConstellations() {
         const constellation = document.createElement('div');
         constellation.className = 'constellation';
         
-        const centerX = Math.random() * 70 + 15; // Keep away from edges
-        const centerY = Math.random() * 60 + 20;
         const pattern = constellationPatterns[i % constellationPatterns.length];
-        const constellationOpacity = '0.6'; // More visible
         
         let starsHTML = '';
         for (let j = 0; j < pattern.length; j++) {
-            const x = centerX + pattern[j].x * 0.3; // Scale down the pattern
-            const y = centerY + pattern[j].y * 0.3;
-            const starSize = (Math.random() * 0.5 + 2).toFixed(2); // 2-2.5px stars
+            const x = pattern[j].x;
+            const y = pattern[j].y;
+            const starSize = '4'; // Bright white stars for testing - 4px
             
             starsHTML += `<span class="constellation-star" style="left: ${x}%; top: ${y}%; width: ${starSize}px; height: ${starSize}px;"></span>`;
         }
         
         constellation.innerHTML = starsHTML;
-        constellation.style.opacity = constellationOpacity;
         
         starfield.appendChild(constellation);
     }

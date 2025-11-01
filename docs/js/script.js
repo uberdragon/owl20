@@ -283,9 +283,8 @@ $(document).ready(function() {
     });
     
     initStarfield();
-    // Wait for starfield to be created before initializing nebulae and constellations
+    // Wait for starfield to be created before initializing constellations
     setTimeout(function() {
-        initNebulae();
         initConstellations();
     }, 100);
 });

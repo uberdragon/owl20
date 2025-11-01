@@ -28,13 +28,6 @@
     filter: drop-shadow(0 0 calc(var(--size, 1.6px) * 8) rgba(255, 255, 255, 0.95));
 }
 
-/* Nebula Styles - Cosmic gas clouds */
-.starfield .nebula {
-    position: absolute;
-    pointer-events: none;
-    border-radius: 50%;
-}
-
 /* Constellation Styles */
 .starfield .constellation {
     position: absolute;
@@ -47,9 +40,10 @@
     position: absolute;
     display: block;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgb(255, 255, 255); /* Bright white for testing */
     transform: translate(-50%, -50%);
-    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1));
+    opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
