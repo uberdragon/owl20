@@ -40,10 +40,10 @@
     position: absolute;
     display: block;
     border-radius: 50%;
-    background: rgb(255, 255, 255);
+    background: rgb(204, 204, 204); /* 80% brightness */
     transform: translate(-50%, -50%);
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 1));
-    opacity: 0.8;
+    opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
