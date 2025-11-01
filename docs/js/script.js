@@ -283,6 +283,10 @@ $(document).ready(function() {
     });
     
     initStarfield();
+    // Wait for starfield to be created before initializing constellations
+    setTimeout(function() {
+        initConstellations();
+    }, 100);
 });
 
 // Add fade-in animation to cards and handle anchors
