@@ -26,6 +26,17 @@ D&D Beyond → Beyond20 Extension → Owl20 Bridge → Owlbear Rodeo Owl20 Ifram
 3. **Owl20 Bridge receives** the `Beyond20_RenderedRoll` or `Beyond20_Roll` event
 4. **Bridge transmits** the raw roll data to all detected iframes
 
+## Website Features
+
+The Owl20 documentation website ([owl20.uberdragon.org](https://owl20.uberdragon.org)) features an immersive space-themed design:
+
+- **Twinkling Star Background**: Animated starfield with 170 stars that randomly twinkle and glow
+- **Floating Container Animation**: The main content container gently floats in space with subtle circular motions
+- **Modern UI**: Clean, accessible design with smooth animations
+- **Accessibility**: All animations respect `prefers-reduced-motion` settings
+
+The starfield is implemented using pure CSS and JavaScript for optimal performance.
+
 ## Development Setup
 
 ### Prerequisites
@@ -142,8 +153,15 @@ owl20/
 ├── README.md             # This file
 └── docs/                 # Website documentation
     ├── index.html        # User-facing documentation
-    ├── script.js         # Website functionality
-    └── styles.css        # Website styling
+    ├── css/
+    │   ├── starfield.css # Twinkling star background styles
+    │   └── styles.css    # Main website styling
+    ├── js/
+    │   ├── script.js     # Website functionality
+    │   └── starfield.js  # Animated starfield implementation
+    └── schema/           # Structured data schemas
+        ├── extension-schema.html
+        └── faq-schema.html
 ```
 
 ## Key Classes and Methods
