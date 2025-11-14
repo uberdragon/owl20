@@ -288,67 +288,23 @@ body::after {
     box-shadow: var(--shadow);
 }
 
-.demo-video {
-    width: 100%;
-    height: auto;
-    display: block;
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
     background: var(--bg-secondary);
-    aspect-ratio: 16 / 9;
+    min-height: 315px; /* Fallback minimum height */
+    display: block; /* Ensure it's displayed */
 }
 
-.play-overlay {
+.youtube-embed {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 10;
-}
-
-.play-overlay:hover {
-    background: rgba(0, 0, 0, 0.4);
-}
-
-.play-overlay.hidden {
-    display: none;
-}
-
-.play-button {
-    background: none;
     border: none;
-    cursor: pointer;
-    padding: 0;
-    transition: transform 0.3s ease;
-    animation: pulse 2s infinite;
-}
-
-.play-button:hover {
-    transform: scale(1.1);
-}
-
-.play-button:active {
-    transform: scale(0.95);
-}
-
-.play-button svg {
-    width: 80px;
-    height: 80px;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
 }
 
 /* Quick Start */
@@ -637,11 +593,6 @@ body::after {
 
     .video-wrapper {
         border-radius: 15px;
-    }
-
-    .play-button svg {
-        width: 60px;
-        height: 60px;
     }
 
     .steps {

@@ -134,41 +134,6 @@ function copyOwlbearUrl() {
     });
 }
 
-// Play video when play button is clicked
-function playVideo() {
-    const video = document.getElementById('demoVideo');
-    const overlay = document.getElementById('playOverlay');
-    
-    if (video && overlay) {
-        video.play();
-        overlay.classList.add('hidden');
-    }
-}
-
-// Hide play overlay when video is playing
-function initVideoPlayer() {
-    const video = document.getElementById('demoVideo');
-    const overlay = document.getElementById('playOverlay');
-    
-    if (video && overlay) {
-        // Hide overlay when video starts playing
-        video.addEventListener('play', function() {
-            overlay.classList.add('hidden');
-        });
-        
-        // Show overlay when video ends or is paused
-        video.addEventListener('pause', function() {
-            if (video.ended) {
-                overlay.classList.remove('hidden');
-            }
-        });
-        
-        video.addEventListener('ended', function() {
-            overlay.classList.remove('hidden');
-        });
-    }
-}
-
 // Show pending approval modal
 function showPendingApprovalModal() {
     const modal = document.getElementById('pendingApprovalModal');
@@ -256,9 +221,6 @@ function toggleFAQ(questionElement) {
 
 // Add click listeners to all card headers on page load
 $(document).ready(function() {
-    // Initialize video player
-    initVideoPlayer();
-    
     // Ensure all sections start closed by default
     $('.section-card').each(function() {
         setSectionState(this, false);
