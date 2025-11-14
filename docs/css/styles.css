@@ -281,74 +281,30 @@ body::after {
 
 .video-wrapper {
     position: relative;
-    max-width: 900px;
+    max-width: 950px;
     margin: 0 auto;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: var(--shadow);
 }
 
-.demo-video {
-    width: 100%;
-    height: auto;
-    display: block;
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
     background: var(--bg-secondary);
-    aspect-ratio: 16 / 9;
+    min-height: 315px; /* Fallback minimum height */
+    display: block; /* Ensure it's displayed */
 }
 
-.play-overlay {
+.youtube-embed {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 10;
-}
-
-.play-overlay:hover {
-    background: rgba(0, 0, 0, 0.4);
-}
-
-.play-overlay.hidden {
-    display: none;
-}
-
-.play-button {
-    background: none;
     border: none;
-    cursor: pointer;
-    padding: 0;
-    transition: transform 0.3s ease;
-    animation: pulse 2s infinite;
-}
-
-.play-button:hover {
-    transform: scale(1.1);
-}
-
-.play-button:active {
-    transform: scale(0.95);
-}
-
-.play-button svg {
-    width: 80px;
-    height: 80px;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
 }
 
 /* Quick Start */
@@ -483,6 +439,47 @@ body::after {
 .sub-section p {
     color: var(--text-secondary);
     margin-bottom: 1rem;
+}
+
+.tutorial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.tutorial-header h5 {
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.video-tutorial-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: rgba(30, 41, 59, 0.7);
+    color: var(--text-primary) !important;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+}
+
+.video-tutorial-link:hover,
+.video-tutorial-link:focus,
+.video-tutorial-link:active,
+.video-tutorial-link:visited {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(99, 102, 241, 0.3);
+    background: rgba(30, 41, 59, 0.85);
+    color: var(--text-primary) !important;
+    text-decoration: none !important;
+    border-color: var(--primary-color);
 }
 
 .sub-section ol,
@@ -639,9 +636,19 @@ body::after {
         border-radius: 15px;
     }
 
-    .play-button svg {
-        width: 60px;
-        height: 60px;
+    .tutorial-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .tutorial-header h5 {
+        width: 100%;
+    }
+
+    .video-tutorial-link {
+        width: 100%;
+        text-align: center;
     }
 
     .steps {

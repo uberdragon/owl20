@@ -82,17 +82,18 @@
         <!-- Video Section -->
         <section class="video-section">
             <div class="video-wrapper">
-                <video id="demoVideo" class="demo-video" poster="owl20-128.png" controls muted>
-                    <source src="Owl20-Beyond20-OwlbearRodeo-Video.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="play-overlay" id="playOverlay" onclick="playVideo()">
-                    <button class="play-button">
-                        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="30" cy="30" r="30" fill="rgba(255, 255, 255, 0.9)"/>
-                            <path d="M25 20 L25 40 L40 30 Z" fill="var(--primary-color)"/>
-                        </svg>
-                    </button>
+                <div class="video-container">
+                    <iframe 
+                        width="560" 
+                        height="315" 
+                        src="https://www.youtube.com/embed/zPZ4SrMJdqE?si=9oz19JjYvGmAYBOV&rel=0&modestbranding=1&iv_load_policy=3&start=1&cc_load_policy=0&playsinline=1" 
+                        title="Owl20 Demo Video" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                        class="youtube-embed">
+                    </iframe>
                 </div>
             </div>
         </section>
@@ -137,7 +138,12 @@
                 </div>
                 <div class="card-content">
                     <div class="sub-section">
-                        <h5>Prerequisite: Install Beyond20 Extension</h5>
+                        <div class="tutorial-header">
+                            <h5>Prerequisite: Install Beyond20 Extension</h5>
+                            <a href="https://www.youtube.com/watch?v=uTE5imDizhU&t=5s" target="_blank" class="video-tutorial-link" onclick="openYouTubeVideo('uTE5imDizhU', 5); return false;">
+                                ▶️ Watch Video Tutorial
+                            </a>
+                        </div>
                         <p>You must have the <a href="https://beyond20.here-for-more.info/install" target="_blank">Beyond20 browser extension</a> installed and configured first. This extension connects D&D Beyond to virtual tabletops.</p>
                         <p class="note">⚠️ Beyond20 is required for Owl20 to work</p>
                     </div>
@@ -193,7 +199,12 @@
                 </div>
                 <div class="card-content">
                     <div class="sub-section">
-                        <h5>Step 1: Install Owl20 OBR Extension</h5>
+                        <div class="tutorial-header">
+                            <h5>Step 1: Install Owl20 OBR Extension</h5>
+                            <a href="https://www.youtube.com/watch?v=uTE5imDizhU&t=50s" target="_blank" class="video-tutorial-link" onclick="openYouTubeVideo('uTE5imDizhU', 49); return false;">
+                                ▶️ Watch Video Tutorial
+                            </a>
+                        </div>
                         <p>Follow the instructions for adding a custom extension: <a href="https://extensions.owlbear.rodeo/guide" target="_blank">https://extensions.owlbear.rodeo/guide</a></p>
                         <div class="copy-url-container">
                             Use This Installation Link:
