@@ -136,7 +136,7 @@ function copyOwlbearUrl() {
 
 // Open YouTube video with autoplay
 function openYouTubeVideo(videoId, startSeconds) {
-    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&start=${startSeconds}&rel=0`;
+    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&start=${startSeconds}`;
     const popup = window.open(embedUrl, 'youtube-video', 'width=1280,height=720,scrollbars=no,resizable=yes');
     if (popup) {
         popup.focus();
