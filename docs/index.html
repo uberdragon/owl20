@@ -257,29 +257,44 @@
                 <div class="card-content">
                     <div class="sub-section">
                         <h5>Rolls Not Appearing?</h5>
+                        <p>If your dice rolls aren't showing up in Owlbear Rodeo, work through these checks in order:</p>
                         <ul>
-                            <li><strong>Check Browser Extension:</strong> Ensure Owl20 is installed and enabled</li>
-                            <li><strong>Check Beyond20 Setup:</strong> Verify <code>https://www.owlbear.rodeo/*</code> is in Beyond20's custom domains list</li>
-                            <li><strong>Check OBR Extension:</strong> DM must have Owl20 Owlbear extension enabled in the room</li>
-                            <li><strong>Reload Pages:</strong> Refresh both Owlbear Rodeo and D&D Beyond</li>
-                            <li><strong>New Owlbear tab:</strong> Try closing the current owlbear tab and reopening in a new tab</li>
-                            <li><strong>Check Console:</strong> Open browser DevTools (F12) and look for "Owl20:" messages</li>
+                            <li><strong>Check Browser Extension:</strong> First, verify that Owl20 is actually installed and enabled in your browser. Go to your browser's extension settings (chrome://extensions, edge://extensions, or about:addons in Firefox) and make sure Owl20 is there and the toggle is ON.</li>
+                            <li><strong>Check Beyond20 Setup:</strong> This is the most common issue! Open Beyond20 settings and verify that <code>https://www.owlbear.rodeo/*</code> is in Beyond20's custom domains list. Without this, Beyond20 won't send roll data to Owlbear pages, so Owl20 has nothing to bridge.</li>
+                            <li><strong>Check OBR Extension:</strong> The DM must have the Owl20 Owlbear extension installed and enabled in the room. As a player, you can't enable it - only the DM can. Ask your DM to check the Extensions button in Owlbear Rodeo and make sure Owl20 is toggled ON.</li>
+                            <li><strong>Reload Pages:</strong> Sometimes extensions need a fresh start. Close and reopen both your D&D Beyond tab and your Owlbear Rodeo tab. This forces both extensions to reinitialize.</li>
+                            <li><strong>New Owlbear Tab:</strong> If reloading doesn't work, try completely closing the Owlbear tab and opening a fresh one. Sometimes browser tabs can get into a weird state where extensions don't load properly.</li>
+                            <li><strong>Check Console:</strong> Open your browser's Developer Tools (press F12), go to the Console tab, and look for messages starting with "Owl20:". You should see messages like "Owl20: Initializing data bridge" and "Owl20: Found iframe to owl20-owlbear". If you see error messages instead, those will tell you what's wrong.</li>
+                            <li><strong>Check Ad Blockers:</strong> Some aggressive ad blockers or privacy extensions might interfere with Owl20. Try temporarily disabling them on owlbear.rodeo and dndbeyond.com to see if that's the issue.</li>
                         </ul>
                     </div>
 
                     <div class="sub-section">
                         <h5>Extension Not Loading?</h5>
+                        <p>If Owl20 isn't loading at all, try these steps:</p>
                         <ul>
-                            <li>Ensure you're using a supported browser (Chrome, Edge, or Firefox)</li>
-                            <li>Try disabling and re-enabling the extension</li>
-                            <li>Check for browser updates</li>
-                            <li>Review extension permissions</li>
+                            <li><strong>Browser Compatibility:</strong> Make sure you're using a supported browser - Chrome, Edge, or Firefox. Older browsers or unsupported ones won't work. Check that your browser is up to date, as older versions might have compatibility issues.</li>
+                            <li><strong>Extension State:</strong> Go to your browser's extension management page and verify Owl20 is installed. Try disabling it completely, then re-enabling it. Sometimes extensions need a refresh to load properly after installation or updates.</li>
+                            <li><strong>Browser Updates:</strong> Check if your browser needs updates. Go to your browser's settings and look for updates. Outdated browsers can cause extension loading problems.</li>
+                            <li><strong>Extension Permissions:</strong> Review Owl20's permissions in your extension settings. It needs access to owlbear.rodeo domains. If permissions were denied or changed, the extension won't work.</li>
+                            <li><strong>Restart Browser:</strong> Sometimes a full browser restart is needed. Close all browser windows completely and reopen them. This clears any cached extension states that might be causing issues.</li>
+                            <li><strong>Check Console for Errors:</strong> Open Developer Tools (F12), go to the Console tab, and look for any red error messages when you visit owlbear.rodeo. These errors can tell you exactly what's preventing the extension from loading.</li>
                         </ul>
                     </div>
 
                     <div class="sub-section">
                         <h5>Still Having Issues?</h5>
-                        <p>Visit our <a href="https://github.com/uberdragon/owl20/issues" target="_blank">GitHub Issues</a> page for help or to report bugs.</p>
+                        <p>If you've tried everything above and still can't get Owl20 working, we're here to help! Join the <a href="https://discord.gg/Up8wMrmt7C" target="_blank">Starry Shores 2024 Discord</a> server and ask for <strong>DM UberDragon</strong> or <strong>DM Sparks</strong>.</p>
+                        <p>When asking for help, please include:</p>
+                        <ul>
+                            <li>Your browser and version (e.g., Chrome 120, Firefox 121)</li>
+                            <li>What you were trying to do when the problem occurred</li>
+                            <li>What happened (or didn't happen)</li>
+                            <li>Any error messages from the browser console (F12 → Console tab)</li>
+                            <li>Whether you see "Owl20:" and "owl20-owlbear:" messages in the console</li>
+                            <li>Screenshots if relevant</li>
+                        </ul>
+                        <p>The more details you provide, the faster we can help you get it working!</p>
                     </div>
                 </div>
             </div>
