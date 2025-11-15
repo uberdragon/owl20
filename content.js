@@ -99,9 +99,6 @@ if (typeof window.Owl20Bridge === 'undefined') {
   }
 
   handleBeyond20Roll(rollData) {
-    console.log('Owl20: Processing Beyond20 roll data', rollData);
-    
-    // Send raw JSON data to all iframes
     this.sendToIframes(rollData);
   }
 
@@ -119,13 +116,12 @@ if (typeof window.Owl20Bridge === 'undefined') {
         continue;
       }
 
-      // Always cross-origin, use postMessage
       if (iframe.contentWindow) {
         iframe.contentWindow.postMessage({
           type: 'Beyond20_Roll',
           data: rollData
         }, '*');
-        console.log('Owl20: Sent roll data to iframe via postMessage:', iframe.src);
+        console.log('Owl20: Sent roll data to iframe via postMessage');
       } else {
         // contentWindow is null, remove the iframe
         this.removeIframe(iframe);
