@@ -119,7 +119,7 @@ if (typeof window.Owl20Bridge === 'undefined') {
           type: 'Beyond20_Roll',
           data: rollData
         }, '*');
-        console.log('Owl20: Sent roll data to iframe via postMessage');
+        console.log('Owl20: Sent roll data to Owl20 iframe via postMessage');
       } else {
         // contentWindow is null, remove the iframe
         this.removeIframe(iframe);
