@@ -267,7 +267,7 @@ $(window).on('load', function() {
     // Handle URL anchor to auto-open sections (after page fully loads)
     const hash = window.location.hash.substring(1); // Remove the # symbol
     
-    if (hash === 'player' || hash === 'dm') {
+    if (hash === 'player' || hash === 'dm' || hash === 'troubleshooting') {
         // Close all sections first
         $('.section-card').each(function() {
             setSectionState(this, false);
