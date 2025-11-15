@@ -42,9 +42,16 @@ if (typeof window.Owl20Bridge === 'undefined') {
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.type === 'childList') {
+          // Handle added iframes
           mutation.addedNodes.forEach((node) => {
             if (node.tagName === 'IFRAME') {
               this.addIframe(node);
+            }
+          });
+          // Handle removed iframes
+          mutation.removedNodes.forEach((node) => {
+            if (node.tagName === 'IFRAME') {
+              this.removeIframe(node);
             }
           });
         }
@@ -72,6 +79,20 @@ if (typeof window.Owl20Bridge === 'undefined') {
     } 
   }
 
+  removeIframe(iframe) {
+    const index = this.iframes.indexOf(iframe);
+    if (index > -1) {
+      this.iframes.splice(index, 1);
+      console.log('Owl20: Removed stale iframe reference', iframe.src);
+    }
+  }
+
+  isValidIframe(iframe) {
+    // Check if iframe exists and has a valid contentWindow
+    // Always cross-origin, so we can't check DOM containment
+    return iframe && iframe.contentWindow !== null;
+  }
+
   shouldIncludeIframe(iframe) {
     const url = iframe.src || '';
     return url.includes('owl20') || url.includes('localhost');
@@ -85,27 +106,31 @@ if (typeof window.Owl20Bridge === 'undefined') {
   }
 
   sendToIframes(rollData) {
-    this.iframes.forEach(iframe => {
-      try {
-        // Try direct access first (same-origin)
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        if (iframeDoc) {
-          // Dispatch custom event in iframe with roll data
-          const event = new CustomEvent('Beyond20_Roll', {
-            detail: [rollData]
-          });
-          iframeDoc.dispatchEvent(event);
-          console.log('Owl20: Sent roll data to same-origin iframe:', iframe.src);
-        }
-      } catch (error) {
-        // Cross-origin, use postMessage
+    // Clean up stale iframe references before sending
+    this.iframes = this.iframes.filter(iframe => this.isValidIframe(iframe));
+    
+    // Use for loop to allow safe removal during iteration
+    for (let i = this.iframes.length - 1; i >= 0; i--) {
+      const iframe = this.iframes[i];
+      
+      // Validate iframe before attempting to use it
+      if (!this.isValidIframe(iframe)) {
+        console.warn('Owl20: Removing invalid Owl20 iframe', iframe.src);
+        this.iframes.splice(i, 1);
+        continue;
+      }
+
+      // Always cross-origin, use postMessage
+      if (iframe.contentWindow) {
         iframe.contentWindow.postMessage({
           type: 'Beyond20_Roll',
           data: rollData
         }, '*');
-        console.log('Owl20: Sent roll data to cross-origin iframe via postMessage:', iframe.src);
+        console.log('Owl20: Sent roll data to iframe via postMessage:', iframe.src);
+      } else {
+        console.warn('Owl20: Cannot postMessage to iframe - contentWindow is null', iframe.src);
       }
-    });
+    }
   }
   };
 }
