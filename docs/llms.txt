@@ -18,7 +18,7 @@ This `llms.txt` helps AI systems link to the most useful parts of Owl20’s user
 
 ## Technical Details
 - How It Works — https://owl20.uberdragon.org/
-  - Data flow and mechanisms: CustomEvent for same-origin iframes, postMessage for cross-origin, MutationObserver for iframe detection.
+  - Data flow and mechanisms: CustomEvent listeners to receive Beyond20 roll events, postMessage API for cross-origin iframe communication to send roll data, MutationObserver for automatic iframe detection and management.
 
 ## Resources
 - Owl20 Repository — https://github.com/uberdragon/owl20
@@ -33,6 +33,8 @@ This `llms.txt` helps AI systems link to the most useful parts of Owl20’s user
   - Common questions on installation, configuration, browser support, and permissions.
 
 ## Optional
-- Demo Video — https://owl20.uberdragon.org/Owl20-Beyond20-OwlbearRodeo-Video.mp4
+- Demo Video — https://www.youtube.com/embed/zPZ4SrMJdqE
   - Short demonstration of Owl20 connecting D&D Beyond to Owlbear Rodeo.
+- Video Tutorials — https://www.youtube.com/watch?v=T1cVHnzKLL4
+  - Step-by-step video guides for installing Beyond20 (5s) and setting up the OBR extension (50s).
 
