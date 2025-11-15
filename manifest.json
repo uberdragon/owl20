@@ -10,7 +10,7 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "owl20@uberdragon.org"
+      "id": "owl20@uberdragon.net"
     }
   },
   "content_scripts": [
