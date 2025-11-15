@@ -89,7 +89,6 @@ if (typeof window.Owl20Bridge === 'undefined') {
 
   isValidIframe(iframe) {
     // Check if iframe exists and has a valid contentWindow
-    // Always cross-origin, so we can't check DOM containment
     return iframe && iframe.contentWindow !== null;
   }
 
@@ -106,7 +105,6 @@ if (typeof window.Owl20Bridge === 'undefined') {
     // Clean up stale iframe references before sending
     this.iframes = this.iframes.filter(iframe => this.isValidIframe(iframe));
     
-    // Use for loop to allow safe removal during iteration
     for (let i = this.iframes.length - 1; i >= 0; i--) {
       const iframe = this.iframes[i];
       
