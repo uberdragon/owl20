@@ -13,7 +13,7 @@ A Browser extension that bridges Beyond20 dice roll data to Owlbear Rodeo iframe
 - **Owl20Bridge Class**: Main data bridge logic in `content.js`
 - **Event Listeners**: Captures Beyond20 events (`Beyond20_RenderedRoll`, `Beyond20_Roll`, `Beyond20_Loaded`)
 - **Iframe Detection**: Automatic scanning and monitoring via MutationObserver
-- **Data Transmission**: Dual-mode communication (CustomEvent for same-origin, postMessage for cross-origin)
+- **Data Transmission**: Cross-origin iframe communication via postMessage
 
 ### Data Flow
 
@@ -77,19 +77,7 @@ document.addEventListener('Beyond20_Loaded', handleLoaded);
 
 ### Iframe Communication
 
-#### Same-Origin Iframes
-Uses CustomEvent for direct communication:
-
-```javascript
-// Dispatch to same-origin iframes
-const event = new CustomEvent('Beyond20_Roll', {
-  detail: [rollData]
-});
-iframe.contentDocument.dispatchEvent(event);
-```
-
-#### Cross-Origin Iframes
-Uses postMessage for cross-origin communication:
+Uses postMessage for cross-origin iframe communication:
 
 ```javascript
 // Send to cross-origin iframes
@@ -101,26 +89,8 @@ iframe.contentWindow.postMessage({
 
 ### Message Format
 
-#### CustomEvent (Same-Origin)
 ```javascript
-// Event detail structure
-{
-  detail: [{
-    character: 'Character Name',
-    html: '<div>Roll HTML</div>',
-    roll: {
-      dice: '1d20',
-      result: 15,
-      total: 18
-    },
-    // ... other Beyond20 roll properties
-  }]
-}
-```
-
-#### PostMessage (Cross-Origin)
-```javascript
-// Message structure
+// PostMessage structure
 {
   type: 'Beyond20_Roll',
   data: {
@@ -168,16 +138,21 @@ owl20/
 ```javascript
 class Owl20Bridge {
   constructor() {
-    this.iframes = new Set();
+    this.iframes = [];
     this.init();
   }
   
   // Core methods
-  init()                    // Initialize event listeners
-  scanForIframes()         // Scan page for iframes
-  handleRoll(event)        // Process Beyond20 roll events
-  transmitToIframes(data)  // Send data to all iframes
-  isOwlbearIframe(iframe)  // Check if iframe is Owlbear-related
+  init()                    // Initialize event listeners and find iframes
+  setupEventListeners()    // Set up Beyond20 event listeners
+  observeIframes()          // Watch for iframe changes via MutationObserver
+  findIframes()             // Find existing iframes on page
+  addIframe(iframe)         // Add iframe to tracking array
+  removeIframe(iframe)       // Remove iframe from tracking array
+  isValidIframe(iframe)     // Validate iframe before use
+  shouldIncludeIframe(iframe) // Check if iframe should be tracked
+  handleBeyond20Roll(rollData) // Process Beyond20 roll events
+  sendToIframes(rollData)   // Send data to all valid iframes
 }
 ```
 
@@ -191,11 +166,11 @@ class Owl20Bridge {
    - Load Owl20 extension in developer mode
 
 2. **Test Scenarios**:
-   - Same-origin iframe communication
-   - Cross-origin iframe communication
-   - Dynamic iframe detection
+   - Cross-origin iframe communication via postMessage
+   - Dynamic iframe detection and removal
    - Multiple iframe handling
-   - Error handling and edge cases
+   - Scene changes in Owlbear (iframe replacement)
+   - Error handling and edge cases (null contentWindow, stale references)
 
 3. **Debug Tools**:
    - Browser DevTools Console
@@ -279,9 +254,10 @@ Test with the [Owl20-Owlbear OBR Extension](https://github.com/mvoncken/owl20-ow
    - Use console.log to debug event listeners
 
 3. **Iframe Communication Issues**:
-   - Check same-origin vs cross-origin
    - Verify iframe is fully loaded before sending messages
+   - Check for stale iframe references (especially after Owlbear scene changes)
    - Use DevTools to inspect postMessage events
+   - Check console for "Removing invalid Owl20 iframe" warnings
 
 ### Debugging Tools
 
