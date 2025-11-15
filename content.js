@@ -115,8 +115,7 @@ if (typeof window.Owl20Bridge === 'undefined') {
       
       // Validate iframe before attempting to use it
       if (!this.isValidIframe(iframe)) {
-        console.warn('Owl20: Removing invalid Owl20 iframe', iframe.src);
-        this.iframes.splice(i, 1);
+        this.removeIframe(iframe);
         continue;
       }
 
@@ -128,7 +127,8 @@ if (typeof window.Owl20Bridge === 'undefined') {
         }, '*');
         console.log('Owl20: Sent roll data to iframe via postMessage:', iframe.src);
       } else {
-        console.warn('Owl20: Cannot postMessage to iframe - contentWindow is null', iframe.src);
+        // contentWindow is null, remove the iframe
+        this.removeIframe(iframe);
       }
     }
   }
