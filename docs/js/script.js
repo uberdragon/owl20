@@ -243,6 +243,13 @@ $(document).ready(function() {
         answer.classList.remove('active');
     });
     
+    // Add click handlers to footer navigation links for collapsible sections
+    $('.footer-nav a[href="#player"], .footer-nav a[href="#dm"], .footer-nav a[href="#troubleshooting"]').on('click', function(event) {
+        event.preventDefault();
+        const sectionId = this.getAttribute('href').substring(1);
+        openSectionById(sectionId);
+    });
+    
     // Smooth animations on page load
     $('.section-card').each(function(index) {
         $(this).css('animation-delay', (index * 0.1) + 's');
