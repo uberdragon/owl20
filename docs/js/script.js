@@ -262,19 +262,26 @@ $(document).ready(function() {
         $(this).css('animation-delay', (index * 0.05) + 's');
     });
     
-    initStarfield();
-    // Wait for starfield to be created before initializing constellations
-    // Use a more robust check to ensure starfield exists
-    function initConstellationsWhenReady() {
-        const starfield = document.querySelector('.starfield');
-        if (starfield) {
-            initConstellations();
-        } else {
-            // Retry if starfield not ready yet
-            setTimeout(initConstellationsWhenReady, 50);
+    // Ensure body exists before initializing starfield
+    if (document.body) {
+        initStarfield();
+        // Wait for starfield to be created before initializing constellations
+        // Use a more robust check to ensure starfield exists
+        function initConstellationsWhenReady() {
+            const starfield = document.querySelector('.starfield');
+            if (starfield) {
+                initConstellations();
+            } else {
+                // Retry if starfield not ready yet (max 20 attempts = 1 second)
+                const attempts = initConstellationsWhenReady.attempts || 0;
+                if (attempts < 20) {
+                    initConstellationsWhenReady.attempts = attempts + 1;
+                    setTimeout(initConstellationsWhenReady, 50);
+                }
+            }
         }
+        setTimeout(initConstellationsWhenReady, 100);
     }
-    setTimeout(initConstellationsWhenReady, 100);
 });
 
 // Add fade-in animation to cards and handle anchors
