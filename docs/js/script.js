@@ -264,17 +264,9 @@ $(document).ready(function() {
     
     initStarfield();
     // Wait for starfield to be created before initializing constellations
-    // Use a more robust check to ensure starfield exists
-    function initConstellationsWhenReady() {
-        const starfield = document.querySelector('.starfield');
-        if (starfield) {
-            initConstellations();
-        } else {
-            // Retry if starfield not ready yet
-            setTimeout(initConstellationsWhenReady, 50);
-        }
-    }
-    setTimeout(initConstellationsWhenReady, 100);
+    setTimeout(function() {
+        initConstellations();
+    }, 100);
 });
 
 // Add fade-in animation to cards and handle anchors
