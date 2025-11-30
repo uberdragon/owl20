@@ -6,42 +6,158 @@
   <title>Owl20 Sitemap</title>
   <meta name="description" content="HTML sitemap listing Owl20 pages for quick navigation.">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/starfield.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/header.js"></script>
   <style>
-    body {
+    .sitemap-content {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
       padding: 2rem;
-      max-width: 960px;
-      margin: 0 auto;
+      margin-bottom: 3rem;
+      box-shadow: var(--shadow);
     }
-    h1 {
+    .sitemap-content h2 {
       margin-bottom: 1rem;
+      font-size: 2rem;
     }
-    ul {
-      list-style: none;
-      padding: 0;
+    .sitemap-content > p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      text-align: center;
     }
-    li {
-      margin: 0.5rem 0;
+    .sitemap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
-    a {
-      color: var(--primary-color, #38bdf8);
+    .sitemap-item {
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
       text-decoration: none;
+      display: block;
+      color: var(--text-primary);
     }
-    a:hover,
-    a:focus {
-      text-decoration: underline;
+    .sitemap-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      border-color: var(--primary-color);
+      background: rgba(15, 23, 42, 0.7);
+    }
+    .sitemap-item-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .sitemap-item-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .sitemap-item-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    .sitemap-item-description {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      line-height: 1.5;
     }
   </style>
 </head>
 <body>
-  <h1>Owl20 Sitemap</h1>
-  <p>Use this sitemap to quickly access every public page on <a href="https://owl20.uberdragon.org/">owl20.uberdragon.org</a>.</p>
-  <ul>
-    <li><a href="https://owl20.uberdragon.org/">Owl20 Browser and Owlbear Rodeo Extension Installation Guide</a></li>
-    <li><a href="https://owl20.uberdragon.org/#player">Player Setup</a></li>
-    <li><a href="https://owl20.uberdragon.org/#dm">DM Setup</a></li>
-    <li><a href="https://owl20.uberdragon.org/#troubleshooting">Troubleshooting</a></li>
-    <li><a href="https://owl20.uberdragon.org/#faq">FAQ</a></li>
-  </ul>
+  <div class="container">
+    <!-- Header and Navigation loaded via header.js -->
+    <div id="header-container"></div>
+
+    <!-- Sitemap Content -->
+    <section class="sitemap-content">
+      <h2>🗺️ Owl20 Sitemap</h2>
+      <p>Use this sitemap to quickly access every public page on <a href="https://owl20.uberdragon.org/" style="color: var(--primary-color);">owl20.uberdragon.org</a>.</p>
+      <div class="sitemap-grid">
+        <a href="index.html" class="sitemap-item">
+          <div class="sitemap-item-header">
+            <span class="sitemap-item-icon">🏠</span>
+            <div class="sitemap-item-title">Home</div>
+          </div>
+          <div class="sitemap-item-description">Owl20 Browser and Owlbear Rodeo Extension Installation Guide</div>
+        </a>
+        <a href="about.html" class="sitemap-item">
+          <div class="sitemap-item-header">
+            <span class="sitemap-item-icon">👥</span>
+            <div class="sitemap-item-title">About Owl20</div>
+          </div>
+          <div class="sitemap-item-description">Learn about the creators, their expertise, and the project's mission</div>
+        </a>
+        <a href="index.html#player" class="sitemap-item">
+          <div class="sitemap-item-header">
+            <span class="sitemap-item-icon">👤</span>
+            <div class="sitemap-item-title">Player Setup</div>
+          </div>
+          <div class="sitemap-item-description">Step-by-step guide for players to install and configure Owl20</div>
+        </a>
+        <a href="index.html#dm" class="sitemap-item">
+          <div class="sitemap-item-header">
+            <span class="sitemap-item-icon">🎲</span>
+            <div class="sitemap-item-title">DM Setup</div>
+          </div>
+          <div class="sitemap-item-description">Instructions for DMs to install and enable the OBR extension</div>
+        </a>
+        <a href="faq.html" class="sitemap-item">
+          <div class="sitemap-item-header">
+            <span class="sitemap-item-icon">❓</span>
+            <div class="sitemap-item-title">FAQ</div>
+          </div>
+          <div class="sitemap-item-description">Frequently asked questions about Owl20 installation and usage</div>
+        </a>
+        <a href="index.html#troubleshooting" class="sitemap-item">
+          <div class="sitemap-item-header">
+            <span class="sitemap-item-icon">🔧</span>
+            <div class="sitemap-item-title">Troubleshooting</div>
+          </div>
+          <div class="sitemap-item-description">Common issues and solutions for getting Owl20 working</div>
+        </a>
+        <a href="privacy.html" class="sitemap-item">
+          <div class="sitemap-item-header">
+            <span class="sitemap-item-icon">🔒</span>
+            <div class="sitemap-item-title">Privacy Policy</div>
+          </div>
+          <div class="sitemap-item-description">Learn how Owl20 protects your privacy and handles data</div>
+        </a>
+        <a href="sitemap.html" class="sitemap-item">
+          <div class="sitemap-item-header">
+            <span class="sitemap-item-icon">🗺️</span>
+            <div class="sitemap-item-title">Sitemap</div>
+          </div>
+          <div class="sitemap-item-description">Complete site navigation and page index</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="index.html#player">Player Setup</a>
+        <a href="index.html#dm">DM Setup</a>
+        <a href="faq.html">FAQ</a>
+        <a href="index.html#troubleshooting">Troubleshooting</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="sitemap.html">Sitemap</a>
+      </nav>
+    </footer>
+  </div>
 </body>
 </html>
 

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequently Asked Questions - Owl20</title>
+  <meta name="description" content="Frequently asked questions about Owl20 browser extension. Learn how to install, configure, and troubleshoot Owl20 for connecting D&D Beyond to Owlbear Rodeo.">
+  <link rel="canonical" href="https://owl20.uberdragon.org/faq.html">
+  <meta name="robots" content="index,follow">
+  <meta name="author" content="DM Sparks & DM UberDragon">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/starfield.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/starfield.js"></script>
+  <script src="js/script.js"></script>
+  
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Owl20?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Owl20 is a browser extension that bridges Beyond20 dice roll data to Owlbear Rodeo iframes. It connects D&D Beyond character sheets to Owlbear Rodeo VTT by capturing roll data from the Beyond20 extension and sending it to the Owl20 Owlbear Extension. This free tool enables seamless integration between D&D Beyond and Owlbear Rodeo, allowing players to roll dice on D&D Beyond and have the results automatically appear in their virtual tabletop sessions. Perfect for D&D 5e games, D&D 5.5e campaigns, and any tabletop RPG using Owlbear Rodeo as their VTT platform."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I install Owl20?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Install Owl20 from your browser's extension store: Google Chrome, Microsoft Edge, or Mozilla Firefox. You must also have the Beyond20 browser extension installed and configured first. The installation process is simple - just search for \"Owl20\" in your browser's extension marketplace, click install, and follow the setup instructions. This extension works with D&D Beyond integration and requires Beyond20 to function properly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I configure Beyond20 for Owl20?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open Beyond20 settings, navigate to 'More Options' > 'Advanced Options', find 'List of custom domains to load Beyond20', and add 'https://www.owlbear.rodeo/*' to the list. Save your settings. This configuration allows Beyond20 to work with Owlbear Rodeo domains, enabling the dice roll integration. If you're having trouble finding the settings, look for \"Advanced Options\" or \"Custom Domains\" in the Beyond20 extension popup. This step is crucial for D&D Beyond dice rolls to appear in your Owlbear Rodeo VTT sessions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I install the Owl20 OBR Extension?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The OBR extension is installed through Owlbear Rodeo's extension system. First, visit https://extensions.owlbear.rodeo/guide for detailed instructions on adding custom extensions. When prompted for the installation link, use: https://owl20.FriendlyMimic.com/manifest.json. This will add the Owl20 extension to your Owlbear Rodeo account. Important: Only the DM needs to install and enable the OBR extension - players don't need it. After installation, you'll need to enable it in each Owlbear Rodeo room where you want to use it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I enable the Owl20 extension in Owlbear Rodeo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To enable Owl20 in your Owlbear Rodeo room, you must be logged in as the DM. Look for the 'Extensions' button in the toolbar (usually at the top of the screen), click it to open the extensions panel, and you'll see a list of all installed extensions. Find 'Owl20' in that list and toggle the switch to ON. The extension must be enabled separately in each Owlbear Rodeo room - it doesn't automatically enable in all rooms. Once enabled, you should see the Owl20 window appear in your room, ready to display dice rolls from players."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why aren't my dice rolls appearing in Owlbear Rodeo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check that Owl20 browser extension is installed and enabled, verify 'https://www.owlbear.rodeo/*' is in Beyond20's custom domains list, ensure the DM has Owl20 Owlbear extension enabled in the room, reload both pages, try opening Owlbear in a new tab, and check browser DevTools (F12) for 'Owl20:' messages. Common issues include: Beyond20 not configured for Owlbear domains, OBR extension not enabled by DM, browser permissions blocked, or network connectivity problems. Try refreshing both D&D Beyond and Owlbear Rodeo tabs, and ensure you're using a supported browser (Chrome, Edge, or Firefox)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What browsers does Owl20 support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Owl20 works with all major desktop browsers that support browser extensions. This includes Google Chrome (using Manifest V3), Microsoft Edge (Chromium-based version), Mozilla Firefox (using WebExtensions API), and Opera (since it's Chromium-based, you can install from the Chrome Web Store). Any Chromium-based browser with Manifest V3 support should work with Owl20. The extension is available in the official extension stores for Chrome, Edge, and Firefox, making installation straightforward for most users."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Owl20 available on Google Chrome?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Owl20 is fully available on Google Chrome. You can install it directly from the Chrome Web Store at https://chromewebstore.google.com/detail/owl20-beyond20-to-owlbear/lpogdhcmmpkmafhdlbonpfjfmgcilhjp. Simply click the 'Add to Chrome' button, confirm the installation, and Owl20 will be ready to use. Chrome is one of the primary supported browsers for Owl20, so you'll get full functionality including automatic updates through the Chrome Web Store."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Owl20 work on Microsoft Edge?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Owl20 works perfectly on Microsoft Edge. Since Edge is now based on Chromium, it has full compatibility with Owl20. You can install it from the Edge Add-ons store at https://microsoftedge.microsoft.com/addons/detail/owl20-beyond20-to-owlbe/bofhilfebkhnchmngeaplaeodjobgdcf. The installation process is the same as Chrome - just click 'Get' to add it to Edge. Edge users get the same features and functionality as Chrome users, with automatic updates through Microsoft's extension store."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Owl20 available on Mozilla Firefox?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Owl20 is available for Mozilla Firefox. You can install it from the Firefox Add-ons store at https://addons.mozilla.org/en-US/firefox/addon/owl20-beyond20-owlbear-bridge/. Firefox uses the WebExtensions API, which Owl20 fully supports. Click 'Add to Firefox' to install, and you'll have the same functionality as Chrome and Edge users. Firefox users also benefit from automatic updates through Mozilla's add-on system."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Owl20 work on Opera?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Owl20 works on Opera! Since Opera is based on Chromium (the same engine as Chrome and Edge), it has full compatibility with Owl20. You can install it directly from the Chrome Web Store at https://chromewebstore.google.com/detail/owl20-beyond20-to-owlbear/lpogdhcmmpkmafhdlbonpfjfmgcilhjp. Opera users can install Chrome extensions, so just click 'Add to Chrome' and Opera will handle the installation. You'll get the same features and functionality as other Chromium-based browsers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need Beyond20 to use Owl20?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Beyond20 is absolutely required for Owl20 to function. Think of Beyond20 as the foundation - it's the extension that captures dice rolls from D&D Beyond in the first place. Owl20 then takes that roll data from Beyond20 and bridges it to Owlbear Rodeo. Without Beyond20 installed and configured (specifically with Owlbear Rodeo domains added), Owl20 won't have any roll data to transmit. You need both extensions working together: Beyond20 captures the rolls, and Owl20 delivers them to Owlbear Rodeo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who needs to install what?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The installation requirements differ for players and DMs. All players need to install two browser extensions: Beyond20 (which captures dice rolls from D&D Beyond) and Owl20 (which bridges those rolls to Owlbear Rodeo). The DM needs everything the players need, plus one more thing: the Owl20 OBR (Owlbear Rodeo) extension, which must be installed through Owlbear Rodeo's extension system and enabled in each room. Only the DM needs the OBR extension because it's what displays the rolls in the Owlbear Rodeo room for everyone to see. Players just need to send their rolls, while the DM needs to receive and display them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Owl20 work technically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Player makes a roll in D&D Beyond → Beyond20 processes the roll and sends it to custom domains → Owl20 browser extension receives the Beyond20_Roll event and sends to OBR extension → Owl20 Owlbear Rodeo extension receives the data and displays it to all room participants. The technical flow uses JavaScript event listeners, JSON data transmission, and iframe communication protocols. This creates a seamless bridge between D&D Beyond's dice rolling system and Owlbear Rodeo's virtual tabletop interface, enabling real-time dice roll synchronization for online D&D games."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to connect D&D Beyond to Owlbear Rodeo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To connect D&D Beyond to Owlbear Rodeo, you need both Beyond20 and Owl20 extensions. First install Beyond20 and configure it for Owlbear Rodeo domains, then install Owl20 browser extension, and finally have your DM install the Owl20 OBR extension. This creates a complete bridge between D&D Beyond character sheets and your Owlbear Rodeo virtual tabletop, enabling automatic dice roll integration for D&D 5e and 5.5e games."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Owl20 work with D&D 5.5e?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Owl20 works with both D&D 5e and D&D 5.5e (2024 edition). Since Owl20 bridges dice roll data from D&D Beyond to Owlbear Rodeo, it works with any D&D edition that D&D Beyond supports. The extension captures roll data regardless of the specific D&D ruleset being used, making it compatible with traditional D&D 5e games, the new D&D 5.5e rules, and any future D&D Beyond updates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Owl20 vs Beyond20 - what's the difference?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Beyond20 is the original extension that connects D&D Beyond to various virtual tabletops like Roll20, Foundry VTT, and others. Owl20 is a specialized extension that specifically bridges Beyond20's data to Owlbear Rodeo. Think of Beyond20 as the foundation - it captures dice rolls from D&D Beyond. Owl20 builds on top of Beyond20 to extend that functionality to Owlbear Rodeo VTT. You need both extensions for the complete D&D Beyond to Owlbear Rodeo integration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if the extension isn't loading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If Owl20 isn't loading, start by checking the basics: make sure you're using a supported browser (Chrome, Edge, or Firefox) and that the extension is actually installed and enabled in your browser's extension settings. Try disabling and re-enabling the extension - sometimes extensions need a refresh to load properly. Check if your browser needs updates, as older versions might have compatibility issues. Review the extension permissions to ensure Owl20 has access to owlbear.rodeo domains. If you're still having issues, try restarting your browser completely. You can also check the browser console (F12) for any error messages that might indicate what's preventing the extension from loading."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Owl20 free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Owl20 is completely free with no hidden costs, subscriptions, or premium features. It's available at no charge from all browser extension stores (Chrome Web Store, Edge Add-ons, and Firefox Add-ons). There are no in-app purchases, no premium tiers, and no limitations on functionality. Owl20 was created by the D&D community for the D&D community, and we're committed to keeping it free for everyone to use."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can I get help or report issues?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you need help or want to report a bug, there are several places to get support. The primary place for bug reports and feature requests is the GitHub Issues page at https://github.com/uberdragon/owl20/issues. When reporting an issue, include details like your browser version, what you were trying to do, what happened, and any error messages from the browser console (F12). For community support and general questions, you can also join the Starry Shores D&D Community Discord servers, where other users and developers can help troubleshoot issues."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What data does Owl20 transmit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Owl20 focuses purely on data transmission - it listens for Beyond20 events and passes the raw JSON roll data to iframes without any visual display. It uses postMessage API for secure cross-origin iframe communication to send roll data from the browser extension to the Owlbear Rodeo extension iframe."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What permissions does Owl20 require?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Owl20 requires minimal permissions for security and privacy. It needs scripting permission to inject the bridge code into Owlbear Rodeo pages, and host access specifically for owlbear.rodeo domains so it can communicate with the OBR extension. That's it - no access to your browsing history, no personal data collection, no tracking, and no access to other websites. Owl20 only runs on Owlbear Rodeo pages and only transmits dice roll data. This minimal permission model ensures your privacy while allowing the extension to function properly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I know if Owl20 is working?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To verify Owl20 is working, open your browser's Developer Tools (F12), go to the Console tab, and look for messages starting with 'Owl20:'. You should see messages like 'Owl20: Initializing data bridge', 'Owl20: Found iframe to owl20-owlbear', and 'Owl20: Sent roll data to Owl20 iframe via postMessage' when you make a dice roll. If you see these messages and your rolls appear in the Owlbear Rodeo room, Owl20 is working correctly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can multiple players use Owl20 at the same time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, multiple players can use Owl20 simultaneously. Each player needs to have both Beyond20 and Owl20 browser extensions installed and configured. All players' dice rolls will appear in the Owlbear Rodeo room when the DM has the Owl20 OBR extension enabled. Each player's rolls are transmitted independently, so there's no conflict when multiple players roll at the same time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I have multiple Owlbear Rodeo tabs open?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Owl20 automatically detects all Owlbear Rodeo iframes on the page and sends roll data to each one. If you have multiple Owlbear tabs open, rolls will be sent to all tabs that have the Owl20 OBR extension enabled. This means you might see the same roll appear in multiple tabs. For best results, keep only one Owlbear Rodeo tab open during your game session."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Owl20 store any data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, Owl20 does not store any data. It operates entirely in memory and only transmits dice roll data in real-time from Beyond20 to the Owlbear Rodeo extension. No roll history, personal information, or session data is saved locally or transmitted to any external servers. Owl20 is a pass-through extension that simply bridges data between Beyond20 and Owlbear Rodeo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use Owl20 without D&D Beyond?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, Owl20 requires D&D Beyond and the Beyond20 extension to function. Owl20 specifically bridges dice roll data from D&D Beyond character sheets to Owlbear Rodeo. If you're not using D&D Beyond for your character sheets, Owl20 won't have any roll data to transmit. You would need to use manual dice rolling in Owlbear Rodeo or another dice rolling solution."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Owl20 work with mobile browsers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Owl20 is designed for desktop browsers (Chrome, Edge, Firefox) and requires browser extension support, which is not available on most mobile browsers. Mobile browsers typically don't support browser extensions, so Owl20 cannot be installed or used on mobile devices. You'll need to use a desktop or laptop computer to use Owl20 with D&D Beyond and Owlbear Rodeo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I update Owl20?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Owl20 updates automatically through your browser's extension store. Chrome, Edge, and Firefox automatically check for and install updates to extensions. You can also manually check for updates by going to your browser's extension management page (chrome://extensions, edge://extensions, or about:addons in Firefox) and clicking the update or refresh button. The OBR extension updates separately - check the Owlbear Rodeo extensions page for updates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use Owl20 in private or incognito mode?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This depends on your browser settings. By default, most browsers disable extensions in private/incognito mode for privacy reasons. You can enable Owl20 in private mode by going to your browser's extension settings and allowing the extension to run in incognito/private windows. However, keep in mind that some browser features may behave differently in private mode, which could affect Owl20's functionality."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my dice rolls are delayed or not appearing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If rolls are delayed or missing, first check that all components are properly installed and enabled: Owl20 browser extension, Beyond20 with Owlbear domain configured, and the OBR extension enabled by the DM. Refresh both D&D Beyond and Owlbear Rodeo tabs. Check the browser console (F12) for error messages. Ensure you're not using any ad blockers or script blockers that might interfere. Try closing and reopening the Owlbear tab. If issues persist, check the GitHub issues page for known problems or report the issue."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Owl20 work with ad blockers or script blockers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Owl20 should work with most ad blockers, but aggressive script blockers or privacy extensions might interfere with its functionality. If you're having issues, try temporarily disabling ad blockers or script blockers on owlbear.rodeo and dndbeyond.com to see if that resolves the problem. You may need to whitelist these domains in your blocker settings. Owl20 uses standard web APIs (postMessage, CustomEvent) that shouldn't be blocked, but some privacy extensions are very restrictive."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What version of Beyond20 do I need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Owl20 works with any recent version of Beyond20 that supports custom domains. As long as your Beyond20 extension is up to date and you've configured it to work with Owlbear Rodeo domains (by adding https://www.owlbear.rodeo/* to the custom domains list), it should work with Owl20. If you're having compatibility issues, make sure both Beyond20 and Owl20 are updated to their latest versions from their respective extension stores."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <div class="container">
+    <!-- Header and Navigation loaded via header.js -->
+    <div id="header-container"></div>
+
+    <!-- FAQ Content -->
+    <section class="faq-section">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h2>❓ Frequently Asked Questions</h2>
+        <p style="margin: 0; color: var(--text-secondary);"><strong>Last Updated:</strong> November 2025</p>
+      </div>
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 900px; margin: 0 auto; padding: 0 1rem;">This FAQ answers common questions about the Owl20 browser extension, covering installation, setup, troubleshooting, and usage. Click any question below to expand and read the full answer. Whether you're a player connecting D&D Beyond to Owlbear Rodeo or a DM setting up your virtual tabletop, you'll find all the answers to your questions here.</p>
+        <p>&nbsp;</p>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>What is Owl20?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Owl20 is a browser extension that bridges Beyond20 dice roll data to Owlbear Rodeo iframes. It connects D&D Beyond character sheets to Owlbear Rodeo VTT by capturing roll data from the Beyond20 extension and sending it to the Owl20 Owlbear Extension. This free tool enables seamless integration between D&D Beyond and Owlbear Rodeo, allowing players to roll dice on D&D Beyond and have the results automatically appear in their virtual tabletop sessions. Perfect for D&D 5e games, D&D 5.5e campaigns, and any tabletop RPG using Owlbear Rodeo as their VTT platform.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>How do I install Owl20?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Install Owl20 from your browser's extension store: Microsoft Edge, Google Chrome, or Mozilla Firefox. You must also have the Beyond20 browser extension installed and configured first. The installation process is simple - just search for "Owl20" in your browser's extension marketplace, click install, and follow the setup instructions. This extension works with D&D Beyond integration and requires Beyond20 to function properly.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>How do I configure Beyond20 for Owl20?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Open Beyond20 settings, navigate to 'More Options' > 'Advanced Options', find 'List of custom domains to load Beyond20', and add 'https://www.owlbear.rodeo/*' to the list. Save your settings. This configuration allows Beyond20 to work with Owlbear Rodeo domains, enabling the dice roll integration. If you're having trouble finding the settings, look for "Advanced Options" or "Custom Domains" in the Beyond20 extension popup. This step is crucial for D&D Beyond dice rolls to appear in your Owlbear Rodeo VTT sessions.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>How do I install the Owl20 OBR Extension?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>The OBR extension is installed through Owlbear Rodeo's extension system. First, visit <a href="https://extensions.owlbear.rodeo/guide" target="_blank">https://extensions.owlbear.rodeo/guide</a> for detailed instructions on adding custom extensions. When prompted for the installation link, use: <code>https://owl20.FriendlyMimic.com/manifest.json</code>. This will add the Owl20 extension to your Owlbear Rodeo account. Important: Only the DM needs to install and enable the OBR extension - players don't need it. After installation, you'll need to enable it in each Owlbear Rodeo room where you want to use it.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>How do I enable the Owl20 extension in Owlbear Rodeo?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>To enable Owl20 in your Owlbear Rodeo room, you must be logged in as the DM. Look for the 'Extensions' button in the toolbar (usually at the top of the screen), click it to open the extensions panel, and you'll see a list of all installed extensions. Find 'Owl20' in that list and toggle the switch to ON. The extension must be enabled separately in each Owlbear Rodeo room - it doesn't automatically enable in all rooms. Once enabled, you should see the Owl20 window appear in your room, ready to display dice rolls from players.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Why aren't my dice rolls appearing in Owlbear Rodeo?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Check that Owl20 browser extension is installed and enabled, verify 'https://www.owlbear.rodeo/*' is in Beyond20's custom domains list, ensure the DM has Owl20 Owlbear extension enabled in the room, reload both pages, try opening Owlbear in a new tab, and check browser DevTools (F12) for 'Owl20:' messages. Common issues include: Beyond20 not configured for Owlbear domains, OBR extension not enabled by DM, browser permissions blocked, or network connectivity problems. Try refreshing both D&D Beyond and Owlbear Rodeo tabs, and ensure you're using a supported browser (Chrome, Edge, or Firefox).</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>What browsers does Owl20 support?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Owl20 works with all major desktop browsers that support browser extensions. This includes Google Chrome (using Manifest V3), Microsoft Edge (Chromium-based version), Mozilla Firefox (using WebExtensions API), and Opera (since it's Chromium-based, you can install from the Chrome Web Store). Any Chromium-based browser with Manifest V3 support should work with Owl20. The extension is available in the official extension stores for Chrome, Edge, and Firefox, making installation straightforward for most users.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Is Owl20 available on Google Chrome?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, Owl20 is fully available on Google Chrome. You can install it directly from the <a href="https://chromewebstore.google.com/detail/owl20-beyond20-to-owlbear/lpogdhcmmpkmafhdlbonpfjfmgcilhjp" target="_blank">Chrome Web Store</a>. Simply click the 'Add to Chrome' button, confirm the installation, and Owl20 will be ready to use. Chrome is one of the primary supported browsers for Owl20, so you'll get full functionality including automatic updates through the Chrome Web Store.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Does Owl20 work on Microsoft Edge?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, Owl20 works perfectly on Microsoft Edge. Since Edge is now based on Chromium, it has full compatibility with Owl20. You can install it from the <a href="https://microsoftedge.microsoft.com/addons/detail/owl20-beyond20-to-owlbe/bofhilfebkhnchmngeaplaeodjobgdcf" target="_blank">Edge Add-ons</a> store. The installation process is the same as Chrome - just click 'Get' to add it to Edge. Edge users get the same features and functionality as Chrome users, with automatic updates through Microsoft's extension store.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Is Owl20 available on Mozilla Firefox?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, Owl20 is available for Mozilla Firefox. You can install it from the <a href="https://addons.mozilla.org/en-US/firefox/addon/owl20-beyond20-owlbear-bridge/" target="_blank">Firefox Add-ons</a> store. Firefox uses the WebExtensions API, which Owl20 fully supports. Click 'Add to Firefox' to install, and you'll have the same functionality as Chrome and Edge users. Firefox users also benefit from automatic updates through Mozilla's add-on system.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Does Owl20 work on Opera?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, Owl20 works on Opera! Since Opera is based on Chromium (the same engine as Chrome and Edge), it has full compatibility with Owl20. You can install it directly from the <a href="https://chromewebstore.google.com/detail/owl20-beyond20-to-owlbear/lpogdhcmmpkmafhdlbonpfjfmgcilhjp" target="_blank">Chrome Web Store</a>. Opera users can install Chrome extensions, so just click 'Add to Chrome' and Opera will handle the installation. You'll get the same features and functionality as other Chromium-based browsers.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Do I need Beyond20 to use Owl20?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, Beyond20 is absolutely required for Owl20 to function. Think of Beyond20 as the foundation - it's the extension that captures dice rolls from D&D Beyond in the first place. Owl20 then takes that roll data from Beyond20 and bridges it to Owlbear Rodeo. Without Beyond20 installed and configured (specifically with Owlbear Rodeo domains added), Owl20 won't have any roll data to transmit. You need both extensions working together: Beyond20 captures the rolls, and Owl20 delivers them to Owlbear Rodeo.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Who needs to install what?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>The installation requirements differ for players and DMs. All players need to install two browser extensions: Beyond20 (which captures dice rolls from D&D Beyond) and Owl20 (which bridges those rolls to Owlbear Rodeo). The DM needs everything the players need, plus one more thing: the Owl20 OBR (Owlbear Rodeo) extension, which must be installed through Owlbear Rodeo's extension system and enabled in each room. Only the DM needs the OBR extension because it's what displays the rolls in the Owlbear Rodeo room for everyone to see. Players just need to send their rolls, while the DM needs to receive and display them.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>How does Owl20 work technically?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Player makes a roll in D&D Beyond → Beyond20 processes the roll and sends it to custom domains → Owl20 browser extension receives the Beyond20_Roll event and sends to OBR extension → Owl20 Owlbear Rodeo extension receives the data and displays it to all room participants. The technical flow uses JavaScript event listeners, JSON data transmission, and iframe communication protocols. This creates a seamless bridge between D&D Beyond's dice rolling system and Owlbear Rodeo's virtual tabletop interface, enabling real-time dice roll synchronization for online D&D games.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>How to connect D&D Beyond to Owlbear Rodeo?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>To connect D&D Beyond to Owlbear Rodeo, you need both Beyond20 and Owl20 extensions. First install Beyond20 and configure it for Owlbear Rodeo domains, then install Owl20 browser extension, and finally have your DM install the Owl20 OBR extension. This creates a complete bridge between D&D Beyond character sheets and your Owlbear Rodeo virtual tabletop, enabling automatic dice roll integration for D&D 5e and 5.5e games.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Does Owl20 work with D&D 5.5e?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, Owl20 works with both D&D 5e and D&D 5.5e (2024 edition). Since Owl20 bridges dice roll data from D&D Beyond to Owlbear Rodeo, it works with any D&D edition that D&D Beyond supports. The extension captures roll data regardless of the specific D&D ruleset being used, making it compatible with traditional D&D 5e games, the new D&D 5.5e rules, and any future D&D Beyond updates.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Owl20 vs Beyond20 - what's the difference?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Beyond20 is the original extension that connects D&D Beyond to various virtual tabletops like Roll20, Foundry VTT, and others. Owl20 is a specialized extension that specifically bridges Beyond20's data to Owlbear Rodeo. Think of Beyond20 as the foundation - it captures dice rolls from D&D Beyond. Owl20 builds on top of Beyond20 to extend that functionality to Owlbear Rodeo VTT. You need both extensions for the complete D&D Beyond to Owlbear Rodeo integration.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>What if the extension isn't loading?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>If Owl20 isn't loading, start by checking the basics: make sure you're using a supported browser (Chrome, Edge, or Firefox) and that the extension is actually installed and enabled in your browser's extension settings. Try disabling and re-enabling the extension - sometimes extensions need a refresh to load properly. Check if your browser needs updates, as older versions might have compatibility issues. Review the extension permissions to ensure Owl20 has access to owlbear.rodeo domains. If you're still having issues, try restarting your browser completely. You can also check the browser console (F12) for any error messages that might indicate what's preventing the extension from loading.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Is Owl20 free?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, Owl20 is completely free with no hidden costs, subscriptions, or premium features. It's available at no charge from all browser extension stores (Chrome Web Store, Edge Add-ons, and Firefox Add-ons). There are no in-app purchases, no premium tiers, and no limitations on functionality. Owl20 was created by the D&D community for the D&D community, and we're committed to keeping it free for everyone to use.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Where can I get help or report issues?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>If you need help or want to report a bug, there are several places to get support. The primary place for bug reports and feature requests is the GitHub Issues page at <a href="https://github.com/uberdragon/owl20/issues" target="_blank">https://github.com/uberdragon/owl20/issues</a>. When reporting an issue, include details like your browser version, what you were trying to do, what happened, and any error messages from the browser console (F12). For community support and general questions, you can also join the Starry Shores D&D Community Discord servers, where other users and developers can help troubleshoot issues.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>What data does Owl20 transmit?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Owl20 focuses purely on data transmission - it listens for Beyond20 events and passes the raw JSON roll data to iframes without any visual display. It uses postMessage API for secure cross-origin iframe communication to send roll data from the browser extension to the Owlbear Rodeo extension iframe.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>What permissions does Owl20 require?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Owl20 requires minimal permissions for security and privacy. It needs scripting permission to inject the bridge code into Owlbear Rodeo pages, and host access specifically for owlbear.rodeo domains so it can communicate with the OBR extension. That's it - no access to your browsing history, no personal data collection, no tracking, and no access to other websites. Owl20 only runs on Owlbear Rodeo pages and only transmits dice roll data. This minimal permission model ensures your privacy while allowing the extension to function properly.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>How do I know if Owl20 is working?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>To verify Owl20 is working, open your browser's Developer Tools (F12), go to the Console tab, and look for messages starting with 'Owl20:'. You should see messages like 'Owl20: Initializing data bridge', 'Owl20: Found iframe to owl20-owlbear', and 'Owl20: Sent roll data to Owl20 iframe via postMessage' when you make a dice roll. If you see these messages and your rolls appear in the Owlbear Rodeo room, Owl20 is working correctly.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Can multiple players use Owl20 at the same time?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, multiple players can use Owl20 simultaneously. Each player needs to have both Beyond20 and Owl20 browser extensions installed and configured. All players' dice rolls will appear in the Owlbear Rodeo room when the DM has the Owl20 OBR extension enabled. Each player's rolls are transmitted independently, so there's no conflict when multiple players roll at the same time.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>What happens if I have multiple Owlbear Rodeo tabs open?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Owl20 automatically detects all Owlbear Rodeo iframes on the page and sends roll data to each one. If you have multiple Owlbear tabs open, rolls will be sent to all tabs that have the Owl20 OBR extension enabled. This means you might see the same roll appear in multiple tabs. For best results, keep only one Owlbear Rodeo tab open during your game session.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Does Owl20 store any data?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>No, Owl20 does not store any data. It operates entirely in memory and only transmits dice roll data in real-time from Beyond20 to the Owlbear Rodeo extension. No roll history, personal information, or session data is saved locally or transmitted to any external servers. Owl20 is a pass-through extension that simply bridges data between Beyond20 and Owlbear Rodeo.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Can I use Owl20 without D&D Beyond?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>No, Owl20 requires D&D Beyond and the Beyond20 extension to function. Owl20 specifically bridges dice roll data from D&D Beyond character sheets to Owlbear Rodeo. If you're not using D&D Beyond for your character sheets, Owl20 won't have any roll data to transmit. You would need to use manual dice rolling in Owlbear Rodeo or another dice rolling solution.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Does Owl20 work with mobile browsers?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Owl20 is designed for desktop browsers (Chrome, Edge, Firefox) and requires browser extension support, which is not available on most mobile browsers. Mobile browsers typically don't support browser extensions, so Owl20 cannot be installed or used on mobile devices. You'll need to use a desktop or laptop computer to use Owl20 with D&D Beyond and Owlbear Rodeo.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>How do I update Owl20?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Owl20 updates automatically through your browser's extension store. Chrome, Edge, and Firefox automatically check for and install updates to extensions. You can also manually check for updates by going to your browser's extension management page (chrome://extensions, edge://extensions, or about:addons in Firefox) and clicking the update or refresh button. The OBR extension updates separately - check the Owlbear Rodeo extensions page for updates.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Can I use Owl20 in private or incognito mode?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>This depends on your browser settings. By default, most browsers disable extensions in private/incognito mode for privacy reasons. You can enable Owl20 in private mode by going to your browser's extension settings and allowing the extension to run in incognito/private windows. However, keep in mind that some browser features may behave differently in private mode, which could affect Owl20's functionality.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>What if my dice rolls are delayed or not appearing?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>If rolls are delayed or missing, first check that all components are properly installed and enabled: Owl20 browser extension, Beyond20 with Owlbear domain configured, and the OBR extension enabled by the DM. Refresh both D&D Beyond and Owlbear Rodeo tabs. Check the browser console (F12) for error messages. Ensure you're not using any ad blockers or script blockers that might interfere. Try closing and reopening the Owlbear tab. If issues persist, check the <a href="https://github.com/uberdragon/owl20/issues" target="_blank">GitHub issues page</a> for known problems or report the issue.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>Does Owl20 work with ad blockers or script blockers?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Owl20 should work with most ad blockers, but aggressive script blockers or privacy extensions might interfere with its functionality. If you're having issues, try temporarily disabling ad blockers or script blockers on owlbear.rodeo and dndbeyond.com to see if that resolves the problem. You may need to whitelist these domains in your blocker settings. Owl20 uses standard web APIs (postMessage, CustomEvent) that shouldn't be blocked, but some privacy extensions are very restrictive.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h4>What version of Beyond20 do I need?</h4>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Owl20 works with any recent version of Beyond20 that supports custom domains. As long as your Beyond20 extension is up to date and you've configured it to work with Owlbear Rodeo domains (by adding https://www.owlbear.rodeo/* to the custom domains list), it should work with Owl20. If you're having compatibility issues, make sure both Beyond20 and Owl20 are updated to their latest versions from their respective extension stores.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="index.html#player">Player Setup</a>
+        <a href="index.html#dm">DM Setup</a>
+        <a href="faq.html">FAQ</a>
+        <a href="index.html#troubleshooting">Troubleshooting</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="sitemap.html">Sitemap</a>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>
+
