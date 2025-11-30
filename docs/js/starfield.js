@@ -25,6 +25,12 @@ function initStarfield() {
         return;
     }
 
+    // Remove any existing starfield to ensure fresh stars on each page load
+    const existingStarfield = document.querySelector('.starfield');
+    if (existingStarfield) {
+        existingStarfield.remove();
+    }
+
     const starfield = document.createElement('div');
     starfield.className = 'starfield';
 
