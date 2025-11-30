@@ -262,11 +262,28 @@ $(document).ready(function() {
         $(this).css('animation-delay', (index * 0.05) + 's');
     });
     
-    // Ensure body exists before initializing starfield
-    if (document.body) {
+    // Initialize starfield - use a separate function with better timing
+    function initializeStarfieldAndConstellations() {
+        // Ensure body exists and is ready
+        if (!document.body) {
+            setTimeout(initializeStarfieldAndConstellations, 50);
+            return;
+        }
+        
+        // Check if already initialized
+        if (document.body.dataset.starfieldInit === 'true') {
+            // Starfield already initialized, just check for constellations
+            const starfield = document.querySelector('.starfield');
+            if (starfield && document.body.dataset.constellationsInit !== 'true') {
+                initConstellations();
+            }
+            return;
+        }
+        
+        // Initialize starfield
         initStarfield();
+        
         // Wait for starfield to be created before initializing constellations
-        // Use a more robust check to ensure starfield exists
         function initConstellationsWhenReady() {
             const starfield = document.querySelector('.starfield');
             if (starfield) {
@@ -282,6 +299,9 @@ $(document).ready(function() {
         }
         setTimeout(initConstellationsWhenReady, 100);
     }
+    
+    // Initialize after a short delay to ensure everything is ready
+    setTimeout(initializeStarfieldAndConstellations, 50);
 });
 
 // Add fade-in animation to cards and handle anchors
