@@ -157,8 +157,18 @@ function initConstellations() {
         return;
     }
 
+    // Remove any existing constellations first to ensure fresh ones on each page load
+    const existingConstellations = document.querySelectorAll('.constellation');
+    existingConstellations.forEach(c => c.remove());
+
     const starfield = document.querySelector('.starfield');
     if (!starfield) {
+        // If starfield doesn't exist yet, try again after a short delay
+        setTimeout(function() {
+            if (document.body.dataset.constellationsInit !== 'true') {
+                initConstellations();
+            }
+        }, 100);
         return;
     }
 
