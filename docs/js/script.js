@@ -275,7 +275,13 @@ $(document).ready(function() {
             // Starfield already initialized, just check for constellations
             const starfield = document.querySelector('.starfield');
             if (starfield && document.body.dataset.constellationsInit !== 'true') {
+                // Starfield exists but constellations not initialized, initialize them
                 initConstellations();
+            } else if (!starfield) {
+                // Starfield marked as initialized but element not found, reinitialize
+                document.body.dataset.starfieldInit = 'false';
+                document.body.dataset.constellationsInit = 'false';
+                initializeStarfieldAndConstellations();
             }
             return;
         }
@@ -287,17 +293,22 @@ $(document).ready(function() {
         function initConstellationsWhenReady() {
             const starfield = document.querySelector('.starfield');
             if (starfield) {
+                // Starfield exists, initialize constellations
                 initConstellations();
             } else {
-                // Retry if starfield not ready yet (max 20 attempts = 1 second)
+                // Retry if starfield not ready yet (max 40 attempts = 2 seconds)
                 const attempts = initConstellationsWhenReady.attempts || 0;
-                if (attempts < 20) {
+                if (attempts < 40) {
                     initConstellationsWhenReady.attempts = attempts + 1;
                     setTimeout(initConstellationsWhenReady, 50);
+                } else {
+                    // If starfield still not found after max attempts, try initializing constellations anyway
+                    // (initConstellations has its own retry logic)
+                    initConstellations();
                 }
             }
         }
-        setTimeout(initConstellationsWhenReady, 100);
+        setTimeout(initConstellationsWhenReady, 150);
     }
     
     // Initialize after a short delay to ensure everything is ready
