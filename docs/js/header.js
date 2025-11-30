@@ -32,7 +32,7 @@ function loadHeader() {
                     <img src="owl20-128.png" alt="Owl20 Logo" class="logo-img">
                 </a>
                 <a href="index.html" style="text-decoration: none; color: inherit;">
-                    <h1>Owl20</h1>
+                    <div style="font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0;">Owl20</div>
                 </a>
                 <p class="tagline">Bridge Between Beyond20 & Owlbear Rodeo</p>
             </div>
