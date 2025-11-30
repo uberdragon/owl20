@@ -222,7 +222,7 @@ body::after {
     color: var(--text-secondary);
     font-size: 0.9375rem;
     font-weight: 500;
-    padding: 0.75rem 1.25rem;
+    padding: 0.375rem 0.625rem;
     transition: all 0.3s ease;
     white-space: nowrap;
     text-decoration: none;
