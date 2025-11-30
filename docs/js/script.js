@@ -289,16 +289,16 @@ $(document).ready(function() {
         // Initialize starfield
         initStarfield();
         
-        // Wait for starfield to be created before initializing constellations
+        // Initialize constellations immediately after starfield is created
         function initConstellationsWhenReady() {
             const starfield = document.querySelector('.starfield');
             if (starfield) {
-                // Starfield exists, initialize constellations
+                // Starfield exists, initialize constellations immediately
                 initConstellations();
             } else {
-                // Retry if starfield not ready yet (max 40 attempts = 2 seconds)
+                // Retry if starfield not ready yet (max 10 attempts = 500ms for instant appearance)
                 const attempts = initConstellationsWhenReady.attempts || 0;
-                if (attempts < 40) {
+                if (attempts < 10) {
                     initConstellationsWhenReady.attempts = attempts + 1;
                     setTimeout(initConstellationsWhenReady, 50);
                 } else {
@@ -308,11 +308,12 @@ $(document).ready(function() {
                 }
             }
         }
-        setTimeout(initConstellationsWhenReady, 150);
+        // Start checking immediately, no delay
+        initConstellationsWhenReady();
     }
     
-    // Initialize after a short delay to ensure everything is ready
-    setTimeout(initializeStarfieldAndConstellations, 50);
+    // Initialize immediately - no delay for instant appearance
+    initializeStarfieldAndConstellations();
 });
 
 // Add fade-in animation to cards and handle anchors
