@@ -28,10 +28,10 @@ function loadHeader() {
         <!-- Header -->
         <header class="header">
             <div class="logo">
-                <a href="index.html" style="text-decoration: none; color: inherit;">
+                <a href="/" style="text-decoration: none; color: inherit;">
                     <img src="owl20-128.png" alt="Owl20 Logo" class="logo-img">
                 </a>
-                <a href="index.html" style="text-decoration: none; color: inherit;">
+                <a href="/" style="text-decoration: none; color: inherit;">
                     <div style="font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0;">Owl20</div>
                 </a>
                 <p class="tagline">Bridge Between Beyond20 & Owlbear Rodeo</p>
@@ -51,12 +51,12 @@ function loadHeader() {
 
         <!-- Header Navigation -->
         <nav class="header-nav">
-            <a href="index.html" class="nav-button ${activeButton === 'home' ? 'active' : ''}">Home</a>
+            <a href="/" class="nav-button ${activeButton === 'home' ? 'active' : ''}">Home</a>
             <a href="about.html" class="nav-button ${activeButton === 'about' ? 'active' : ''}">About</a>
-            <a href="${isIndexPage ? '#' : 'index.html#'}player" class="nav-button ${activeButton === 'player' ? 'active' : ''}">Player Setup</a>
-            <a href="${isIndexPage ? '#' : 'index.html#'}dm" class="nav-button ${activeButton === 'dm' ? 'active' : ''}">DM Setup</a>
+            <a href="${isIndexPage ? '#' : '/#'}player" class="nav-button ${activeButton === 'player' ? 'active' : ''}">Player Setup</a>
+            <a href="${isIndexPage ? '#' : '/#'}dm" class="nav-button ${activeButton === 'dm' ? 'active' : ''}">DM Setup</a>
             <a href="faq.html" class="nav-button ${activeButton === 'faq' ? 'active' : ''}">FAQ</a>
-            <a href="${isIndexPage ? '#' : 'index.html#'}troubleshooting" class="nav-button ${activeButton === 'troubleshooting' ? 'active' : ''}">Troubleshooting</a>
+            <a href="${isIndexPage ? '#' : '/#'}troubleshooting" class="nav-button ${activeButton === 'troubleshooting' ? 'active' : ''}">Troubleshooting</a>
             <a href="privacy.html" class="nav-button ${activeButton === 'privacy' ? 'active' : ''}">Privacy</a>
             <a href="sitemap.html" class="nav-button ${activeButton === 'sitemap' ? 'active' : ''}">Sitemap</a>
         </nav>
@@ -131,7 +131,7 @@ function initializeHeaderNav() {
     $('.header-nav .nav-button').on('click', function() {
         // Only set active for non-anchor links or when navigating away
         const href = $(this).attr('href');
-        if (!href.includes('#') || (href.startsWith('index.html#') && !(window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/')))) {
+        if (!href.includes('#') || ((href.startsWith('/#') || href.startsWith('index.html#')) && !(window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/')))) {
             $('.header-nav .nav-button').removeClass('active');
             $(this).addClass('active');
         }
