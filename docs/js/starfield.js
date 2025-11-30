@@ -213,16 +213,23 @@ function initConstellations() {
         ]
     ];
 
+    // Shuffle constellation patterns for variety on each page load
+    const shuffledPatterns = [...constellationPatterns].sort(() => Math.random() - 0.5);
+    
     for (let i = 0; i < STARFIELD_CONFIG.CONSTELLATION_COUNT; i++) {
         const constellation = document.createElement('div');
         constellation.className = 'constellation';
         
-        const pattern = constellationPatterns[i % constellationPatterns.length];
+        // Pick a random pattern and add random offset to position it differently each time
+        const pattern = shuffledPatterns[i % shuffledPatterns.length];
+        const offsetX = Math.random() * 20 - 10; // Random offset between -10% and +10%
+        const offsetY = Math.random() * 20 - 10; // Random offset between -10% and +10%
         
         let starsHTML = '';
         for (let j = 0; j < pattern.length; j++) {
-            const x = pattern[j].x;
-            const y = pattern[j].y;
+            // Apply random offset to each star position
+            const x = Math.max(0, Math.min(100, pattern[j].x + offsetX));
+            const y = Math.max(0, Math.min(100, pattern[j].y + offsetY));
             const starSize = '4'; // Bright white stars for testing - 4px
             
             starsHTML += `<span class="constellation-star" style="left: ${x}%; top: ${y}%; width: ${starSize}px; height: ${starSize}px;"></span>`;
