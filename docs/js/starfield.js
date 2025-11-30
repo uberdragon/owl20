@@ -35,23 +35,16 @@ function initStarfield() {
     starfield.className = 'starfield';
 
     const stars = [];
-    // Use current time as seed to ensure different random positions on each page load
-    const seed = Date.now();
     for (let i = 0; i < STARFIELD_CONFIG.COUNT; i++) {
         const star = document.createElement('span');
         star.className = 'star';
-        // Generate unique random values for each star using seed + index
-        const random1 = Math.sin(seed + i * 0.1) * 10000;
-        const random2 = Math.sin(seed + i * 0.1 + 1) * 10000;
-        const random3 = Math.sin(seed + i * 0.1 + 2) * 10000;
-        const random4 = Math.sin(seed + i * 0.1 + 3) * 10000;
-        const random5 = Math.sin(seed + i * 0.1 + 4) * 10000;
-        
-        const size = ((random1 - Math.floor(random1)) * 1.6 + 0.6).toFixed(2);
-        const opacity = ((random2 - Math.floor(random2)) * 0.3 + 0.15).toFixed(2);
-        const twinkleScale = ((random3 - Math.floor(random3)) * 1 + 2.4).toFixed(2);
-        star.style.left = ((random4 - Math.floor(random4)) * 100).toFixed(3) + '%';
-        star.style.top = ((random5 - Math.floor(random5)) * 100).toFixed(3) + '%';
+        // Use Math.random() for true randomization on each page load
+        const size = (Math.random() * 1.6 + 0.6).toFixed(2);
+        const opacity = (Math.random() * 0.3 + 0.15).toFixed(2);
+        const twinkleScale = (Math.random() * 1 + 2.4).toFixed(2);
+        // Random positions across the entire viewport
+        star.style.left = (Math.random() * 100).toFixed(3) + '%';
+        star.style.top = (Math.random() * 100).toFixed(3) + '%';
         star.style.setProperty('--size', size + 'px');
         star.style.setProperty('--opacity', opacity);
         star.style.setProperty('--twinkle-scale', twinkleScale);
