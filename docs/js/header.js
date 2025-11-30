@@ -105,8 +105,8 @@ function initializeHeaderNav() {
         }
     });
     
-    // Handle header nav links with index.html#section format
-    $('.header-nav .nav-button[href^="index.html#"]').on('click', function(event) {
+    // Handle header nav links with /#section format
+    $('.header-nav .nav-button[href^="/#"], .header-nav .nav-button[href^="index.html#"]').on('click', function(event) {
         // Only prevent default if we're already on index.html
         const currentPath = window.location.pathname;
         if (currentPath.endsWith('index.html') || currentPath === '/' || currentPath.endsWith('/')) {
