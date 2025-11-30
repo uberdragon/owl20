@@ -250,6 +250,8 @@ $(document).ready(function() {
         openSectionById(sectionId);
     });
     
+    // Note: Header navigation is handled by header.js
+    
     // Smooth animations on page load
     $('.section-card').each(function(index) {
         $(this).css('animation-delay', (index * 0.1) + 's');
@@ -284,6 +286,12 @@ $(window).on('load', function() {
         const targetSection = document.getElementById(hash);
         if (targetSection) {
             setSectionState(targetSection, true);
+            
+            // Update active state on corresponding nav button (header.js handles this, but update if needed)
+            if ($('.header-nav .nav-button').length > 0) {
+                $('.header-nav .nav-button').removeClass('active');
+                $('.header-nav .nav-button[href="#' + hash + '"]').addClass('active');
+            }
             
             // Scroll to the section after a short delay
             setTimeout(function() {
