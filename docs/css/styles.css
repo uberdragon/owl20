@@ -102,7 +102,7 @@ body::after {
 .header {
     background: rgba(30, 41, 59, 0.7);
     border-radius: 20px;
-    padding: 2rem;
+    padding: 1rem 2rem;
     margin-bottom: 3rem;
     box-shadow: var(--shadow);
     display: flex;
