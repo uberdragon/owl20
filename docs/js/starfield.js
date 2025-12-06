@@ -166,13 +166,24 @@ function initConstellations() {
     const starfield = document.querySelector('.starfield');
     if (!starfield) {
         // If starfield doesn't exist yet, try again after a short delay
-        setTimeout(function() {
-            if (document.body.dataset.constellationsInit !== 'true') {
+        // Track retry attempts to prevent infinite loops
+        const retryCount = (initConstellations.retryCount || 0) + 1;
+        const MAX_RETRIES = 10;
+        
+        if (retryCount < MAX_RETRIES && document.body.dataset.constellationsInit !== 'true') {
+            initConstellations.retryCount = retryCount;
+            setTimeout(function() {
                 initConstellations();
-            }
-        }, 100);
+            }, 100);
+        } else {
+            // Reset retry count if we've exceeded max retries or already initialized
+            initConstellations.retryCount = 0;
+        }
         return;
     }
+    
+    // Reset retry count on successful initialization
+    initConstellations.retryCount = 0;
 
     // Define recognizable constellation patterns based on real star positions
     const constellationPatterns = [
