@@ -39,7 +39,20 @@ function showToast(message) {
     // Create toast element
     const toast = document.createElement('div');
     toast.className = 'toast-notification';
-    toast.innerHTML = '<span class="toast-icon">✓</span><span class="toast-message">' + message + '</span>';
+    
+    // Create icon span
+    const icon = document.createElement('span');
+    icon.className = 'toast-icon';
+    icon.textContent = '✓';
+    
+    // Create message span
+    const messageSpan = document.createElement('span');
+    messageSpan.className = 'toast-message';
+    messageSpan.textContent = message;
+    
+    // Append children safely
+    toast.appendChild(icon);
+    toast.appendChild(messageSpan);
     
     // Add to body
     document.body.appendChild(toast);
@@ -61,9 +74,11 @@ function showToast(message) {
 }
 
 // Copy manifest URL to clipboard
-function copyManifestUrl() {
+function copyManifestUrl(event) {
     const url = 'https://owl20.FriendlyMimic.com/manifest.json';
-    const button = event.target.closest('.copy-btn');
+    // Support both passed event and window.event (for inline handlers)
+    const evt = event || window.event;
+    const button = evt ? evt.target.closest('.copy-btn') : null;
     
     // Push dataLayer event for GTM tracking
     if (typeof dataLayer !== 'undefined') {
@@ -98,9 +113,11 @@ function copyManifestUrl() {
 }
 
 // Copy Owlbear Rodeo URL to clipboard
-function copyOwlbearUrl() {
+function copyOwlbearUrl(event) {
     const url = 'https://www.owlbear.rodeo/*';
-    const button = event.target.closest('.copy-btn');
+    // Support both passed event and window.event (for inline handlers)
+    const evt = event || window.event;
+    const button = evt ? evt.target.closest('.copy-btn') : null;
     
     // Push dataLayer event for GTM tracking
     if (typeof dataLayer !== 'undefined') {
