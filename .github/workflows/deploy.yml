@@ -1,5 +1,4 @@
 name: Deploy to GitHub Pages
-# Testing main branch deployment workflow
 
 on:
   push:
@@ -23,6 +22,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,9 +31,28 @@ jobs:
         uses: actions/configure-pages@v4
         
       - name: Replace GTM ID
+        shell: bash
         run: |
+          # Validate GTMID variable exists
+          if [ -z "${{ vars.GTMID }}" ]; then
+            echo "Error: GTMID variable is not set"
+            exit 1
+          fi
+          
+          # Escape special characters in GTMID for sed
+          GTMID_ESCAPED=$(echo "${{ vars.GTMID }}" | sed 's/[[\.*^$()+?{|]/\\&/g')
+          
           # Replace the GTM placeholder with the environment variable
-          sed -i "s/{{GTMID}}/${{ vars.GTMID }}/g" docs/index.html
+          if ! sed -i "s/{{GTMID}}/${GTMID_ESCAPED}/g" docs/index.html; then
+            echo "Error: Failed to replace GTM ID in docs/index.html"
+            exit 1
+          fi
+          
+          # Verify replacement was successful
+          if grep -q "{{GTMID}}" docs/index.html; then
+            echo "Warning: GTM placeholder still found in docs/index.html"
+            exit 1
+          fi
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
