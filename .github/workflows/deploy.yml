@@ -42,17 +42,21 @@ jobs:
           # Escape special characters in GTMID for sed
           GTMID_ESCAPED=$(echo "${{ vars.GTMID }}" | sed 's/[[\.*^$()+?{|]/\\&/g')
           
-          # Replace the GTM placeholder with the environment variable
-          if ! sed -i "s/{{GTMID}}/${GTMID_ESCAPED}/g" docs/index.html; then
-            echo "Error: Failed to replace GTM ID in docs/index.html"
-            exit 1
-          fi
-          
-          # Verify replacement was successful
-          if grep -q "{{GTMID}}" docs/index.html; then
-            echo "Warning: GTM placeholder still found in docs/index.html"
-            exit 1
-          fi
+          # Replace the GTM placeholder with the environment variable in all HTML files
+          for file in docs/*.html; do
+            if [ -f "$file" ]; then
+              if ! sed -i "s/{{GTMID}}/${GTMID_ESCAPED}/g" "$file"; then
+                echo "Error: Failed to replace GTM ID in $file"
+                exit 1
+              fi
+              
+              # Verify replacement was successful
+              if grep -q "{{GTMID}}" "$file"; then
+                echo "Warning: GTM placeholder still found in $file"
+                exit 1
+              fi
+            fi
+          done
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
