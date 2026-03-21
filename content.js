@@ -126,8 +126,10 @@ if (typeof window.Owl20Bridge === 'undefined') {
     this.sendToIframes(rollData);
   }
 
-  // Returns an array of warning strings for settings known to cause problems
-  // with owl20. Returns [] if no issues are found.
+  // Returns an array of warning objects for settings known to cause problems
+  // with owl20. Each entry has a stable { id, message } shape so the Owlbear
+  // extension can key on the ID rather than parsing text.
+  // Returns [] if no issues are found.
   checkBrokenSettings(settings) {
     const warnings = [];
 
@@ -137,29 +139,35 @@ if (typeof window.Owl20Bridge === 'undefined') {
     // owl20 receives the rendered result but the Owlbear extension may not be
     // able to parse dice details from it.
     if (settings['use-digital-dice']) {
-      warnings.push(
-        'D&D Beyond Digital Dice is enabled. Roll data sent to Owlbear may be ' +
-        'missing structured dice details. Disable Digital Dice in Beyond20 for ' +
-        'best results.'
-      );
+      warnings.push({
+        id: 'digital-dice',
+        message:
+          'D&D Beyond Digital Dice is enabled. Roll data sent to Owlbear may be ' +
+          'missing structured dice details. Disable Digital Dice in Beyond20 for ' +
+          'best results.'
+      });
     }
 
     // Whispered rolls are not dispatched to VTTs via the DOM API, so they will
     // never reach owl20 / the Owlbear extension.
     if (settings['whisper-type'] && settings['whisper-type'] !== 0) {
-      warnings.push(
-        'Beyond20 "Whisper Rolls to GM" is enabled. Whispered rolls are not ' +
-        'forwarded to VTTs and will not appear in Owlbear Rodeo.'
-      );
+      warnings.push({
+        id: 'whisper-rolls',
+        message:
+          'Beyond20 "Whisper Rolls to GM" is enabled. Whispered rolls are not ' +
+          'forwarded to VTTs and will not appear in Owlbear Rodeo.'
+      });
     }
 
     // When Discord integration is active Beyond20 may redirect output away
     // from the page, bypassing the DOM events that owl20 listens to.
     if (settings['use-discord']) {
-      warnings.push(
-        'Beyond20 Discord integration is enabled. Some roll events may be ' +
-        'redirected to Discord instead of the page, and may not reach Owlbear Rodeo.'
-      );
+      warnings.push({
+        id: 'discord',
+        message:
+          'Beyond20 Discord integration is enabled. Some roll events may be ' +
+          'redirected to Discord instead of the page, and may not reach Owlbear Rodeo.'
+      });
     }
 
     return warnings;

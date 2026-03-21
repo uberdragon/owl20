@@ -126,21 +126,25 @@ iframe.contentWindow.postMessage({ type, data }, '*');
   type: 'Beyond20_BrokenSettings',
   data: {
     warnings: [
-      'D&D Beyond Digital Dice is enabled. Roll data sent to Owlbear may be missing structured dice details.'
+      { id: 'digital-dice',  message: 'D&D Beyond Digital Dice is enabled...' },
+      { id: 'whisper-rolls', message: 'Beyond20 "Whisper Rolls to GM" is enabled...' },
+      { id: 'discord',       message: 'Beyond20 Discord integration is enabled...' }
     ]
   }
 }
 ```
 
+Each warning carries a stable `id` (kebab-case) so the receiving extension can key on it without parsing text, and a human-readable `message` for display.
+
 ### Known Broken Settings
 
 The bridge detects the following Beyond20 settings as incompatible and sends a `Beyond20_BrokenSettings` warning:
 
-| Setting | Reason |
-|---|---|
-| Digital Dice enabled | Roll data may lack structured dice details |
-| Whisper Rolls to GM | Whispered rolls are not forwarded to VTTs |
-| Discord integration enabled | Some roll events may be redirected away from the page |
+| ID | Setting | Reason |
+|---|---|---|
+| `digital-dice` | Digital Dice enabled | Roll data may lack structured dice details |
+| `whisper-rolls` | Whisper Rolls to GM | Whispered rolls are not forwarded to VTTs |
+| `discord` | Discord integration enabled | Some roll events may be redirected away from the page |
 
 ## Project Structure
 
