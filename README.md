@@ -11,7 +11,7 @@ A Browser extension that bridges Beyond20 dice roll data to Owlbear Rodeo iframe
 ### Core Components
 
 - **Owl20Bridge Class**: Main data bridge logic in `content.js`
-- **Event Listeners**: Captures Beyond20 events (`Beyond20_RenderedRoll`, `Beyond20_Roll`, `Beyond20_Loaded`)
+- **Event Listeners**: Captures Beyond20 events (`Beyond20_RenderedRoll`, `Beyond20_Roll`, `Beyond20_Loaded`, `Beyond20_NewSettings`)
 - **Iframe Detection**: Automatic scanning and monitoring via MutationObserver
 - **Data Transmission**: Cross-origin iframe communication via postMessage
 
@@ -25,6 +25,14 @@ D&D Beyond → Beyond20 Extension → Owl20 Bridge → Owlbear Rodeo Owl20 Ifram
 2. **Beyond20 processes** the roll and sends it to custom domains
 3. **Owl20 Bridge receives** the `Beyond20_RenderedRoll` or `Beyond20_Roll` event
 4. **Bridge transmits** the raw roll data to all detected iframes
+
+### Settings Flow
+
+```
+Beyond20 Extension → Beyond20_Loaded / Beyond20_NewSettings → Owl20 Bridge → Owlbear Iframes
+```
+
+Because `Beyond20_Loaded` fires before iframes exist, the bridge caches settings and replays them to each iframe as it is discovered. When settings change, `Beyond20_NewSettings` pushes the update to all live iframes immediately. If any settings are known to cause problems with the bridge, a `Beyond20_BrokenSettings` message is also sent so the Owlbear extension can surface a warning to the user.
 
 ## Website Features
 
@@ -69,10 +77,10 @@ The starfield is implemented using pure CSS and JavaScript for optimal performan
 The extension listens for these Beyond20 events:
 
 ```javascript
-// Primary events captured
 document.addEventListener('Beyond20_RenderedRoll', handleRoll);
 document.addEventListener('Beyond20_Roll', handleRoll);
-document.addEventListener('Beyond20_Loaded', handleLoaded);
+document.addEventListener('Beyond20_Loaded', handleLoaded);     // caches settings
+document.addEventListener('Beyond20_NewSettings', handleSettings); // pushes to iframes
 ```
 
 ### Iframe Communication
@@ -80,31 +88,59 @@ document.addEventListener('Beyond20_Loaded', handleLoaded);
 Uses postMessage for cross-origin iframe communication:
 
 ```javascript
-// Send to cross-origin iframes
-iframe.contentWindow.postMessage({
-  type: 'Beyond20_Roll',
-  data: rollData
-}, '*');
+iframe.contentWindow.postMessage({ type, data }, '*');
 ```
 
-### Message Format
+### Message Types Sent to Iframes
+
+| `type` | `data` | When |
+|---|---|---|
+| `Beyond20_Roll` | Beyond20 roll object | On every roll event |
+| `Beyond20_Loaded` | Beyond20 settings object | When iframe is discovered and settings are known, or on `NewSettings` |
+| `Beyond20_BrokenSettings` | `{ warnings: string[] }` | When a known-bad setting is detected |
+
+#### Roll message example
 
 ```javascript
-// PostMessage structure
 {
   type: 'Beyond20_Roll',
   data: {
     character: 'Character Name',
     html: '<div>Roll HTML</div>',
-    roll: {
-      dice: '1d20',
-      result: 15,
-      total: 18
-    },
+    roll: { dice: '1d20', result: 15, total: 18 },
     // ... other Beyond20 roll properties
   }
 }
 ```
+
+#### Settings message example
+
+```javascript
+{ type: 'Beyond20_Loaded', data: { /* Beyond20 settings object */ } }
+```
+
+#### Broken settings warning example
+
+```javascript
+{
+  type: 'Beyond20_BrokenSettings',
+  data: {
+    warnings: [
+      'D&D Beyond Digital Dice is enabled. Roll data sent to Owlbear may be missing structured dice details.'
+    ]
+  }
+}
+```
+
+### Known Broken Settings
+
+The bridge detects the following Beyond20 settings as incompatible and sends a `Beyond20_BrokenSettings` warning:
+
+| Setting | Reason |
+|---|---|
+| Digital Dice enabled | Roll data may lack structured dice details |
+| Whisper Rolls to GM | Whispered rolls are not forwarded to VTTs |
+| Discord integration enabled | Some roll events may be redirected away from the page |
 
 ## Project Structure
 
@@ -119,16 +155,20 @@ owl20/
 │   ├── owl20-48.png
 │   ├── owl20-96.png
 │   └── owl20-128.png
-├── package.json           # NPM package configuration
 ├── README.md             # This file
-└── docs/                 # Website documentation
-    ├── index.html        # User-facing documentation
+└── docs/                      # Website documentation
+    ├── index.html             # User-facing documentation
+    ├── about.html
+    ├── faq.html
+    ├── privacy.html
+    ├── header-template.html   # Single source of truth for site header/nav (injected at deploy)
     ├── css/
-    │   ├── starfield.css # Twinkling star background styles
-    │   └── styles.css    # Main website styling
+    │   ├── styles.css         # Main website styling
+    │   └── starfield.css      # Twinkling star background styles
     └── js/
-        ├── script.js     # Website functionality
-        └── starfield.js  # Animated starfield implementation
+        ├── header.js          # Header active-state enhancement
+        ├── script.js          # Website functionality
+        └── starfield.js       # Animated starfield implementation
 ```
 
 ## Key Classes and Methods
@@ -138,21 +178,33 @@ owl20/
 ```javascript
 class Owl20Bridge {
   constructor() {
-    this.iframes = [];
+    this.iframes  = [];
+    this.settings = null;   // cached Beyond20 settings
     this.init();
   }
-  
-  // Core methods
-  init()                    // Initialize event listeners and find iframes
-  setupEventListeners()    // Set up Beyond20 event listeners
-  observeIframes()          // Watch for iframe changes via MutationObserver
-  findIframes()             // Find existing iframes on page
-  addIframe(iframe)         // Add iframe to tracking array
-  removeIframe(iframe)       // Remove iframe from tracking array
-  isValidIframe(iframe)     // Validate iframe before use
-  shouldIncludeIframe(iframe) // Check if iframe should be tracked
-  handleBeyond20Roll(rollData) // Process Beyond20 roll events
-  sendToIframes(rollData)   // Send data to all valid iframes
+
+  // Lifecycle
+  init()                         // Initialize event listeners and find iframes
+  setupEventListeners()          // Set up Beyond20 event listeners
+
+  // Iframe management
+  observeIframes()               // Watch for iframe changes via MutationObserver
+  findIframes()                  // Find existing iframes on page
+  addIframe(iframe)              // Add iframe; replays cached settings if available
+  removeIframe(iframe)           // Remove iframe from tracking array
+  isValidIframe(iframe)          // Validate iframe before use
+  shouldIncludeIframe(iframe)    // Check if iframe URL matches owl20/localhost
+
+  // Roll forwarding
+  handleBeyond20Roll(rollData)   // Process Beyond20 roll events
+  sendToIframes(rollData)        // Send roll data to all valid iframes
+
+  // Settings forwarding
+  sendSettingsToIframe(iframe, settings)  // Push settings (+ warnings) to one iframe
+  sendSettingsToIframes(settings)         // Push settings to all tracked iframes
+
+  // Broken settings detection
+  checkBrokenSettings(settings)  // Returns string[] of warnings for bad settings
 }
 ```
 
@@ -171,6 +223,9 @@ class Owl20Bridge {
    - Multiple iframe handling
    - Scene changes in Owlbear (iframe replacement)
    - Error handling and edge cases (null contentWindow, stale references)
+   - Settings replay: load the page with Beyond20 already active, then open Owlbear — iframe should receive `Beyond20_Loaded` with settings
+   - Settings update: change a Beyond20 setting while Owlbear is open — iframe should receive the new settings
+   - Broken settings: enable Digital Dice or Whisper mode — iframe should receive `Beyond20_BrokenSettings` with warnings
 
 3. **Debug Tools**:
    - Browser DevTools Console
