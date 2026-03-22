@@ -97,16 +97,12 @@ if (typeof window.Owl20Bridge === 'undefined') {
       this.iframes.push(iframe);
       console.log('Owl20: Found iframe to owl20-owlbear', iframe.src);
 
-      // Replay stored settings once the full page has loaded.
-      // Waiting for window load (rather than the iframe's own load event)
-      // gives the OBR extension inside the iframe enough time to initialise.
+      // Replay stored settings after a short delay to allow the OBR extension
+      // inside the iframe to initialise. The iframe is added dynamically by
+      // Owlbear's SPA so the page is already loaded — we can't rely on load
+      // events. A postMessage handshake would be more robust long-term.
       if (this.settings) {
-        const sendWhenReady = () => this.sendSettingsToIframe(iframe, this.settings);
-        if (document.readyState === 'complete') {
-          sendWhenReady();
-        } else {
-          window.addEventListener('load', sendWhenReady, { once: true });
-        }
+        setTimeout(() => this.sendSettingsToIframe(iframe, this.settings), 2000);
       }
     }
   }
