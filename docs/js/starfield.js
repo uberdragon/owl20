@@ -185,60 +185,73 @@ function initConstellations() {
     // Reset retry count on successful initialization
     initConstellations.retryCount = 0;
 
-    // Define recognizable constellation patterns based on real star positions
+    // Constellation patterns with accurate star positions as seen from Earth.
+    // Coordinates are viewport percentages. Sky orientation: north=up, east=left
+    // (as seen facing south in the northern hemisphere).
     const constellationPatterns = [
-        // Big Dipper / Ursa Major (7 main stars)
+        // Ursa Major — Big Dipper (7 stars)
+        // Bowl (rectangle, right side) + handle arcing left and slightly down
         [
-            {x: 10, y: 20},  // Dubhe
-            {x: 25, y: 15},  // Merak
-            {x: 35, y: 10},  // Phecda
-            {x: 45, y: 8},   // Megrez
-            {x: 55, y: 12},  // Alioth
-            {x: 60, y: 18},  // Mizar
-            {x: 65, y: 28}   // Alkaid
+            {x: 52, y: 12},  // Dubhe (α)   — top-right of bowl, pointer star
+            {x: 55, y: 22},  // Merak (β)   — bottom-right of bowl, pointer star
+            {x: 40, y: 26},  // Phecda (γ)  — bottom-left of bowl
+            {x: 38, y: 16},  // Megrez (δ)  — top-left of bowl / handle junction (dim)
+            {x: 25, y: 14},  // Alioth (ε)  — handle, brightest of the three
+            {x: 14, y: 12},  // Mizar (ζ)   — handle middle (has Alcor companion)
+            {x: 5,  y: 20}   // Alkaid (η)  — handle tip, arcs slightly downward
         ],
-        // Orion (the Hunter)
+        // Orion — the Hunter (7 stars)
+        // Shoulders top, belt horizontal across middle, feet wide apart bottom.
+        // East=left in sky: Betelgeuse/Saiph are left; Bellatrix/Rigel are right.
         [
-            {x: 40, y: 80},  // Betelgeuse
-            {x: 60, y: 85},  // Bellatrix
-            {x: 45, y: 90},  // Mintaka
-            {x: 50, y: 90},  // Alnilam
-            {x: 55, y: 90},  // Alnitak
-            {x: 45, y: 95},  // Saiph
-            {x: 48, y: 100}  // Rigel
+            {x: 35, y: 55},  // Betelgeuse (α) — upper-left shoulder (bright red)
+            {x: 62, y: 58},  // Bellatrix  (γ) — upper-right shoulder
+            {x: 40, y: 70},  // Alnitak    (ζ) — belt left  (easternmost)
+            {x: 49, y: 72},  // Alnilam    (ε) — belt center
+            {x: 58, y: 70},  // Mintaka    (δ) — belt right (westernmost)
+            {x: 38, y: 88},  // Saiph      (κ) — lower-left foot
+            {x: 65, y: 85}   // Rigel      (β) — lower-right foot (brightest in Orion)
         ],
-        // Cassiopeia (W-shape)
+        // Cassiopeia — the Queen (5 stars)
+        // Unmistakable W shape: high-low-high-low-high in y (screen coords)
         [
-            {x: 20, y: 30},  // Gamma Cassiopeiae
-            {x: 35, y: 25},  // Schedar
-            {x: 50, y: 30},  // Navi
-            {x: 65, y: 35},  // Ruchbah
-            {x: 80, y: 30}   // Caph
+            {x: 66, y: 18},  // Caph   (β) — left end of W,  high
+            {x: 72, y: 34},  // Schedar(α) — first dip,      low
+            {x: 78, y: 15},  // Gamma  (γ) — center peak,    high (brightest)
+            {x: 84, y: 30},  // Ruchbah(δ) — second dip,     low
+            {x: 90, y: 14}   // Segin  (ε) — right end of W, high
         ],
-        // Leo (the Lion)
+        // Leo — the Lion (7 stars)
+        // Sickle (backward question-mark) on the right; Denebola tail far left.
+        // The sickle curves: Regulus at base → up through Eta → Algieba → top.
         [
-            {x: 30, y: 40},  // Regulus
-            {x: 38, y: 45},  // Algieba
-            {x: 50, y: 50},  // Algenubi
-            {x: 42, y: 55},  // Zosma
-            {x: 35, y: 60}   // Denebola
+            {x: 38, y: 58},  // Regulus  (α) — base/heart of sickle, brightest
+            {x: 33, y: 48},  // Eta Leo  (η) — lower sickle
+            {x: 26, y: 40},  // Algieba  (γ) — mid-sickle curve
+            {x: 22, y: 32},  // Adhafera (ζ) — upper sickle
+            {x: 16, y: 28},  // Algenubi (ε) — top of sickle
+            {x: 25, y: 55},  // Zosma    (δ) — hindquarters
+            {x: 10, y: 62}   // Denebola (β) — tail, far east (left)
         ],
-        // Cygnus (Northern Cross)
+        // Cygnus — Northern Cross (5 stars)
+        // Deneb at top, Sadr at center, horizontal arms at same y, Albireo below.
         [
-            {x: 60, y: 25},  // Deneb
-            {x: 65, y: 35},  // Sadr
-            {x: 70, y: 45},  // Gienah
-            {x: 55, y: 45},  // Delta Cygni
-            {x: 68, y: 55}   // Albireo
+            {x: 55, y: 18},  // Deneb        (α) — top of cross / swan's tail
+            {x: 42, y: 38},  // Delta Cygni  (δ) — left arm of cross
+            {x: 55, y: 38},  // Sadr         (γ) — center intersection
+            {x: 68, y: 38},  // Gienah       (ε) — right arm of cross
+            {x: 55, y: 60}   // Albireo      (β) — bottom of cross / swan's head
         ],
-        // Scorpius (the Scorpion)
+        // Scorpius — the Scorpion (7 stars)
+        // Head stars ABOVE Antares; tail curves right then hooks back left.
         [
-            {x: 75, y: 75},  // Antares
-            {x: 78, y: 78},  // Graffias
-            {x: 82, y: 80},  // Dschubba
-            {x: 85, y: 82},  // Sargas
-            {x: 88, y: 85},  // Shaula
-            {x: 87, y: 88}   // Lesath
+            {x: 70, y: 56},  // Graffias (β) — head, right claws
+            {x: 78, y: 53},  // Dschubba (δ) — head, left (north of Antares)
+            {x: 74, y: 66},  // Antares  (α) — bright heart/center
+            {x: 77, y: 74},  // Tau Sco  (τ) — upper body
+            {x: 80, y: 81},  // Sargas   (θ) — lower body
+            {x: 85, y: 87},  // Shaula   (λ) — stinger (pair)
+            {x: 88, y: 91}   // Lesath   (υ) — stinger tip
         ]
     ];
 

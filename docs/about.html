@@ -5,8 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Owl20 - Creators & Community</title>
   <meta name="description" content="Learn about Owl20's creators, DM Sparks and DM UberDragon, their expertise in D&D and browser extension development, and the Starry Shores D&D Community.">
+  <meta name="author" content="DM Sparks & DM UberDragon">
   <link rel="canonical" href="https://owl20.uberdragon.org/about.html">
-  <meta name="robots" content="index,follow">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- Open Graph / Facebook / Discord -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://owl20.uberdragon.org/about.html">
+  <meta property="og:title" content="About Owl20 - Creators & Community">
+  <meta property="og:description" content="Meet DM Sparks and DM UberDragon, the D&D players who built Owl20. 25+ years of software engineering experience behind a free, open-source VTT bridge.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://owl20.uberdragon.org/owl20-128.png">
+  <meta property="og:image:width" content="128">
+  <meta property="og:image:height" content="128">
+  <meta property="og:image:type" content="image/png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://owl20.uberdragon.org/about.html">
+  <meta name="twitter:title" content="About Owl20 - Creators & Community">
+  <meta name="twitter:description" content="Meet DM Sparks and DM UberDragon, the D&D players who built Owl20. 25+ years of software engineering experience behind a free, open-source VTT bridge.">
+  <meta name="twitter:image" content="https://owl20.uberdragon.org/owl20-128.png">
+  <link rel="apple-touch-icon" href="/owl20-128.png">
+  <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/starfield.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +40,63 @@
   <script src="js/starfield.js"></script>
   <script src="js/script.js"></script>
   
+  <!-- AboutPage + Person Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Owl20 - Creators & Community",
+    "description": "Learn about Owl20's creators, DM Sparks and DM UberDragon, their expertise in D&D and browser extension development, and the Starry Shores D&D Community.",
+    "url": "https://owl20.uberdragon.org/about.html",
+    "datePublished": "2025-11-13T00:00:00Z",
+    "dateModified": "2026-03-22T00:00:00Z",
+    "inLanguage": "en",
+    "isAccessibleForFree": true,
+    "about": {
+      "@type": "SoftwareApplication",
+      "name": "Owl20",
+      "url": "https://owl20.uberdragon.org/"
+    },
+    "author": [
+      {
+        "@type": "Person",
+        "name": "DM UberDragon",
+        "url": "https://github.com/uberdragon",
+        "sameAs": ["https://github.com/uberdragon"],
+        "jobTitle": "Software Engineer & Browser Extension Developer",
+        "description": "Software engineer with 25+ years of experience. Primary developer of Owl20 browser extension. Active Dungeon Master in the Starry Shores D&D Community.",
+        "knowsAbout": [
+          "Browser extension development",
+          "Manifest V3",
+          "JavaScript",
+          "Cross-origin messaging",
+          "postMessage API",
+          "MutationObserver",
+          "Dungeons & Dragons 5e"
+        ]
+      },
+      {
+        "@type": "Person",
+        "name": "DM Sparks",
+        "url": "https://github.com/mvoncken",
+        "sameAs": ["https://github.com/mvoncken"],
+        "jobTitle": "Owlbear Rodeo Extension Developer",
+        "description": "Developer of the Owl20 OBR extension. Specialist in the Owlbear Rodeo extension API. Active Dungeon Master.",
+        "knowsAbout": [
+          "Owlbear Rodeo Extension API",
+          "JavaScript",
+          "TypeScript",
+          "Virtual tabletop development",
+          "Dungeons & Dragons 5e"
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Sitemap -->
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -48,9 +127,9 @@
 
       <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
         <div class="sub-section">
-          <h3 style="margin-bottom: 1.5rem;">👥 Meet the Creators</h3>
+          <h2 style="margin-bottom: 1.5rem;">👥 Meet the Creators</h2>
           <div style="background: rgba(15, 23, 42, 0.3); border-left: 4px solid var(--secondary-color); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
-            <h4 style="color: var(--secondary-color); margin-bottom: 0.75rem;">🐉 DM UberDragon</h4>
+            <h3 style="color: var(--secondary-color); margin-bottom: 0.75rem;">🐉 DM UberDragon</h3>
             <p><strong>Role:</strong> Browser Extension Developer and Co Creator</p>
             <p>DM UberDragon brings more than 25 years of hands on software engineering experience to the Owl20 browser extension. Long before modern VTTs existed, he was building applications, writing custom tools, and even releasing PHP extensions in the early era of the language. His career has spanned multiple generations of web technologies, giving him a deep understanding of how systems communicate, integrate, and stay stable under real world conditions.</p>
             <p>Professionally, he has spent decades leading development teams, architecting web based systems, and solving technical challenges across full stack environments. This background shaped the engineering approach behind Owl20.</p>
@@ -77,7 +156,7 @@
           </div>
           
           <div style="background: rgba(15, 23, 42, 0.3); border-left: 4px solid var(--primary-color); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
-            <h4 style="color: var(--primary-color); margin-bottom: 0.75rem;">✨ DM Sparks</h4>
+            <h3 style="color: var(--primary-color); margin-bottom: 0.75rem;">✨ DM Sparks</h3>
           <p><strong>Role:</strong> Owlbear Rodeo Extension Developer & Co-Creator</p>
           <p>DM Sparks developed the Owl20 Owlbear Rodeo (OBR) extension, which receives and displays dice roll data within Owlbear Rodeo sessions. With deep knowledge of the Owlbear Rodeo extension API and JavaScript development, DM Sparks created the receiving end of the Owl20 bridge, ensuring dice rolls appear reliably for all players in the VTT.</p>
           <p><strong>Expertise:</strong></p>
@@ -100,8 +179,8 @@
 
       <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
         <div class="sub-section">
-          <h3 style="margin-bottom: 1.5rem;">🎯 Our Expertise</h3>
-          <h4 style="color: var(--primary-color); margin-bottom: 1rem;">⚔️ D&D Experience</h4>
+          <h2 style="margin-bottom: 1.5rem;">🎯 Our Expertise</h2>
+          <h3 style="color: var(--primary-color); margin-bottom: 1rem;">⚔️ D&D Experience</h3>
           <p>Both creators are active Dungeon Masters with years of experience running D&D campaigns. We understand the needs of both players and DMs because we are both. This first-hand experience informs every decision in Owl20's development - from the user interface to the technical implementation.</p>
           <ul>
             <li>Active DMs in the Starry Shores D&D Community</li>
@@ -115,7 +194,7 @@
 
       <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
         <div class="sub-section">
-          <h3 style="margin-bottom: 1.5rem;">🌟 The Starry Shores Community</h3>
+          <h2 style="margin-bottom: 1.5rem;">🌟 The Starry Shores Community</h2>
           <p>DM Sparks and DM UberDragon met in the <a href="https://discord.gg/Up8wMrmt7C" target="_blank">Starry Shores D&D Community</a>, an active 18+ D&D community focused on D&D 5e and 5.5e gameplay. It was there that they came together to collaborate on Owl20, combining their expertise to solve a real problem they both faced as active DMs in the community.</p>
           <p><strong>Community Features:</strong></p>
           <ul>
@@ -136,15 +215,15 @@
 
       <div class="section-card" style="padding: 2rem;">
         <div class="sub-section">
-          <h3 style="margin-bottom: 1.5rem;">💚 Our Commitment</h3>
+          <h2 style="margin-bottom: 1.5rem;">💚 Our Commitment</h2>
           <div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--secondary-color); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
-            <h4 style="color: var(--secondary-color); margin-bottom: 0.75rem;">🆓 Free & Open Source</h4>
+            <h3 style="color: var(--secondary-color); margin-bottom: 0.75rem;">🆓 Free & Open Source</h3>
           <p>Owl20 is and will always be completely free. There are no premium features, no subscriptions, and no hidden costs. We believe that tools that enhance the D&D experience should be accessible to everyone.</p>
           
           </div>
           
           <div style="background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--primary-color); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
-            <h4 style="color: var(--primary-color); margin-bottom: 0.75rem;">🔒 Privacy First</h4>
+            <h3 style="color: var(--primary-color); margin-bottom: 0.75rem;">🔒 Privacy First</h3>
             <p>Owl20 is designed with privacy in mind. The extension:</p>
           <ul>
             <li>Does not collect or store any personal data</li>
@@ -156,7 +235,7 @@
           </div>
           
           <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid var(--accent-color); padding: 1.5rem; border-radius: 8px;">
-            <h4 style="color: var(--accent-color); margin-bottom: 0.75rem;">🤝 Community Driven</h4>
+            <h3 style="color: var(--accent-color); margin-bottom: 0.75rem;">🤝 Community Driven</h3>
           <p>Owl20 is built for the D&D community, by the D&D community. We welcome feedback, bug reports, and feature requests. The source code is open and available on GitHub, allowing the community to contribute and verify our commitment to privacy and security.</p>
           <p><strong>Get Involved:</strong></p>
           <ul>
@@ -173,10 +252,10 @@
       <nav class="footer-nav">
         <a href="/">Home</a>
         <a href="about.html">About</a>
-        <a href="/#player">Player Setup</a>
-        <a href="/#dm">DM Setup</a>
+        <a href="player-setup.html">Player Setup</a>
+        <a href="dm-setup.html">DM Setup</a>
         <a href="faq.html">FAQ</a>
-        <a href="/#troubleshooting">Troubleshooting</a>
+        <a href="troubleshooting.html">Troubleshooting</a>
         <a href="privacy.html">Privacy</a>
         <a href="sitemap.html">Sitemap</a>
       </nav>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Owl20 Works - Technical Architecture | D&D Beyond to Owlbear Rodeo Bridge</title>
+  <meta name="description" content="Deep dive into Owl20's technical architecture. How CustomEvents, postMessage, and MutationObserver bridge D&D Beyond dice rolls into Owlbear Rodeo in real time.">
+  <meta name="author" content="DM Sparks &amp; DM UberDragon">
+  <link rel="canonical" href="https://owl20.uberdragon.org/how-it-works.html">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- Open Graph / Facebook / Discord -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://owl20.uberdragon.org/how-it-works.html">
+  <meta property="og:title" content="How Owl20 Works - D&D Beyond to Owlbear Rodeo Technical Architecture">
+  <meta property="og:description" content="Deep dive into Owl20's technical architecture. How CustomEvents, postMessage, and MutationObserver bridge D&D Beyond dice rolls into Owlbear Rodeo in real time.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://owl20.uberdragon.org/owl20-128.png">
+  <meta property="og:image:width" content="128">
+  <meta property="og:image:height" content="128">
+  <meta property="og:image:type" content="image/png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://owl20.uberdragon.org/how-it-works.html">
+  <meta name="twitter:title" content="How Owl20 Works - Technical Architecture">
+  <meta name="twitter:description" content="Deep dive into Owl20's technical architecture. How CustomEvents, postMessage, and MutationObserver bridge D&D Beyond dice rolls into Owlbear Rodeo in real time.">
+  <meta name="twitter:image" content="https://owl20.uberdragon.org/owl20-128.png">
+  <link rel="apple-touch-icon" href="/owl20-128.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="sitemap" type="application/xml" title="XML Sitemap" href="/sitemap.xml">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/starfield.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/starfield.js"></script>
+  <script src="js/script.js"></script>
+
+  <!-- TechArticle Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "name": "How Owl20 Works - Technical Architecture",
+    "headline": "How Owl20 Bridges D&D Beyond Dice Rolls into Owlbear Rodeo",
+    "description": "A technical deep dive into how Owl20 uses CustomEvent listeners, postMessage API, and MutationObserver to bridge Beyond20 dice roll data into the Owlbear Rodeo virtual tabletop.",
+    "url": "https://owl20.uberdragon.org/how-it-works.html",
+    "datePublished": "2025-11-13T00:00:00Z",
+    "dateModified": "2026-03-22T00:00:00Z",
+    "inLanguage": "en",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "DM UberDragon",
+        "url": "https://github.com/uberdragon",
+        "description": "Software engineer with 25+ years of experience. Primary developer of Owl20 browser extension."
+      },
+      {
+        "@type": "Person",
+        "name": "DM Sparks",
+        "url": "https://github.com/mvoncken",
+        "description": "Developer of the Owl20 OBR extension and the Owlbear Rodeo integration."
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Starry Shores D&D Community",
+      "url": "https://discord.gg/Up8wMrmt7C"
+    },
+    "isAccessibleForFree": true,
+    "about": [
+      { "@type": "Thing", "name": "Browser Extension Architecture" },
+      { "@type": "Thing", "name": "Cross-origin messaging" },
+      { "@type": "Thing", "name": "postMessage API" },
+      { "@type": "Thing", "name": "Manifest V3" },
+      { "@type": "Thing", "name": "Owlbear Rodeo Integration" }
+    ],
+    "mentions": [
+      { "@type": "SoftwareApplication", "name": "Beyond20", "url": "https://beyond20.here-for-more.info/" },
+      { "@type": "SoftwareApplication", "name": "Owlbear Rodeo", "url": "https://www.owlbear.rodeo/" }
+    ]
+  }
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','{{GTMID}}');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{GTMID}}"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div class="container">
+    <!-- Header and Navigation -->
+    <div id="header-container"></div>
+
+    <!-- Page Hero -->
+    <section class="hero">
+      <h1>How Owl20 Works</h1>
+      <p>A technical look at how Owl20 bridges D&D Beyond dice rolls into Owlbear Rodeo using browser extension APIs, cross-origin messaging, and the Owlbear Rodeo extension system. Written by the developers who built it — DM UberDragon and DM Sparks.</p>
+    </section>
+
+    <section class="instructions">
+
+      <!-- The Problem -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>The Problem Being Solved</h2>
+          <p>D&D Beyond and Owlbear Rodeo run on completely different domains: <code>dndbeyond.com</code> and <code>owlbear.rodeo</code>. Browser security — specifically the same-origin policy — prevents JavaScript in one domain from directly reading data from or sending data to a different domain.</p>
+          <p>Beyond20 already solves one part of this problem: it reads dice roll data from D&D Beyond's character sheets and makes it available to VTT platforms. But Beyond20 can't natively communicate with Owlbear Rodeo's extension system, which uses an iframe-based architecture.</p>
+          <p>Owl20's job is to be the intermediary: receive data from Beyond20 on the Owlbear Rodeo page, and forward it securely across the iframe boundary into the Owl20 OBR extension running inside Owlbear Rodeo.</p>
+        </div>
+      </div>
+
+      <!-- System Overview -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>System Overview</h2>
+          <p>Owl20 has two components that work together:</p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
+            <div style="background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--primary-color); padding: 1.25rem; border-radius: 8px;">
+              <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">Owl20 Browser Extension</h3>
+              <p style="margin: 0;">A Manifest V3 browser extension installed by players (and DMs if they roll). Runs as a content script on <code>owlbear.rodeo</code> pages. Receives Beyond20 events and forwards them into the OBR extension iframe.</p>
+              <p style="margin-top: 0.75rem;"><a href="https://github.com/uberdragon/owl20" target="_blank">View source on GitHub</a></p>
+            </div>
+            <div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--secondary-color); padding: 1.25rem; border-radius: 8px;">
+              <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">Owl20 OBR Extension</h3>
+              <p style="margin: 0;">An Owlbear Rodeo extension installed by the DM. Runs inside an iframe embedded in the Owlbear Rodeo room. Receives the forwarded roll data and renders it for all participants.</p>
+              <p style="margin-top: 0.75rem;"><a href="https://github.com/mvoncken/owl20-owlbear" target="_blank">View source on GitHub</a></p>
+            </div>
+          </div>
+
+          <h3>Full data flow, step by step</h3>
+          <ol>
+            <li>Player clicks a rollable element on their D&D Beyond character sheet</li>
+            <li>Beyond20 processes the roll and fires a <code>Beyond20_Roll</code> CustomEvent on the Owlbear Rodeo page (because Owlbear Rodeo is in Beyond20's custom domains list)</li>
+            <li>The Owl20 browser extension's content script, running on the Owlbear Rodeo page, catches this event</li>
+            <li>Owl20 uses the <strong>postMessage API</strong> to forward the roll data across the iframe boundary into the Owl20 OBR extension</li>
+            <li>The OBR extension receives the message, plays a dice sound, and enriches the roll data with the player's OBR name and color</li>
+            <li>The OBR extension broadcasts the enriched roll to <strong>all players in the room</strong> simultaneously — everyone's panel updates at once</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- CustomEvent -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Step 1: CustomEvent Listeners — Receiving Beyond20 Roll Data</h2>
+          <p>When Beyond20 is configured to load on Owlbear Rodeo pages (via the custom domain setting), it dispatches a <code>CustomEvent</code> named <code>Beyond20_Roll</code> on the page's <code>document</code> object whenever a player makes a roll.</p>
+          <p>This event's <code>detail</code> property contains the full roll payload: the roll type, dice results, character name, ability name, modifiers, and any other context Beyond20 collected from the character sheet.</p>
+          <p>Owl20's content script registers a listener for this specific event type:</p>
+          <pre style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; overflow-x: auto; font-size: 0.875rem;"><code>document.addEventListener("Beyond20_Roll", function(event) {
+    // event.detail contains the full roll data from Beyond20
+    forwardRollToOBRExtension(event.detail);
+});</code></pre>
+          <p>This is the standard mechanism Beyond20 uses to communicate with third-party integrations. The requirement to add <code>https://www.owlbear.rodeo/*</code> to Beyond20's custom domains list tells Beyond20 to inject itself — and fire these events — on Owlbear Rodeo pages.</p>
+        </div>
+      </div>
+
+      <!-- MutationObserver -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Step 2: MutationObserver — Finding the OBR Extension iframe</h2>
+          <p>Owlbear Rodeo loads extensions inside iframes embedded in the main room page. The challenge is that these iframes are injected dynamically — they don't exist in the initial HTML, they're added by Owlbear Rodeo's JavaScript after the page loads.</p>
+          <p>Owl20 uses a <strong>MutationObserver</strong> to watch the DOM for the appearance of the Owl20 OBR extension iframe:</p>
+          <pre style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; overflow-x: auto; font-size: 0.875rem;"><code>const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        mutation.addedNodes.forEach(function(node) {
+            if (isOwl20OBRFrame(node)) {
+                targetFrame = node;
+                observer.disconnect(); // stop watching once found
+            }
+        });
+    });
+});
+
+observer.observe(document.body, { childList: true, subtree: true });</code></pre>
+          <p>Once the iframe is detected, Owl20 stores a reference to it and uses that as the target for all subsequent <code>postMessage</code> calls. The MutationObserver also handles cases where the iframe is removed and re-added (e.g., if the DM disables and re-enables the extension mid-session) by re-establishing the reference automatically.</p>
+        </div>
+      </div>
+
+      <!-- postMessage -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Step 3: postMessage API — Crossing the iframe Boundary</h2>
+          <p>The core challenge of the entire system is that the Owl20 OBR extension runs in an iframe from a different origin than the Owlbear Rodeo page. Standard DOM access across cross-origin iframes is blocked by the browser's same-origin policy.</p>
+          <p>The <strong>postMessage API</strong> is the browser's approved mechanism for secure cross-origin communication between a page and an iframe. Owl20 uses it to forward the roll data:</p>
+          <pre style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; overflow-x: auto; font-size: 0.875rem;"><code>function forwardRollToOBRExtension(rollData) {
+    if (targetFrame && targetFrame.contentWindow) {
+        targetFrame.contentWindow.postMessage(
+            { type: "Beyond20_Roll", data: rollData },
+            "https://owl20.friendlymimic.com" // explicit target origin
+        );
+    }
+}</code></pre>
+          <p>The explicit target origin (<code>https://owl20.friendlymimic.com</code>) is an important security detail. By specifying the exact origin the OBR extension runs on rather than using <code>*</code>, Owl20 ensures the message can only be received by the legitimate Owl20 OBR extension — not by any other iframes that might be present on the page.</p>
+          <p>On the OBR extension side, the incoming message is validated by checking <code>event.origin</code> before processing it, providing defence-in-depth against cross-origin message spoofing.</p>
+        </div>
+      </div>
+
+      <!-- OBR Extension Receiving Side -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Step 4: The OBR Extension — Receiving, Enriching, and Broadcasting</h2>
+          <p>Once the postMessage arrives inside the Owl20 OBR extension iframe, the receiving side takes over. This is the component built by DM Sparks using the official <a href="https://extensions.owlbear.rodeo/" target="_blank">Owlbear Rodeo extension SDK</a>.</p>
+
+          <h3>What happens when the message lands</h3>
+          <p>The OBR extension receives the roll data and does three things in quick succession:</p>
+          <ol>
+            <li><strong>Plays a dice sound</strong> — audio feedback fires immediately so players know a roll landed. The sound loads fresh each time so multiple rapid rolls (e.g. a player who triple-clicks) can play simultaneously without cutting each other off.</li>
+            <li><strong>Enriches the roll with player identity</strong> — the extension asks Owlbear Rodeo for the rolling player's display name and their assigned room color. This is what makes the colored player bubble appear next to each roll result.</li>
+            <li><strong>Broadcasts to the whole room</strong> — this is the key step. Rather than only showing the roll to the player who rolled, the OBR extension uses OBR's broadcast API to send the enriched roll to <em>every participant in the room</em> simultaneously. The DM and all other players see the result at the same moment.</li>
+          </ol>
+
+          <h3>How rolls are displayed</h3>
+          <p>Each player's Owl20 panel receives the broadcast and renders the roll using the HTML that Beyond20 originally generated — the same styled roll cards Beyond20 shows in its own UI, including dice results, modifiers, and roll type labels. On top of that, Owl20 adds:</p>
+          <ul>
+            <li>A colored dot matching the rolling player's Owlbear Rodeo color, so it's immediately clear who rolled</li>
+            <li>The character name (from D&D Beyond) alongside the player's OBR display name</li>
+            <li>Auto-scroll to the newest roll so nothing is missed</li>
+            <li>Smart grouping — if the same character rolls multiple times in a row, the header only appears once, keeping the panel tidy</li>
+          </ul>
+
+          <h3>Theme support</h3>
+          <p>The panel respects Owlbear Rodeo's light and dark mode settings and updates automatically if the DM switches themes mid-session.</p>
+
+          <h3>No server involved</h3>
+          <p>The OBR broadcast API routes messages peer-to-peer within the active room session — no external server, no database, no account required. When the session ends, the roll history is gone.</p>
+        </div>
+      </div>
+
+      <!-- Security Model -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Security Model</h2>
+          <p>Owl20 was designed with a minimal footprint and no unnecessary data handling:</p>
+
+          <h3>No data collection or storage</h3>
+          <p>Owl20 does not log, store, or transmit any data to external servers. Roll data flows directly from the Beyond20 event on the page to the OBR extension iframe in memory — it never leaves the browser or touches any server under our control.</p>
+
+          <h3 style="margin-top: 1.25rem;">Minimal permissions</h3>
+          <p>Owl20 requests only the permissions required to function:</p>
+          <ul>
+            <li><strong>Content script on owlbear.rodeo:</strong> Required to run on Owlbear Rodeo pages and listen for Beyond20 events</li>
+            <li>No access to D&D Beyond — Beyond20 handles that side entirely</li>
+            <li>No access to your browser history, bookmarks, or any other sites</li>
+          </ul>
+
+          <h3 style="margin-top: 1.25rem;">Explicit origin validation</h3>
+          <p>Both the postMessage send and receive use explicit origin checks. The browser extension sends only to the known OBR extension origin, and the OBR extension rejects any messages not originating from the expected Owlbear Rodeo domain.</p>
+
+          <h3 style="margin-top: 1.25rem;">Open source</h3>
+          <p>The complete source code for both components is available on GitHub. Anyone can audit exactly what the extensions do:</p>
+          <ul>
+            <li><a href="https://github.com/uberdragon/owl20" target="_blank">Owl20 browser extension source</a></li>
+            <li><a href="https://github.com/mvoncken/owl20-owlbear" target="_blank">Owl20 OBR extension source</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Manifest V3 -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Manifest V3 Architecture</h2>
+          <p>Owl20 is built on Manifest V3 (MV3), the current browser extension standard required by Chrome and Edge since 2023. This was a deliberate choice, not just a requirement:</p>
+
+          <h3>Content scripts only — no background service worker needed</h3>
+          <p>Many extensions use background service workers for persistent processing. Owl20's design avoids this entirely. All the extension's logic — the CustomEvent listener, the MutationObserver, and the postMessage forwarder — runs as a <strong>content script</strong> injected directly into the Owlbear Rodeo page.</p>
+          <p>This means:</p>
+          <ul>
+            <li>The extension only uses resources when an Owlbear Rodeo tab is actually open</li>
+            <li>There's no persistent background process consuming memory or CPU when you're not playing</li>
+            <li>The extension's full behaviour is transparent — it lives entirely in the page's context</li>
+          </ul>
+
+          <h3 style="margin-top: 1.25rem;">Cross-browser compatibility</h3>
+          <p>The same MV3 extension package works on Chrome and Edge without modification. Firefox uses its own variant of MV3 with some differences in the declarativeNetRequest API, but Owl20 doesn't use that API — so the Firefox build is functionally identical to the Chrome/Edge build with only minor manifest adjustments.</p>
+
+          <h3 style="margin-top: 1.25rem;">Why not Manifest V2?</h3>
+          <p>Chrome deprecated MV2 support in 2023 and began enforcing the deprecation for Chrome Web Store extensions in 2024. Building on MV3 from the start means Owl20 will continue to work without requiring a major architectural rewrite as MV2 support is fully removed across browsers.</p>
+        </div>
+      </div>
+
+      <!-- Requirements -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Requirements Summary</h2>
+          <ul>
+            <li><strong>Player side:</strong> Chrome, Edge, or Firefox with both Beyond20 and Owl20 browser extensions installed. Beyond20 must be configured with <code>https://www.owlbear.rodeo/*</code> in its custom domains list.</li>
+            <li><strong>DM side:</strong> Owl20 OBR extension installed in Owlbear Rodeo via the manifest URL, and enabled per room.</li>
+            <li><strong>No server-side component.</strong> Everything runs locally in the browser. There are no accounts, no API keys, no backend infrastructure.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- About the Author -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>About the Authors</h2>
+          <p>This page was written by <strong>DM UberDragon</strong> and <strong>DM Sparks</strong> — the developers of Owl20. DM UberDragon built the browser extension side with 25+ years of software engineering experience spanning full-stack web development, browser extension APIs (MV2 and MV3), and cross-origin communication architectures. DM Sparks built the Owlbear Rodeo integration that receives and displays the dice rolls.</p>
+          <p>The extension was built to solve a real problem: running D&D campaigns in Owlbear Rodeo without losing the convenience of D&D Beyond's digital character sheets and Beyond20's dice rolling. Every design decision described here — the MutationObserver approach, the explicit-origin postMessage, the content-script-only architecture — came from real experience debugging cross-origin messaging in browser extension environments.</p>
+          <p><a href="about.html">Read more about the creators →</a> | <a href="https://github.com/uberdragon/owl20" target="_blank">View the source code →</a></p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <nav class="footer-nav">
+        <a href="/">Home</a>
+        <a href="about.html">About</a>
+        <a href="player-setup.html">Player Setup</a>
+        <a href="dm-setup.html">DM Setup</a>
+        <a href="faq.html">FAQ</a>
+        <a href="troubleshooting.html">Troubleshooting</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="sitemap.html">Sitemap</a>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>

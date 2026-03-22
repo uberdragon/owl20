@@ -3,8 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Owl20 Sitemap</title>
-  <meta name="description" content="HTML sitemap listing Owl20 pages for quick navigation.">
+  <title>Sitemap - Owl20 | All Pages</title>
+  <meta name="description" content="Complete sitemap for Owl20 — the D&D Beyond to Owlbear Rodeo dice roll bridge. Browse all setup guides, FAQ, troubleshooting, and more.">
+  <link rel="canonical" href="https://owl20.uberdragon.org/sitemap.html">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="author" content="DM Sparks &amp; DM UberDragon">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sitemap - Owl20 | All Pages">
+  <meta property="og:description" content="Complete sitemap for Owl20 — browse setup guides, FAQ, troubleshooting, and more.">
+  <meta property="og:url" content="https://owl20.uberdragon.org/sitemap.html">
+  <meta property="og:image" content="https://owl20.uberdragon.org/owl20-512.png">
+  <meta property="og:image:alt" content="Owl20 logo">
+  <meta property="og:site_name" content="Owl20">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sitemap - Owl20 | All Pages">
+  <meta name="twitter:description" content="Complete sitemap for Owl20 — browse setup guides, FAQ, troubleshooting, and more.">
+  <meta name="twitter:image" content="https://owl20.uberdragon.org/owl20-512.png">
+  <!-- Sitemap -->
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="apple-touch-icon" href="/owl20-128.png">
+  <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/starfield.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -77,6 +97,24 @@
     }
   </style>
   
+  <!-- WebPage Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Sitemap - Owl20",
+    "description": "Complete sitemap for Owl20 — the D&D Beyond to Owlbear Rodeo dice roll bridge.",
+    "url": "https://owl20.uberdragon.org/sitemap.html",
+    "dateModified": "2026-03-22T00:00:00Z",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Owl20",
+      "url": "https://owl20.uberdragon.org"
+    }
+  }
+  </script>
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -103,49 +141,56 @@
             <span class="sitemap-item-icon">🏠</span>
             <div class="sitemap-item-title">Home</div>
           </div>
-          <div class="sitemap-item-description">Owl20 Browser and Owlbear Rodeo Extension Installation Guide</div>
+          <div class="sitemap-item-description">Overview of Owl20, the D&D Beyond to Owlbear Rodeo bridge</div>
         </a>
-        <a href="about.html" class="sitemap-item">
-          <div class="sitemap-item-header">
-            <span class="sitemap-item-icon">👥</span>
-            <div class="sitemap-item-title">About Owl20</div>
-          </div>
-          <div class="sitemap-item-description">Learn about the creators, their expertise, and the project's mission</div>
-        </a>
-        <a href="/#player" class="sitemap-item">
+        <a href="player-setup.html" class="sitemap-item">
           <div class="sitemap-item-header">
             <span class="sitemap-item-icon">👤</span>
             <div class="sitemap-item-title">Player Setup</div>
           </div>
-          <div class="sitemap-item-description">Step-by-step guide for players to install and configure Owl20</div>
+          <div class="sitemap-item-description">Install Owl20 and configure Beyond20 to send dice rolls to Owlbear Rodeo</div>
         </a>
-        <a href="/#dm" class="sitemap-item">
+        <a href="dm-setup.html" class="sitemap-item">
           <div class="sitemap-item-header">
             <span class="sitemap-item-icon">🎲</span>
             <div class="sitemap-item-title">DM Setup</div>
           </div>
-          <div class="sitemap-item-description">Instructions for DMs to install and enable the OBR extension</div>
+          <div class="sitemap-item-description">Install the Owl20 OBR extension and enable it in your Owlbear Rodeo room</div>
         </a>
         <a href="faq.html" class="sitemap-item">
           <div class="sitemap-item-header">
             <span class="sitemap-item-icon">❓</span>
             <div class="sitemap-item-title">FAQ</div>
           </div>
-          <div class="sitemap-item-description">Frequently asked questions about Owl20 installation and usage</div>
+          <div class="sitemap-item-description">Answers to 33 common questions about installation, configuration, and usage</div>
         </a>
-        <a href="/#troubleshooting" class="sitemap-item">
+        <a href="troubleshooting.html" class="sitemap-item">
           <div class="sitemap-item-header">
             <span class="sitemap-item-icon">🔧</span>
             <div class="sitemap-item-title">Troubleshooting</div>
           </div>
-          <div class="sitemap-item-description">Common issues and solutions for getting Owl20 working</div>
+          <div class="sitemap-item-description">Fix dice rolls not appearing, extension not loading, and browser-specific issues</div>
+        </a>
+        <a href="how-it-works.html" class="sitemap-item">
+          <div class="sitemap-item-header">
+            <span class="sitemap-item-icon">⚙️</span>
+            <div class="sitemap-item-title">How It Works</div>
+          </div>
+          <div class="sitemap-item-description">Technical architecture: CustomEvents, postMessage, MutationObserver, and Manifest V3</div>
+        </a>
+        <a href="about.html" class="sitemap-item">
+          <div class="sitemap-item-header">
+            <span class="sitemap-item-icon">👥</span>
+            <div class="sitemap-item-title">About Owl20</div>
+          </div>
+          <div class="sitemap-item-description">Meet the creators — DM UberDragon and DM Sparks — and the Starry Shores community</div>
         </a>
         <a href="privacy.html" class="sitemap-item">
           <div class="sitemap-item-header">
             <span class="sitemap-item-icon">🔒</span>
             <div class="sitemap-item-title">Privacy Policy</div>
           </div>
-          <div class="sitemap-item-description">Learn how Owl20 protects your privacy and handles data</div>
+          <div class="sitemap-item-description">No data collection, no tracking, no storage — how Owl20 protects your privacy</div>
         </a>
         <a href="sitemap.html" class="sitemap-item">
           <div class="sitemap-item-header">
@@ -162,10 +207,10 @@
       <nav class="footer-nav">
         <a href="/">Home</a>
         <a href="about.html">About</a>
-        <a href="/#player">Player Setup</a>
-        <a href="/#dm">DM Setup</a>
+        <a href="player-setup.html">Player Setup</a>
+        <a href="dm-setup.html">DM Setup</a>
         <a href="faq.html">FAQ</a>
-        <a href="/#troubleshooting">Troubleshooting</a>
+        <a href="troubleshooting.html">Troubleshooting</a>
         <a href="privacy.html">Privacy</a>
         <a href="sitemap.html">Sitemap</a>
       </nav>

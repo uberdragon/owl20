@@ -209,7 +209,8 @@ function openSectionById(sectionId) {
 function setSectionState(sectionCard, isOpen) {
     const header = sectionCard.querySelector('.card-header');
     const content = sectionCard.querySelector('.card-content');
-    
+    if (!header || !content) return;
+
     if (isOpen) {
         header.classList.add('active');
         content.classList.add('active');
@@ -250,14 +251,6 @@ $(document).ready(function() {
     // Ensure all sections start closed by default
     $('.section-card').each(function() {
         setSectionState(this, false);
-    });
-    
-    // Ensure all FAQ items start closed by default
-    $('.faq-item').each(function() {
-        const question = this.querySelector('.faq-question');
-        const answer = this.querySelector('.faq-answer');
-        question.classList.remove('active');
-        answer.classList.remove('active');
     });
     
     // Add click handlers to footer navigation links for collapsible sections
@@ -333,36 +326,9 @@ $(document).ready(function() {
     initializeStarfieldAndConstellations();
 });
 
-// Add fade-in animation to cards and handle anchors
+// Add fade-in animation to cards on load
 $(window).on('load', function() {
     $('.section-card, .faq-item').addClass('fade-in');
-    
-    // Handle URL anchor to auto-open sections (after page fully loads)
-    const hash = window.location.hash.substring(1); // Remove the # symbol
-    
-    if (hash === 'player' || hash === 'dm' || hash === 'troubleshooting') {
-        // Close all sections first
-        $('.section-card').each(function() {
-            setSectionState(this, false);
-        });
-        
-        // Open the target section
-        const targetSection = document.getElementById(hash);
-        if (targetSection) {
-            setSectionState(targetSection, true);
-            
-            // Update active state on corresponding nav button (header.js handles this, but update if needed)
-            if ($('.header-nav .nav-button').length > 0) {
-                $('.header-nav .nav-button').removeClass('active');
-                $('.header-nav .nav-button[href="#' + hash + '"]').addClass('active');
-            }
-            
-            // Scroll to the section after a short delay
-            setTimeout(function() {
-                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 500);
-        }
-    }
 });
 
 // Add CSS for fade-in animation dynamically
