@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Troubleshooting Guide - Owl20 | Fix Dice Rolls Not Appearing in Owlbear Rodeo</title>
+  <meta name="description" content="Owl20 troubleshooting guide. Fix dice rolls not showing in Owlbear Rodeo, extension not loading, Beyond20 configuration issues, and browser-specific problems.">
+  <meta name="author" content="DM Sparks & DM UberDragon">
+  <link rel="canonical" href="https://owl20.uberdragon.org/troubleshooting.html">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- Open Graph / Facebook / Discord -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://owl20.uberdragon.org/troubleshooting.html">
+  <meta property="og:title" content="Troubleshooting Guide - Owl20 Dice Rolls Not Appearing">
+  <meta property="og:description" content="Fix dice rolls not showing in Owlbear Rodeo, extension not loading, Beyond20 configuration issues, and browser-specific problems.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://owl20.uberdragon.org/owl20-128.png">
+  <meta property="og:image:width" content="128">
+  <meta property="og:image:height" content="128">
+  <meta property="og:image:type" content="image/png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://owl20.uberdragon.org/troubleshooting.html">
+  <meta name="twitter:title" content="Troubleshooting Guide - Owl20 Dice Rolls Not Appearing">
+  <meta name="twitter:description" content="Fix dice rolls not showing in Owlbear Rodeo, extension not loading, Beyond20 configuration issues, and browser-specific problems.">
+  <meta name="twitter:image" content="https://owl20.uberdragon.org/owl20-128.png">
+  <link rel="apple-touch-icon" href="/owl20-128.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="sitemap" type="application/xml" title="XML Sitemap" href="/sitemap.xml">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/starfield.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/starfield.js"></script>
+  <script src="js/script.js"></script>
+
+  <!-- TechArticle Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "name": "Owl20 Troubleshooting Guide",
+    "headline": "Fix Dice Rolls Not Appearing in Owlbear Rodeo",
+    "description": "Comprehensive troubleshooting guide for Owl20 — fix dice rolls not appearing, extension not loading, Beyond20 configuration issues, and browser-specific problems.",
+    "url": "https://owl20.uberdragon.org/troubleshooting.html",
+    "datePublished": "2025-11-13T00:00:00Z",
+    "dateModified": "2026-03-22T00:00:00Z",
+    "inLanguage": "en",
+    "author": [
+      { "@type": "Person", "name": "DM UberDragon", "url": "https://github.com/uberdragon" },
+      { "@type": "Person", "name": "DM Sparks", "url": "https://github.com/mvoncken" }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Starry Shores D&D Community",
+      "url": "https://discord.gg/Up8wMrmt7C"
+    },
+    "isAccessibleForFree": true,
+    "about": {
+      "@type": "SoftwareApplication",
+      "name": "Owl20",
+      "url": "https://owl20.uberdragon.org/"
+    }
+  }
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','{{GTMID}}');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{GTMID}}"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div class="container">
+    <!-- Header and Navigation -->
+    <div id="header-container"></div>
+
+    <!-- Page Hero -->
+    <section class="hero">
+      <h1>Troubleshooting Guide</h1>
+      <p>Work through these steps in order. The most common issues have simple fixes — wrong Beyond20 configuration accounts for the majority of "rolls not showing up" reports we receive.</p>
+    </section>
+
+    <section class="instructions">
+
+      <!-- Quick Diagnosis Checklist -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Start Here: Quick Diagnosis Checklist</h2>
+          <p>Before deep-diving, confirm all five of these are true. Most issues come down to one of them:</p>
+          <ul class="led-list">
+            <li><span class="inline-led status-green"></span> <strong>Beyond20 is installed and enabled</strong> in your browser</li>
+            <li><span class="inline-led status-green"></span> <strong><code>https://www.owlbear.rodeo/*</code> is in Beyond20's custom domains list</strong> (the single most common missed step)</li>
+            <li><span class="inline-led status-green"></span> <strong>Owl20 browser extension is installed and enabled</strong> in your browser</li>
+            <li><span class="inline-led status-green"></span> <strong>The DM has the Owl20 OBR extension enabled</strong> in their Owlbear Rodeo room</li>
+            <li><span class="inline-led status-green"></span> <strong>Both D&D Beyond and Owlbear Rodeo tabs have been refreshed</strong> since the extensions were installed</li>
+          </ul>
+          <p>If any of these are false, fix it first before reading further. Most issues are resolved by #2 alone.</p>
+        </div>
+      </div>
+
+      <!-- Rolls Not Appearing -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Dice Rolls Not Appearing in Owlbear Rodeo</h2>
+          <p>Work through these in order. Each check builds on the previous one.</p>
+
+          <h3>1. Check Beyond20 is installed and active</h3>
+          <p>Open your browser's extension manager:</p>
+          <ul>
+            <li><strong>Chrome:</strong> Navigate to <code>chrome://extensions</code></li>
+            <li><strong>Edge:</strong> Navigate to <code>edge://extensions</code></li>
+            <li><strong>Firefox:</strong> Navigate to <code>about:addons</code></li>
+          </ul>
+          <p>Find Beyond20 in the list and confirm the toggle is ON. If it's not installed, install it first: <a href="https://beyond20.here-for-more.info/install" target="_blank">beyond20.here-for-more.info/install</a>.</p>
+
+          <h3 style="margin-top: 1.5rem;">2. Check the Beyond20 custom domain — this is the most common issue</h3>
+          <p>Open your D&D Beyond character sheet and click the Beyond20 icon in the toolbar. Navigate to <strong>More Options &rarr; Advanced Options</strong> and look for the <strong>"List of custom domains to load Beyond20"</strong> field. It must contain:</p>
+          <div class="copy-url-container">
+            <code class="manifest-url" onclick="copyOwlbearUrl(event)" title="Click to copy">https://www.owlbear.rodeo/*</code>
+            <button class="copy-btn" onclick="copyOwlbearUrl(event)" title="Copy URL">
+              <span class="copy-icon">📋</span>
+            </button>
+          </div>
+          <p>Without this entry, Beyond20 won't activate on Owlbear Rodeo pages, which means Owl20 receives no roll data to bridge. Add it, save, and refresh both tabs.</p>
+
+          <h3 style="margin-top: 1.5rem;">3. Check the Owl20 browser extension</h3>
+          <p>In your browser's extension manager, find Owl20 and confirm it's enabled. If it was recently installed, try disabling and re-enabling it. Then refresh your Owlbear Rodeo tab.</p>
+
+          <h3 style="margin-top: 1.5rem;">4. Check the DM has the OBR extension enabled</h3>
+          <p>As a player, you can't enable the Owlbear Rodeo-side extension — only the DM can. The DM needs to:</p>
+          <ol>
+            <li>Open the Owlbear Rodeo room</li>
+            <li>Click the Extensions button in the toolbar</li>
+            <li>Find Owl20 and toggle it ON</li>
+          </ol>
+          <p>If the DM hasn't set this up yet, point them to the <a href="dm-setup.html">DM Setup Guide</a>.</p>
+
+          <h3 style="margin-top: 1.5rem;">5. Reload both tabs</h3>
+          <p>Close your D&D Beyond tab entirely and reopen it. Then close your Owlbear Rodeo tab and reopen it. This forces both extensions to reinitialize from scratch. Don't just press F5 — fully close and reopen the tabs.</p>
+
+          <h3 style="margin-top: 1.5rem;">6. Check the browser console for Owl20 messages</h3>
+          <p>On your Owlbear Rodeo tab, press <kbd>F12</kbd> to open Developer Tools, click the <strong>Console</strong> tab, and look for messages starting with <code>Owl20:</code>.</p>
+          <p><strong>Healthy output looks like:</strong></p>
+          <ul>
+            <li><code>Owl20: Initializing data bridge</code></li>
+            <li><code>Owl20: Found iframe to owl20-owlbear</code></li>
+            <li><code>Owl20: Listening for Beyond20 roll events</code></li>
+          </ul>
+          <p><strong>If you see no Owl20 messages:</strong> the extension isn't loading on this page. Check that it's enabled in your browser extension manager and that you're on an <code>owlbear.rodeo</code> URL (not a local file or different domain).</p>
+          <p><strong>If you see red error messages:</strong> copy the error text and search the <a href="faq.html">FAQ</a> or post it in the <a href="https://github.com/uberdragon/owl20/issues" target="_blank">GitHub Issues</a>.</p>
+
+          <h3 style="margin-top: 1.5rem;">7. Check for ad blockers or privacy extensions</h3>
+          <p>Aggressive ad blockers (uBlock Origin with strict settings, Privacy Badger, etc.) can block the extension's cross-origin messaging. Try temporarily disabling all other browser extensions while on both <code>owlbear.rodeo</code> and <code>dndbeyond.com</code>. If rolls start working with other extensions disabled, add an exception for both domains in your ad blocker settings.</p>
+        </div>
+      </div>
+
+      <!-- Extension Not Loading -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Extension Not Loading At All</h2>
+          <p>If Owl20 doesn't appear in your browser extension manager or won't install:</p>
+
+          <h3>Browser compatibility</h3>
+          <p>Owl20 supports Chrome, Edge, and Firefox. It will also work on any Chromium-based browser (like Brave or Opera) that supports Manifest V3 extensions.</p>
+          <p>If you're using Safari, Internet Explorer, or an older pre-Manifest V3 browser, Owl20 is not supported on those platforms.</p>
+
+          <h3 style="margin-top: 1.5rem;">Browser is out of date</h3>
+          <p>Manifest V3 extensions require a relatively recent browser version. Check for updates:</p>
+          <ul>
+            <li><strong>Chrome:</strong> <code>chrome://settings/help</code></li>
+            <li><strong>Edge:</strong> <code>edge://settings/help</code></li>
+            <li><strong>Firefox:</strong> Menu &rarr; Help &rarr; About Firefox</li>
+          </ul>
+
+          <h3 style="margin-top: 1.5rem;">Try a full disable/re-enable cycle</h3>
+          <ol>
+            <li>Go to your browser's extension manager</li>
+            <li>Find Owl20 and toggle it OFF</li>
+            <li>Wait 5 seconds</li>
+            <li>Toggle it back ON</li>
+            <li>Refresh your Owlbear Rodeo tab</li>
+          </ol>
+
+          <h3 style="margin-top: 1.5rem;">Check extension permissions</h3>
+          <p>Owl20 needs access to <code>owlbear.rodeo</code> domains. In your browser extension manager, click on Owl20 and review its site permissions. If access was denied or restricted, grant it.</p>
+
+          <h3 style="margin-top: 1.5rem;">Full browser restart</h3>
+          <p>Close all browser windows completely (not just tabs) and reopen. This clears cached extension states. On Windows, make sure the browser isn't still running in the system tray.</p>
+        </div>
+      </div>
+
+      <!-- Browser-Specific Notes -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Browser-Specific Notes</h2>
+
+          <h3>Google Chrome</h3>
+          <p>Chrome is the most tested browser for Owl20. If you're having issues on Chrome specifically:</p>
+          <ul>
+            <li>Check that Chrome is updated to at least version 110</li>
+            <li>Make sure you haven't accidentally set Owl20 to "Allow in Incognito only" — it needs to run in regular windows where D&D Beyond is open</li>
+            <li>If using a work or school Chrome profile, extensions may be restricted by policy</li>
+          </ul>
+
+          <h3 style="margin-top: 1.5rem;">Microsoft Edge</h3>
+          <p>Edge uses the same Manifest V3 system as Chrome, so compatibility is generally the same. One Edge-specific note:</p>
+          <ul>
+            <li>Edge has an "Enhanced Security" mode that may block extension cross-origin messaging. If you have this enabled, add <code>owlbear.rodeo</code> to Edge's "Sites that can bypass Enhanced Security" exceptions.</li>
+          </ul>
+
+          <h3 style="margin-top: 1.5rem;">Mozilla Firefox</h3>
+          <p>Firefox uses a slightly different extension model. If Owl20 isn't working in Firefox:</p>
+          <ul>
+            <li>Confirm you installed from <a href="https://addons.mozilla.org/en-US/firefox/addon/owl20-beyond20-owlbear-bridge/" target="_blank">addons.mozilla.org</a> (not a third-party source)</li>
+            <li>Firefox's stricter content security policies can sometimes interfere with extension messaging. If you have a custom <code>user.js</code> or use Firefox Hardened, try with a fresh profile to isolate the issue.</li>
+          </ul>
+
+          <h3 style="margin-top: 1.5rem;">Opera and other Chromium browsers</h3>
+          <p>Owl20 can be installed on Opera via the Chrome Web Store using the "Install Chrome Extensions" option. Opera-specific issue: Opera's integrated ad blocker may need to be disabled on both <code>owlbear.rodeo</code> and <code>dndbeyond.com</code>.</p>
+
+          <h3 style="margin-top: 1.5rem;">Mobile browsers</h3>
+          <p>Owl20 does not support mobile browsers. Browser extensions are not available on iOS or Android. Both D&D Beyond and Owlbear Rodeo must be accessed from a desktop browser.</p>
+        </div>
+      </div>
+
+      <!-- Delayed or Intermittent Rolls -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Rolls Delayed or Appearing Intermittently</h2>
+          <p>If rolls sometimes appear and sometimes don't, or there's a noticeable delay:</p>
+
+          <h3>Tab was open before extension was enabled</h3>
+          <p>If you had Owlbear Rodeo open before the DM enabled the extension, you may need to refresh your tab. The extension initializes when the page loads, not when it's toggled on mid-session.</p>
+
+          <h3 style="margin-top: 1.5rem;">Multiple Owlbear Rodeo tabs open</h3>
+          <p>If you have multiple Owlbear Rodeo tabs open simultaneously, Owl20 runs in each one independently. Rolls will appear in the tab where the Owl20 OBR extension is active. Close extra tabs and work from a single Owlbear Rodeo tab.</p>
+
+          <h3 style="margin-top: 1.5rem;">Browser resource limits</h3>
+          <p>If your browser has many tabs open and is under memory pressure, extension messaging can be delayed. Closing unused tabs may help.</p>
+        </div>
+      </div>
+
+      <!-- Still Having Issues -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Still Having Issues?</h2>
+          <p>If you've worked through all the above and still can't get Owl20 working:</p>
+
+          <h3>Check the FAQ first</h3>
+          <p>The <a href="faq.html">FAQ page</a> covers 33 specific questions including browser support details, permission explanations, and more niche setup scenarios.</p>
+
+          <h3 style="margin-top: 1.5rem;">Report a bug on GitHub</h3>
+          <p>If you think you've found a bug, open an issue at <a href="https://github.com/uberdragon/owl20/issues" target="_blank">github.com/uberdragon/owl20/issues</a>. When reporting, include:</p>
+          <ul>
+            <li>Your browser and version</li>
+            <li>Your Beyond20 version</li>
+            <li>What you expected to happen vs what actually happened</li>
+            <li>Any <code>Owl20:</code> messages from the browser console (F12 &rarr; Console)</li>
+            <li>Any red error messages from the console</li>
+          </ul>
+
+          <h3 style="margin-top: 1.5rem;">Ask on Discord</h3>
+          <p>Join the <a href="https://discord.gg/Up8wMrmt7C" target="_blank">Starry Shores Discord</a> and ask for <strong>DM UberDragon</strong> or <strong>DM Sparks</strong>. We're both active in the server and usually respond within a day. We both run this setup ourselves every session, so we can work through most issues quickly.</p>
+          <p>The more information you bring to the conversation — browser, console output, what step fails — the faster we can help.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <nav class="footer-nav">
+        <a href="/">Home</a>
+        <a href="about.html">About</a>
+        <a href="player-setup.html">Player Setup</a>
+        <a href="dm-setup.html">DM Setup</a>
+        <a href="faq.html">FAQ</a>
+        <a href="troubleshooting.html">Troubleshooting</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="sitemap.html">Sitemap</a>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>

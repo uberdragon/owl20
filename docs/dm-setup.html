@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DM Setup Guide - Owl20 | Add Dice Rolls to Your Owlbear Rodeo Room</title>
+  <meta name="description" content="Dungeon Master setup guide for Owl20. Install the OBR extension in your Owlbear Rodeo room and enable player dice roll display in under 3 minutes.">
+  <meta name="author" content="DM Sparks & DM UberDragon">
+  <link rel="canonical" href="https://owl20.uberdragon.org/dm-setup.html">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- Open Graph / Facebook / Discord -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://owl20.uberdragon.org/dm-setup.html">
+  <meta property="og:title" content="DM Setup Guide - Add D&D Beyond Dice Rolls to Owlbear Rodeo">
+  <meta property="og:description" content="Dungeon Master setup guide for Owl20. Install the OBR extension in your Owlbear Rodeo room and enable player dice roll display in under 3 minutes.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://owl20.uberdragon.org/owl20-128.png">
+  <meta property="og:image:width" content="128">
+  <meta property="og:image:height" content="128">
+  <meta property="og:image:type" content="image/png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://owl20.uberdragon.org/dm-setup.html">
+  <meta name="twitter:title" content="DM Setup Guide - Add D&D Beyond Dice Rolls to Owlbear Rodeo">
+  <meta name="twitter:description" content="Dungeon Master setup guide for Owl20. Install the OBR extension in your Owlbear Rodeo room and enable player dice roll display in under 3 minutes.">
+  <meta name="twitter:image" content="https://owl20.uberdragon.org/owl20-128.png">
+  <link rel="apple-touch-icon" href="/owl20-128.png">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="sitemap" type="application/xml" title="XML Sitemap" href="/sitemap.xml">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/starfield.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/starfield.js"></script>
+  <script src="js/script.js"></script>
+
+  <!-- HowTo Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Set Up Owl20 as a Dungeon Master",
+    "description": "Install the Owl20 Owlbear Rodeo extension and enable it in your room so all players' D&D Beyond dice rolls appear live for everyone in the session.",
+    "url": "https://owl20.uberdragon.org/dm-setup.html",
+    "totalTime": "PT3M",
+    "supply": [
+      { "@type": "HowToSupply", "name": "An Owlbear Rodeo room where you are the DM/owner" },
+      { "@type": "HowToSupply", "name": "Players who have Beyond20 and Owl20 browser extensions installed and configured" }
+    ],
+    "tool": [
+      { "@type": "HowToTool", "name": "Owlbear Rodeo Extensions system" },
+      { "@type": "HowToTool", "name": "Owl20 OBR Extension (installed via manifest URL)" }
+    ],
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Install the Owl20 OBR Extension in Owlbear Rodeo",
+        "text": "In your Owlbear Rodeo room, open the Extensions panel and add the Owl20 extension using the manifest URL: https://owl20.FriendlyMimic.com/manifest.json. Follow the Owlbear Rodeo guide at extensions.owlbear.rodeo/guide for detailed instructions.",
+        "url": "https://owl20.uberdragon.org/dm-setup.html#step-1"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Enable the Owl20 extension in your room",
+        "text": "Click the Extensions button in the Owlbear Rodeo toolbar, find Owl20 in your installed extensions list, and toggle it ON for your room.",
+        "url": "https://owl20.uberdragon.org/dm-setup.html#step-2"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Verify dice rolls are appearing",
+        "text": "Have a player make a dice roll from their D&D Beyond character sheet with Beyond20 enabled. The roll should appear in the Owl20 window inside Owlbear Rodeo for all participants.",
+        "url": "https://owl20.uberdragon.org/dm-setup.html#step-3"
+      }
+    ],
+    "author": [
+      { "@type": "Person", "name": "DM UberDragon", "url": "https://github.com/uberdragon" },
+      { "@type": "Person", "name": "DM Sparks", "url": "https://github.com/mvoncken" }
+    ],
+    "datePublished": "2025-11-13T00:00:00Z",
+    "dateModified": "2026-03-22T00:00:00Z",
+    "inLanguage": "en",
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','{{GTMID}}');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{GTMID}}"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div class="container">
+    <!-- Header and Navigation -->
+    <div id="header-container"></div>
+
+    <!-- Page Hero -->
+    <section class="hero">
+      <h1>DM Setup Guide</h1>
+      <p>As the Dungeon Master, you install the Owl20 Owlbear Rodeo extension once and enable it in each room. Your players handle the browser extension side — this guide covers your part, which takes about 3 minutes.</p>
+    </section>
+
+    <section class="instructions">
+
+      <!-- DM vs Player Responsibilities -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Who Sets Up What</h2>
+          <p>Owl20 has two parts. Understanding which part you're responsible for prevents the most common setup confusion:</p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+            <div style="background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--primary-color); padding: 1.25rem; border-radius: 8px;">
+              <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">🎲 DM (You)</h3>
+              <ul style="margin: 0;">
+                <li>Install the <strong>Owl20 OBR Extension</strong> inside Owlbear Rodeo</li>
+                <li>Enable it per room</li>
+                <li>Optionally also install the browser extension if you're also rolling dice as a player-DM</li>
+              </ul>
+            </div>
+            <div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--secondary-color); padding: 1.25rem; border-radius: 8px;">
+              <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">👤 Each Player</h3>
+              <ul style="margin: 0;">
+                <li>Install <strong>Beyond20</strong> browser extension</li>
+                <li>Install <strong>Owl20</strong> browser extension</li>
+                <li>Configure Beyond20 to recognize Owlbear Rodeo</li>
+              </ul>
+            </div>
+          </div>
+          <p style="margin-top: 1rem;" class="note">💡 Send your players to the <a href="player-setup.html">Player Setup Guide</a> — it walks them through their part step by step.</p>
+        </div>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;" id="step-1">
+        <div class="sub-section">
+          <div class="tutorial-header">
+            <h2>Step 1: Install the Owl20 OBR Extension</h2>
+            <a href="https://www.youtube.com/watch?v=T1cVHnzKLL4&t=50s" target="_blank" class="video-tutorial-link" onclick="openYouTubeVideo('T1cVHnzKLL4', 49); return false;">
+              ▶️ Watch Video Tutorial
+            </a>
+          </div>
+          <p>The Owl20 OBR extension lives <em>inside</em> Owlbear Rodeo, not in your browser extension store. It's installed via a manifest URL using Owlbear Rodeo's own extension system.</p>
+
+          <h3>How to install a custom extension in Owlbear Rodeo</h3>
+          <p>Follow the official Owlbear Rodeo guide: <a href="https://extensions.owlbear.rodeo/guide" target="_blank">extensions.owlbear.rodeo/guide</a></p>
+          <p>When prompted for the extension URL, use this manifest link:</p>
+          <div class="copy-url-container">
+            Use This Installation Link:
+            <code class="manifest-url" onclick="copyManifestUrl(event)" title="Click to copy">https://owl20.FriendlyMimic.com/manifest.json</code>
+            <button class="copy-btn" onclick="copyManifestUrl(event)" title="Copy URL">
+              <span class="copy-icon">📋</span>
+            </button>
+          </div>
+
+          <h3 style="margin-top: 1.5rem;">Quick step-by-step</h3>
+          <ol>
+            <li>Open your Owlbear Rodeo room as the DM/owner</li>
+            <li>Click the <strong>Extensions</strong> button in the left toolbar</li>
+            <li>Click <strong>"Add Extension"</strong> or the <strong>"+"</strong> button</li>
+            <li>Paste the manifest URL above and confirm</li>
+            <li>Owl20 will appear in your installed extensions list</li>
+          </ol>
+          <p class="note">💡 You only need to install it once. After that, it will be available in all your rooms — you just need to enable it per room (Step 2).</p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;" id="step-2">
+        <div class="sub-section">
+          <h2>Step 2: Enable Owl20 in Your Room</h2>
+          <p>Installing the extension adds it to your Owlbear Rodeo account, but you need to activate it in each room where you want it to work:</p>
+          <ol>
+            <li>Open your Owlbear Rodeo room</li>
+            <li>Click the <strong>"Extensions"</strong> button in the toolbar</li>
+            <li>Find <strong>"Owl20"</strong> in your installed extensions</li>
+            <li>Toggle it <strong>ON</strong></li>
+          </ol>
+          <p class="note">✅ The Owl20 dice log window will now appear in the room for all participants once a roll comes through.</p>
+
+          <div class="info-box warning" style="margin-top: 1.5rem;">
+            <h3>⚠️ Important Notes for DMs</h3>
+            <ul>
+              <li><strong>The extension must be enabled per room.</strong> If you create a new room, you'll need to enable Owl20 in it separately.</li>
+              <li><strong>Refresh both pages after setup.</strong> After enabling the extension, ask your players to refresh their D&D Beyond and Owlbear Rodeo tabs. This ensures all extensions are fully initialized.</li>
+              <li><strong>Only the DM needs the OBR extension.</strong> Players never install anything in Owlbear Rodeo itself.</li>
+              <li><strong>Players still need the browser extensions.</strong> If a player's rolls aren't showing up, confirm they've followed the <a href="player-setup.html">Player Setup Guide</a> — specifically that they've added <code>https://www.owlbear.rodeo/*</code> to Beyond20's custom domains.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;" id="step-3">
+        <div class="sub-section">
+          <h2>Step 3: Verify It's Working</h2>
+          <p>Test the complete integration end-to-end before your session:</p>
+          <ol>
+            <li>Have a player (or yourself, with the browser extensions installed) open a D&D Beyond character sheet</li>
+            <li>Make a dice roll using the Beyond20 roller</li>
+            <li>The roll should appear in the <img src="https://owl20.friendlymimic.com/icon.svg" alt="Owl20-Owlbear Logo" style="height: 1.2em; vertical-align: middle; margin-right: 0.3em;">Owl20 window inside Owlbear Rodeo</li>
+            <li>All participants in the room should see the roll</li>
+          </ol>
+          <p class="note">✅ Player rolls will display for everyone in the room, including players who don't have D&D Beyond open.</p>
+
+          <h3 style="margin-top: 1.5rem;">DM Verification Checklist</h3>
+          <ul class="led-list">
+            <li><span class="inline-led status-green"></span> Owl20 OBR extension installed via the manifest URL</li>
+            <li><span class="inline-led status-green"></span> Owl20 toggled ON in this specific room</li>
+            <li><span class="inline-led status-green"></span> Players have confirmed they have both browser extensions installed</li>
+            <li><span class="inline-led status-green"></span> Players have added <code>https://www.owlbear.rodeo/*</code> to Beyond20's custom domains</li>
+            <li><span class="inline-led status-green"></span> All tabs refreshed after setup</li>
+            <li><span class="inline-led status-green"></span> Test roll appears in Owlbear Rodeo</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Running Multiple Sessions -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Running Multiple Campaigns or Rooms</h2>
+          <p>If you run multiple campaigns across different Owlbear Rodeo rooms, here's what to remember:</p>
+          <ul>
+            <li><strong>Install once, enable per room.</strong> The manifest URL installation is account-wide. Every new room you create will have Owl20 available — you just need to toggle it ON in the Extensions panel for each room.</li>
+            <li><strong>New players always follow the Player Setup Guide.</strong> Any new player joining a campaign needs to install both browser extensions and configure Beyond20 themselves.</li>
+            <li><strong>Extension updates are automatic.</strong> Owl20 updates are delivered through the Owlbear Rodeo extension system automatically. You won't need to reinstall.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Getting Help -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>Getting Help</h2>
+          <p>Having trouble getting it set up? These resources cover the most common DM-side issues:</p>
+          <ul>
+            <li><a href="troubleshooting.html"><strong>Troubleshooting Guide</strong></a> — detailed diagnosis steps for common issues</li>
+            <li><a href="faq.html"><strong>FAQ</strong></a> — includes a section on DM-specific questions</li>
+            <li><a href="https://github.com/uberdragon/owl20/issues" target="_blank"><strong>GitHub Issues</strong></a> — report bugs or ask technical questions</li>
+            <li><a href="https://discord.gg/Up8wMrmt7C" target="_blank"><strong>Starry Shores Discord</strong></a> — ask DM UberDragon or DM Sparks directly. We're both active DMs who run this setup every session, so we can diagnose problems quickly.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- About This Guide -->
+      <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
+        <div class="sub-section">
+          <h2>About This Guide</h2>
+          <p>Written by <strong>DM Sparks</strong> — developer of the Owl20 OBR extension and active Dungeon Master in the <a href="https://discord.gg/Up8wMrmt7C" target="_blank">Starry Shores D&D Community</a>. DM Sparks built and maintains the Owlbear Rodeo side of the Owl20 bridge and runs campaigns using this exact setup every week.</p>
+          <p><a href="about.html">Learn more about the creators →</a></p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <nav class="footer-nav">
+        <a href="/">Home</a>
+        <a href="about.html">About</a>
+        <a href="player-setup.html">Player Setup</a>
+        <a href="dm-setup.html">DM Setup</a>
+        <a href="faq.html">FAQ</a>
+        <a href="troubleshooting.html">Troubleshooting</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="sitemap.html">Sitemap</a>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>

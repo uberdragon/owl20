@@ -29,6 +29,7 @@
     <meta name="twitter:description" content="Seamlessly connect D&D Beyond dice rolls to Owlbear Rodeo VTT. Owl20 bridges Beyond20 extension data to your virtual tabletop.">
     <meta name="twitter:image" content="https://owl20.uberdragon.org/owl20-128.png">
     <link rel="apple-touch-icon" href="/owl20-128.png">
+    <link rel="icon" href="/favicon.ico">
     
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/starfield.css">
@@ -56,7 +57,7 @@
       "browserRequirements": "Requires Chrome, Edge, or Firefox browser",
       "softwareVersion": "1.1.3",
       "datePublished": "2025-11-13T00:00:00Z",
-      "dateModified": "2025-11-30T00:00:00Z",
+      "dateModified": "2026-03-22T00:00:00Z",
       "inLanguage": "en",
       "isAccessibleForFree": true,
       "author": [
@@ -170,7 +171,28 @@
       "permissions": "None"
     }
     </script>
-    
+
+    <!-- WebSite Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Owl20",
+      "url": "https://owl20.uberdragon.org/",
+      "description": "Documentation and guides for the Owl20 browser extension — a free bridge connecting D&D Beyond dice rolls to Owlbear Rodeo virtual tabletop.",
+      "inLanguage": "en",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Starry Shores D&D Community",
+        "url": "https://discord.gg/Up8wMrmt7C",
+        "sameAs": [
+          "https://www.youtube.com/@TheStarryShore",
+          "https://the-starry-shore.github.io/"
+        ]
+      }
+    }
+    </script>
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -215,7 +237,7 @@
 
         <!-- Why Owl20 Section -->
         <section class="quick-start">
-            <h3>🎯 Why Owl20?</h3>
+            <h2>🎯 Why Owl20?</h2>
             <div class="steps">
                 <div class="step">
                     <div class="step-number">🧙</div>
@@ -241,227 +263,38 @@
             </div>
         </section>
 
-        <!-- Detailed Instructions -->
+        <!-- Setup Guides Section -->
         <section class="instructions">
-            <h3>📖 Detailed Setup Instructions</h3>
+            <h2 style="font-size: 1.75rem; margin-bottom: 0.5rem;">📖 Setup Guides</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Full step-by-step instructions for every role and scenario.</p>
 
-            <!-- Player Setup -->
-            <div class="section-card" id="player">
-                <div class="card-header" onclick="toggleSection(this)">
-                    <h4>👤 Player Setup - Browser Extensions</h4>
-                    <span class="toggle-icon">▼</span>
-                </div>
-                <div class="card-content">
-                    <div class="sub-section">
-                        <div class="tutorial-header">
-                            <h5>Prerequisite: Install Beyond20 Extension</h5>
-                            <a href="https://www.youtube.com/watch?v=T1cVHnzKLL4&t=5s" target="_blank" class="video-tutorial-link" onclick="openYouTubeVideo('T1cVHnzKLL4', 5); return false;">
-                                ▶️ Watch Video Tutorial
-                            </a>
-                        </div>
-                        <p>You must have the <a href="https://beyond20.here-for-more.info/install" target="_blank">Beyond20 browser extension</a> installed and configured first. This extension connects D&D Beyond to virtual tabletops.</p>
-                        <p class="note">⚠️ Beyond20 is required for Owl20 to work</p>
-                    </div>
-
-                    <div class="sub-section">
-                        <h5>Step 1: Install Owl20 Browser Extension</h5>
-                        <p>Install the Owl20 extension from your browser's extension store:</p>
-                        <ul class="led-list">
-                            <li><span class="inline-led status-green"></span><strong> Google Chrome:</strong>&nbsp;<a href="https://chromewebstore.google.com/detail/owl20-beyond20-to-owlbear/lpogdhcmmpkmafhdlbonpfjfmgcilhjp" target="_blank">Web Store</a></li>
-                            <li><span class="inline-led status-green"></span><strong> Microsoft Edge:&nbsp;</strong> <a href="https://microsoftedge.microsoft.com/addons/detail/owl20-beyond20-to-owlbe/bofhilfebkhnchmngeaplaeodjobgdcf" target="_blank">Edge Add-ons</a></li>
-                            <li><span class="inline-led status-green"></span><strong> Mozilla Firefox:&nbsp;</strong> <a href="https://addons.mozilla.org/en-US/firefox/addon/owl20-beyond20-owlbear-bridge/" target="_blank">Firefox Add-ons</a></li>
-                        </ul>
-                        <p class="note">✅ Also works with any Chromium-based browser that uses Manifest V3 (e.g., Opera via Chrome Web Store).</p>
-                    </div>
-
-                    <div class="sub-section">
-                        <h5>Step 2: Configure Beyond20</h5>
-                        <ol>
-                            <li>Open Beyond20 settings by clicking the Beyond20 icon in your browser toolbar</li>
-                            <li>Navigate to <strong>"More Options"</strong>, then, scroll down to <strong>"Advanced Options"</strong></li>
-                            <li>Scroll back up to find the field: <strong>"List of custom domains to load Beyond20"</strong></li>
-                            <li>Add this URL:</li>
-                        </ol>
-                        <div class="copy-url-container">
-                            <code class="manifest-url" onclick="copyOwlbearUrl(event)" title="Click to copy">https://www.owlbear.rodeo/*</code>
-                            <button class="copy-btn" onclick="copyOwlbearUrl(event)" title="Copy URL">
-                                <span class="copy-icon">📋</span>
-                            </button>
-                        </div>
-                        <ol start="5">
-                            <li>Save your settings</li>
-                        </ol>
-                        <p class="note">✅ This allows Beyond20 to send roll data to Owlbear Rodeo pages</p>
-                    </div>
-
-                    <div class="sub-section">
-                        <h5>Step 3: Verify Installation</h5>
-                        <ol>
-                            <li>Open an Owlbear Rodeo session running Owl20 OBR extension</li>
-                            <li>Open a D&D Beyond character sheet in another tab</li>
-                            <li>Make a dice roll using Beyond20</li>
-                            <li>The roll should appear in the Owlbear Rodeo room inside the &nbsp;<img src="https://owl20.friendlymimic.com/icon.svg" alt="Owl20-Owlbear Logo" style="height: 1.2em; vertical-align: middle; margin-right: 0.3em;">Owl20 window</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-
-            <!-- DM Setup -->
-            <div class="section-card" id="dm">
-                <div class="card-header" onclick="toggleSection(this)">
-                    <h4>🎲 DM Setup - OBR Extension</h4>
-                    <span class="toggle-icon">▼</span>
-                </div>
-                <div class="card-content">
-                    <div class="sub-section">
-                        <div class="tutorial-header">
-                            <h5>Step 1: Install Owl20 OBR Extension</h5>
-                            <a href="https://www.youtube.com/watch?v=T1cVHnzKLL4&t=50s" target="_blank" class="video-tutorial-link" onclick="openYouTubeVideo('T1cVHnzKLL4', 49); return false;">
-                                ▶️ Watch Video Tutorial
-                            </a>
-                        </div>
-                        <p>Follow the instructions for adding a custom extension: <a href="https://extensions.owlbear.rodeo/guide" target="_blank">https://extensions.owlbear.rodeo/guide</a></p>
-                        <div class="copy-url-container">
-                            Use This Installation Link:
-                            <code class="manifest-url" onclick="copyManifestUrl(event)" title="Click to copy">https://owl20.FriendlyMimic.com/manifest.json</code>
-                            <button class="copy-btn" onclick="copyManifestUrl(event)" title="Copy URL">
-                                <span class="copy-icon">📋</span>
-                            </button>
-                        </div>
-                        <p class="note">💡 DM and players must have <a href="/#player" onclick="event.preventDefault(); openSectionById('player'); return false;">Beyond20 and Owl20 installed</a> to display their rolls in the Owlbear Rodeo room.</p>
-                    </div>
-
-                    <div class="sub-section">
-                        <h5>Step 2: Enable Extension in Your Room</h5>
-                        <ol>
-                            <li>Open your Owlbear Rodeo room as the DM</li>
-                            <li>Click the <strong>"Extensions"</strong> button in the toolbar</li>
-                            <li>Find <strong>"Owl20"</strong> in your installed extensions</li>
-                            <li>Toggle it <strong>ON</strong> for your room</li>
-                        </ol>
-                    </div>
-
-                    <div class="sub-section">
-                        <h5>Step 3: Verify It's Working</h5>
-                        <ol>
-                            <li>Have a player make a dice roll from their dndbeyond character sheet with Beyond20 enabled</li>
-                            <li>The roll should appear in the Owlbear Rodeo room inside the &nbsp;<img src="https://owl20.friendlymimic.com/icon.svg" alt="Owl20-Owlbear Logo" style="height: 1.2em; vertical-align: middle; margin-right: 0.3em;">Owl20 window</li>
-                            <li>All participants should see the roll</li>
-                        </ol>
-                        <p class="note">✅ Player rolls will now display for everyone in the room</p>
-                    </div>
-
-                    <div class="info-box warning">
-                        <h6>⚠️ Important Notes for DMs</h6>
-                        <ul>
-                            <li>Refresh both Owlbear Rodeo and D&D Beyond pages to ensure the extension is loaded.</li>
-                            <li>Only the DM needs to install and enable the OBR extension</li>
-                            <li>The extension must be enabled in each Owlbear Rodeo room</li>
-                            <li>Players will need the <strong>Owl20</strong> & <strong>Beyond20</strong> browser extensions (not the OBR extension)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Troubleshooting -->
-            <div class="section-card" id="troubleshooting">
-                <div class="card-header" onclick="toggleSection(this)">
+            <div class="resource-grid">
+                <a href="player-setup.html" class="resource-card">
+                    <h4>👤 Player Setup</h4>
+                    <p>Install Owl20 and configure Beyond20 to send your D&D Beyond dice rolls into Owlbear Rodeo. Takes about 5 minutes.</p>
+                    <p style="color: var(--primary-color); margin-top: 0.75rem; font-weight: 600;">Read the Player Guide →</p>
+                </a>
+                <a href="dm-setup.html" class="resource-card">
+                    <h4>🎲 DM Setup</h4>
+                    <p>Install the Owl20 OBR extension in your Owlbear Rodeo room and enable it for your players. Takes about 3 minutes.</p>
+                    <p style="color: var(--primary-color); margin-top: 0.75rem; font-weight: 600;">Read the DM Guide →</p>
+                </a>
+                <a href="troubleshooting.html" class="resource-card">
                     <h4>🔧 Troubleshooting</h4>
-                    <span class="toggle-icon">▼</span>
-                </div>
-                <div class="card-content">
-                    <div class="sub-section">
-                        <h5>Rolls Not Appearing?</h5>
-                        <p>If your dice rolls aren't showing up in Owlbear Rodeo, work through these checks in order:</p>
-                        <ul>
-                            <li><strong>Check Browser Extension:</strong> First, verify that Owl20 is actually installed and enabled in your browser. Go to your browser's extension settings (chrome://extensions, edge://extensions, or about:addons in Firefox) and make sure Owl20 is there and the toggle is ON.</li>
-                            <li><strong>Check Beyond20 Setup:</strong> This is the most common issue! Open Beyond20 settings and verify that <code>https://www.owlbear.rodeo/*</code> is in Beyond20's custom domains list. Without this, Beyond20 won't send roll data to Owlbear pages, so Owl20 has nothing to bridge.</li>
-                            <li><strong>Check OBR Extension:</strong> The DM must have the Owl20 Owlbear extension installed and enabled in the room. As a player, you can't enable it - only the DM can. Ask your DM to check the Extensions button in Owlbear Rodeo and make sure Owl20 is toggled ON.</li>
-                            <li><strong>Reload Pages:</strong> Sometimes extensions need a fresh start. Close and reopen both your D&D Beyond tab and your Owlbear Rodeo tab. This forces both extensions to reinitialize.</li>
-                            <li><strong>New Owlbear Tab:</strong> If reloading doesn't work, try completely closing the Owlbear tab and opening a fresh one. Sometimes browser tabs can get into a weird state where extensions don't load properly.</li>
-                            <li><strong>Check Console:</strong> Open your browser's Developer Tools (press F12), go to the Console tab, and look for messages starting with "Owl20:". You should see messages like "Owl20: Initializing data bridge" and "Owl20: Found iframe to owl20-owlbear". If you see error messages instead, those will tell you what's wrong.</li>
-                            <li><strong>Check Ad Blockers:</strong> Some aggressive ad blockers or privacy extensions might interfere with Owl20. Try temporarily disabling them on owlbear.rodeo and dndbeyond.com to see if that's the issue.</li>
-                        </ul>
-                    </div>
-
-                    <div class="sub-section">
-                        <h5>Extension Not Loading?</h5>
-                        <p>If Owl20 isn't loading at all, try these steps:</p>
-                        <ul>
-                            <li><strong>Browser Compatibility:</strong> Make sure you're using a supported browser - Chrome, Edge, or Firefox. Older browsers or unsupported ones won't work. Check that your browser is up to date, as older versions might have compatibility issues.</li>
-                            <li><strong>Extension State:</strong> Go to your browser's extension management page and verify Owl20 is installed. Try disabling it completely, then re-enabling it. Sometimes extensions need a refresh to load properly after installation or updates.</li>
-                            <li><strong>Browser Updates:</strong> Check if your browser needs updates. Go to your browser's settings and look for updates. Outdated browsers can cause extension loading problems.</li>
-                            <li><strong>Extension Permissions:</strong> Review Owl20's permissions in your extension settings. It needs access to owlbear.rodeo domains. If permissions were denied or changed, the extension won't work.</li>
-                            <li><strong>Restart Browser:</strong> Sometimes a full browser restart is needed. Close all browser windows completely and reopen them. This clears any cached extension states that might be causing issues.</li>
-                            <li><strong>Check Console for Errors:</strong> Open Developer Tools (F12), go to the Console tab, and look for any red error messages when you visit owlbear.rodeo. These errors can tell you exactly what's preventing the extension from loading.</li>
-                        </ul>
-                    </div>
-
-                    <div class="sub-section">
-                        <h5>Need More Help?</h5>
-                        <p>Check our comprehensive <a href="faq.html">❓ FAQ section</a> for answers to common questions and additional troubleshooting tips.</p>
-                    </div>
-
-                    <div class="sub-section">
-                        <h5>Still Having Issues?</h5>
-                        <p>If you've tried everything above and still can't get Owl20 working, we're here to help! Join the <a href="https://discord.gg/Up8wMrmt7C" target="_blank">Starry Shores 2024 Discord</a> server and ask for <strong>DM UberDragon</strong> or <strong>DM Sparks</strong>.</p>
-                        <p>When asking for help, please include:</p>
-                        <ul>
-                            <li>Your browser and version (e.g., Chrome 120, Firefox 121)</li>
-                            <li>What you were trying to do when the problem occurred</li>
-                            <li>What happened (or didn't happen)</li>
-                            <li>Any error messages from the browser console (F12 → Console tab)</li>
-                            <li>Whether you see "Owl20:" and "owl20-owlbear:" messages in the console</li>
-                            <li>Screenshots if relevant</li>
-                        </ul>
-                        <p>The more details you provide, the faster we can help you get it working!</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Technical Details -->
-            <div class="section-card">
-                <div class="card-header" onclick="toggleSection(this)">
-                    <h4>⚙️ Technical Details</h4>
-                    <span class="toggle-icon">▼</span>
-                </div>
-                <div class="card-content">
-                    <div class="sub-section">
-                        <h5>How It Works</h5>
-                        <ol>
-                            <li>Player makes a roll in D&D Beyond</li>
-                            <li>Beyond20 processes the roll and sends it to custom domains</li>
-                            <li>Owl20 browser extension receives the <code>Beyond20_Roll</code> event and sends to OBR extension</li>
-                            <li>Owl20 Owlbear Rodeo extension receives the data and displays it to all room participants</li>
-                        </ol>
-                    </div>
-
-                    <div class="sub-section">
-                        <h5>Data Flow</h5>
-                        <p>The extension uses:</p>
-                        <ul>
-                            <li><strong>postMessage API:</strong> For secure cross-origin iframe communication to send roll data</li>
-                            <li><strong>MutationObserver:</strong> For automatic iframe detection and management</li>
-                            <li><strong>CustomEvent listeners:</strong> To receive Beyond20 roll events from the page</li>
-                        </ul>
-                    </div>
-
-                    <div class="sub-section">
-                        <h5>Requirements</h5>
-                        <ul>
-                            <li>Beyond20 browser extension installed and configured</li>
-                            <li>Owlbear Rodeo account</li>
-                            <li>One of: Chrome, Edge, or Firefox with Owl20 extension installed</li>
-                            <li>DM must have Owl20 OBR extension installed and enabled</li>
-                        </ul>
-                    </div>
-                </div>
+                    <p>Rolls not appearing? Extension not loading? Work through our diagnostic checklist — most issues come down to one missed step.</p>
+                    <p style="color: var(--primary-color); margin-top: 0.75rem; font-weight: 600;">View Troubleshooting →</p>
+                </a>
+                <a href="how-it-works.html" class="resource-card">
+                    <h4>⚙️ How It Works</h4>
+                    <p>A technical deep dive into Owl20's architecture: CustomEvents, postMessage, MutationObserver, and Manifest V3.</p>
+                    <p style="color: var(--primary-color); margin-top: 0.75rem; font-weight: 600;">Read Technical Details →</p>
+                </a>
             </div>
         </section>
 
         <!-- Resources -->
         <section class="resources">
-            <h3>🔗 Resources & Links</h3>
+            <h2>🔗 Resources & Links</h2>
             <div class="resource-grid">
                 <a href="https://github.com/uberdragon/owl20" target="_blank" class="resource-card">
                     <h4><img src="owl20-128.png" alt="Owl20 Logo" style="height: 1.2em; vertical-align: middle; margin-right: 0.3em;"> Owl20 Repo</h4>
@@ -500,7 +333,7 @@
 
         <!-- FAQ Section -->
         <section class="faq-section" style="text-align: center; margin-bottom: 4rem;">
-            <h3 style="font-size: 2rem; margin-bottom: 1rem;">❓ Frequently Asked Questions</h3>
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">❓ Frequently Asked Questions</h2>
             <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 900px; margin: 0 auto 1.5rem auto; padding: 0 1rem;">Have questions about Owl20? We've compiled answers to the most common questions about installation, configuration, troubleshooting, and more.</p>
             <p><a href="faq.html" class="button">View All FAQs →</a></p>
         </section>
@@ -510,10 +343,10 @@
             <nav class="footer-nav">
                 <a href="/">Home</a>
                 <a href="about.html">About</a>
-                <a href="/#player">Player Setup</a>
-                <a href="/#dm">DM Setup</a>
+                <a href="player-setup.html">Player Setup</a>
+                <a href="dm-setup.html">DM Setup</a>
                 <a href="faq.html">FAQ</a>
-                <a href="/#troubleshooting">Troubleshooting</a>
+                <a href="troubleshooting.html">Troubleshooting</a>
                 <a href="privacy.html">Privacy</a>
                 <a href="sitemap.html">Sitemap</a>
             </nav>
