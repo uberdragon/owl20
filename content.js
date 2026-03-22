@@ -168,7 +168,7 @@ if (typeof window.Owl20Bridge === 'undefined') {
 
     // When Discord integration is active Beyond20 may redirect output away
     // from the page, bypassing the DOM events that owl20 listens to.
-    if (settings['discord-channels'] !== null && settings['discord-channels'] !== undefined) {
+    if (Array.isArray(settings['discord-channels']) && settings['discord-channels'].some(c => c.active === true)) {
       warnings.push({
         id: 'discord',
         message:
