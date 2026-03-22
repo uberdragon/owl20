@@ -97,15 +97,15 @@ if (typeof window.Owl20Bridge === 'undefined') {
       this.iframes.push(iframe);
       console.log('Owl20: Found iframe to owl20-owlbear', iframe.src);
 
-      // Replay stored settings once the iframe content has loaded.
-      // Sending immediately on DOM insertion is too early — the content
-      // script inside the iframe won't be listening yet.
+      // Replay stored settings once the full page has loaded.
+      // Waiting for window load (rather than the iframe's own load event)
+      // gives the OBR extension inside the iframe enough time to initialise.
       if (this.settings) {
         const sendWhenReady = () => this.sendSettingsToIframe(iframe, this.settings);
-        if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
+        if (document.readyState === 'complete') {
           sendWhenReady();
         } else {
-          iframe.addEventListener('load', sendWhenReady, { once: true });
+          window.addEventListener('load', sendWhenReady, { once: true });
         }
       }
     }
