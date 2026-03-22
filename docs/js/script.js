@@ -209,7 +209,8 @@ function openSectionById(sectionId) {
 function setSectionState(sectionCard, isOpen) {
     const header = sectionCard.querySelector('.card-header');
     const content = sectionCard.querySelector('.card-content');
-    
+    if (!header || !content) return;
+
     if (isOpen) {
         header.classList.add('active');
         content.classList.add('active');
@@ -250,14 +251,6 @@ $(document).ready(function() {
     // Ensure all sections start closed by default
     $('.section-card').each(function() {
         setSectionState(this, false);
-    });
-    
-    // Ensure all FAQ items start closed by default
-    $('.faq-item').each(function() {
-        const question = this.querySelector('.faq-question');
-        const answer = this.querySelector('.faq-answer');
-        question.classList.remove('active');
-        answer.classList.remove('active');
     });
     
     // Add click handlers to footer navigation links for collapsible sections
