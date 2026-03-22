@@ -188,7 +188,7 @@ if (typeof window.Owl20Bridge === 'undefined') {
 
     const warnings = this.checkBrokenSettings(settings);
     if (warnings.length > 0) {
-      console.warn('Owl20: Known broken settings detected', warnings);
+      console.warn('Owl20: Known Beyond20 broken settings detected', warnings);
     } else {
       console.log('Owl20: No Broken Beyond20 settings detected');
     }
