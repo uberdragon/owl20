@@ -138,7 +138,7 @@ if (typeof window.Owl20Bridge === 'undefined') {
     // Digital dice produce pre-rendered HTML without structured roll data;
     // owl20 receives the rendered result but the Owlbear extension may not be
     // able to parse dice details from it.
-    if (settings['use-digital-dice']) {
+    if (settings['use-digital-dice'] === true) {
       warnings.push({
         id: 'digital-dice',
         message:
@@ -150,7 +150,7 @@ if (typeof window.Owl20Bridge === 'undefined') {
 
     // Whispered rolls are not dispatched to VTTs via the DOM API, so they will
     // never reach owl20 / the Owlbear extension.
-    if (settings['whisper-type'] && settings['whisper-type'] !== 0) {
+    if (settings['whisper-type'] !== undefined && settings['whisper-type'] !== '0' && settings['whisper-type'] !== 0) {
       warnings.push({
         id: 'whisper-rolls',
         message:
@@ -161,7 +161,7 @@ if (typeof window.Owl20Bridge === 'undefined') {
 
     // When Discord integration is active Beyond20 may redirect output away
     // from the page, bypassing the DOM events that owl20 listens to.
-    if (settings['use-discord']) {
+    if (settings['discord-channels'] !== null && settings['discord-channels'] !== undefined) {
       warnings.push({
         id: 'discord',
         message:
