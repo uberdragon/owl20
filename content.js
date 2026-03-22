@@ -97,9 +97,16 @@ if (typeof window.Owl20Bridge === 'undefined') {
       this.iframes.push(iframe);
       console.log('Owl20: Found iframe to owl20-owlbear', iframe.src);
 
-      // Replay stored settings to the newly discovered iframe
+      // Replay stored settings once the iframe content has loaded.
+      // Sending immediately on DOM insertion is too early — the content
+      // script inside the iframe won't be listening yet.
       if (this.settings) {
-        this.sendSettingsToIframe(iframe, this.settings);
+        const sendWhenReady = () => this.sendSettingsToIframe(iframe, this.settings);
+        if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
+          sendWhenReady();
+        } else {
+          iframe.addEventListener('load', sendWhenReady, { once: true });
+        }
       }
     }
   }
@@ -186,6 +193,8 @@ if (typeof window.Owl20Bridge === 'undefined') {
     const warnings = this.checkBrokenSettings(settings);
     if (warnings.length > 0) {
       console.warn('Owl20: Known broken settings detected', warnings);
+    } else {
+      console.log('Owl20: No broken settings detected');
     }
     // Always send so the Owlbear extension can clear stale warnings when
     // settings are fixed (empty array = no issues).
