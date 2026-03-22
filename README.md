@@ -32,7 +32,7 @@ D&D Beyond → Beyond20 Extension → Owl20 Bridge → Owlbear Rodeo Owl20 Ifram
 Beyond20 Extension → Beyond20_Loaded / Beyond20_NewSettings → Owl20 Bridge → Owlbear Iframes
 ```
 
-Because `Beyond20_Loaded` fires before iframes exist, the bridge caches settings and replays them to each iframe as it is discovered. When settings change, `Beyond20_NewSettings` pushes the update to all live iframes immediately. If any settings are known to cause problems with the bridge, a `Beyond20_BrokenSettings` message is also sent so the Owlbear extension can surface a warning to the user.
+Because `Beyond20_Loaded` fires before iframes exist, the bridge caches settings and replays them to each iframe shortly after it is discovered (with a short delay to allow the OBR extension to initialise). When settings change, `Beyond20_NewSettings` pushes the update to all live iframes immediately. A `Beyond20_BrokenSettings` message is always sent alongside settings — an empty warnings array signals all clear, allowing the Owlbear extension to dismiss any previously displayed warnings.
 
 ## Website Features
 
