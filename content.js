@@ -186,11 +186,13 @@ if (typeof window.Owl20Bridge === 'undefined') {
     const warnings = this.checkBrokenSettings(settings);
     if (warnings.length > 0) {
       console.warn('Owl20: Known broken settings detected', warnings);
-      iframe.contentWindow.postMessage({
-        type: 'Beyond20_BrokenSettings',
-        data: { warnings }
-      }, '*');
     }
+    // Always send so the Owlbear extension can clear stale warnings when
+    // settings are fixed (empty array = no issues).
+    iframe.contentWindow.postMessage({
+      type: 'Beyond20_BrokenSettings',
+      data: { warnings }
+    }, '*');
   }
 
   // Send settings to all tracked iframes.
