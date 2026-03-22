@@ -190,7 +190,7 @@ if (typeof window.Owl20Bridge === 'undefined') {
     if (warnings.length > 0) {
       console.warn('Owl20: Known broken settings detected', warnings);
     } else {
-      console.log('Owl20: No broken settings detected');
+      console.log('Owl20: No Broken Beyond20 settings detected');
     }
     // Always send so the Owlbear extension can clear stale warnings when
     // settings are fixed (empty array = no issues).
