@@ -20,6 +20,7 @@
   <meta property="og:image:width" content="128">
   <meta property="og:image:height" content="128">
   <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="Owl20 logo">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
@@ -27,12 +28,16 @@
   <meta name="twitter:title" content="Troubleshooting Guide - Owl20 Dice Rolls Not Appearing">
   <meta name="twitter:description" content="Fix dice rolls not showing in Owlbear Rodeo, extension not loading, Beyond20 configuration issues, and browser-specific problems.">
   <meta name="twitter:image" content="https://owl20.uberdragon.org/owl20-128.png">
+  <meta name="twitter:image:alt" content="Owl20 logo">
   <link rel="apple-touch-icon" href="/owl20-128.png">
   <link rel="icon" href="/favicon.ico">
   <link rel="sitemap" type="application/xml" title="XML Sitemap" href="/sitemap.xml">
 
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/starfield.css">
+  <link rel="dns-prefetch" href="https://github.com">
+  <link rel="dns-prefetch" href="https://discord.gg">
+  <link rel="dns-prefetch" href="https://www.youtube.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -111,13 +116,13 @@
         <p class="tagline">Bridge Between Beyond20 & Owlbear Rodeo</p>
     </div>
     <div class="badges">
-        <a href="https://chromewebstore.google.com/detail/owl20-beyond20-to-owlbear/lpogdhcmmpkmafhdlbonpfjfmgcilhjp" class="badge chrome" title="Chrome Web Store" target="_blank">
+        <a href="https://chromewebstore.google.com/detail/owl20-beyond20-to-owlbear/lpogdhcmmpkmafhdlbonpfjfmgcilhjp" class="badge chrome" title="Chrome Web Store" target="_blank" rel="noopener noreferrer">
             Chrome
         </a>
-        <a href="https://microsoftedge.microsoft.com/addons/detail/owl20-beyond20-to-owlbe/bofhilfebkhnchmngeaplaeodjobgdcf" class="badge edge" title="Microsoft Edge Add-ons" target="_blank">
+        <a href="https://microsoftedge.microsoft.com/addons/detail/owl20-beyond20-to-owlbe/bofhilfebkhnchmngeaplaeodjobgdcf" class="badge edge" title="Microsoft Edge Add-ons" target="_blank" rel="noopener noreferrer">
             Edge
         </a>
-        <a href="https://addons.mozilla.org/en-US/firefox/addon/owl20-beyond20-owlbear-bridge/" class="badge firefox" title="Firefox Add-ons" target="_blank">
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/owl20-beyond20-owlbear-bridge/" class="badge firefox" title="Firefox Add-ons" target="_blank" rel="noopener noreferrer">
             Firefox
         </a>
     </div>
@@ -175,7 +180,7 @@
             <li><strong>Edge:</strong> Navigate to <code>edge://extensions</code></li>
             <li><strong>Firefox:</strong> Navigate to <code>about:addons</code></li>
           </ul>
-          <p>Find Beyond20 in the list and confirm the toggle is ON. If it's not installed, install it first: <a href="https://beyond20.here-for-more.info/install" target="_blank">beyond20.here-for-more.info/install</a>.</p>
+          <p>Find Beyond20 in the list and confirm the toggle is ON. If it's not installed, install it first: <a href="https://beyond20.here-for-more.info/install" target="_blank" rel="noopener noreferrer">beyond20.here-for-more.info/install</a>.</p>
 
           <h3 style="margin-top: 1.5rem;">2. Check the Beyond20 custom domain — this is the most common issue</h3>
           <p>Open your D&D Beyond character sheet and click the Beyond20 icon in the toolbar. Navigate to <strong>More Options &rarr; Advanced Options</strong> and look for the <strong>"List of custom domains to load Beyond20"</strong> field. It must contain:</p>
@@ -211,7 +216,7 @@
             <li><code>Owl20: Listening for Beyond20 roll events</code></li>
           </ul>
           <p><strong>If you see no Owl20 messages:</strong> the extension isn't loading on this page. Check that it's enabled in your browser extension manager and that you're on an <code>owlbear.rodeo</code> URL (not a local file or different domain).</p>
-          <p><strong>If you see red error messages:</strong> copy the error text and search the <a href="faq.html">FAQ</a> or post it in the <a href="https://github.com/uberdragon/owl20/issues" target="_blank">GitHub Issues</a>.</p>
+          <p><strong>If you see red error messages:</strong> copy the error text and search the <a href="faq.html">FAQ</a> or post it in the <a href="https://github.com/uberdragon/owl20/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
 
           <h3 style="margin-top: 1.5rem;">7. Check for ad blockers or privacy extensions</h3>
           <p>Aggressive ad blockers (uBlock Origin with strict settings, Privacy Badger, etc.) can block the extension's cross-origin messaging. Try temporarily disabling all other browser extensions while on both <code>owlbear.rodeo</code> and <code>dndbeyond.com</code>. If rolls start working with other extensions disabled, add an exception for both domains in your ad blocker settings.</p>
@@ -275,7 +280,7 @@
           <h3 style="margin-top: 1.5rem;">Mozilla Firefox</h3>
           <p>Firefox uses a slightly different extension model. If Owl20 isn't working in Firefox:</p>
           <ul>
-            <li>Confirm you installed from <a href="https://addons.mozilla.org/en-US/firefox/addon/owl20-beyond20-owlbear-bridge/" target="_blank">addons.mozilla.org</a> (not a third-party source)</li>
+            <li>Confirm you installed from <a href="https://addons.mozilla.org/en-US/firefox/addon/owl20-beyond20-owlbear-bridge/" target="_blank" rel="noopener noreferrer">addons.mozilla.org</a> (not a third-party source)</li>
             <li>Firefox's stricter content security policies can sometimes interfere with extension messaging. If you have a custom <code>user.js</code> or use Firefox Hardened, try with a fresh profile to isolate the issue.</li>
           </ul>
 
@@ -314,7 +319,7 @@
           <p>The <a href="faq.html">FAQ page</a> covers 33 specific questions including browser support details, permission explanations, and more niche setup scenarios.</p>
 
           <h3 style="margin-top: 1.5rem;">Report a bug on GitHub</h3>
-          <p>If you think you've found a bug, open an issue at <a href="https://github.com/uberdragon/owl20/issues" target="_blank">github.com/uberdragon/owl20/issues</a>. When reporting, include:</p>
+          <p>If you think you've found a bug, open an issue at <a href="https://github.com/uberdragon/owl20/issues" target="_blank" rel="noopener noreferrer">github.com/uberdragon/owl20/issues</a>. When reporting, include:</p>
           <ul>
             <li>Your browser and version</li>
             <li>Your Beyond20 version</li>
@@ -324,7 +329,7 @@
           </ul>
 
           <h3 style="margin-top: 1.5rem;">Ask on Discord</h3>
-          <p>Join the <a href="https://discord.gg/Up8wMrmt7C" target="_blank">Starry Shores Discord</a> and ask for <strong>DM UberDragon</strong> or <strong>DM Sparks</strong>. We're both active in the server and usually respond within a day. We both run this setup ourselves every session, so we can work through most issues quickly.</p>
+          <p>Join the <a href="https://discord.gg/Up8wMrmt7C" target="_blank" rel="noopener noreferrer">Starry Shores Discord</a> and ask for <strong>DM UberDragon</strong> or <strong>DM Sparks</strong>. We're both active in the server and usually respond within a day. We both run this setup ourselves every session, so we can work through most issues quickly.</p>
           <p>The more information you bring to the conversation — browser, console output, what step fails — the faster we can help.</p>
         </div>
       </div>
