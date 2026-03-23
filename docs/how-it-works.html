@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How Owl20 Works - Technical Architecture | D&D Beyond to Owlbear Rodeo Bridge</title>
+  <title>How Owl20 Works - D&D Beyond to Owlbear Rodeo</title>
   <meta name="description" content="Deep dive into Owl20's technical architecture. How CustomEvents, postMessage, and MutationObserver bridge D&D Beyond dice rolls into Owlbear Rodeo in real time.">
   <meta name="author" content="DM Sparks &amp; DM UberDragon">
   <link rel="canonical" href="https://owl20.uberdragon.org/how-it-works.html">
@@ -20,6 +20,7 @@
   <meta property="og:image:width" content="128">
   <meta property="og:image:height" content="128">
   <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="Owl20 logo">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
@@ -27,20 +28,24 @@
   <meta name="twitter:title" content="How Owl20 Works - Technical Architecture">
   <meta name="twitter:description" content="Deep dive into Owl20's technical architecture. How CustomEvents, postMessage, and MutationObserver bridge D&D Beyond dice rolls into Owlbear Rodeo in real time.">
   <meta name="twitter:image" content="https://owl20.uberdragon.org/owl20-128.png">
+  <meta name="twitter:image:alt" content="Owl20 logo">
   <link rel="apple-touch-icon" href="/owl20-128.png">
   <link rel="icon" href="/favicon.ico">
   <link rel="sitemap" type="application/xml" title="XML Sitemap" href="/sitemap.xml">
 
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/starfield.css">
+  <link rel="dns-prefetch" href="https://github.com">
+  <link rel="dns-prefetch" href="https://discord.gg">
+  <link rel="dns-prefetch" href="https://www.youtube.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="js/header.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/script.js"></script>
+  <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script defer src="js/header.js"></script>
+  <script defer src="js/starfield.js"></script>
+  <script defer src="js/script.js"></script>
 
   <!-- TechArticle Schema -->
   <script type="application/ld+json">
@@ -87,6 +92,16 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://owl20.uberdragon.org/" },
+      { "@type": "ListItem", "position": 2, "name": "How It Works", "item": "https://owl20.uberdragon.org/how-it-works.html" }
+    ]
+  }
+  </script>
 
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -117,13 +132,13 @@
         <p class="tagline">Bridge Between Beyond20 & Owlbear Rodeo</p>
     </div>
     <div class="badges">
-        <a href="https://chromewebstore.google.com/detail/owl20-beyond20-to-owlbear/lpogdhcmmpkmafhdlbonpfjfmgcilhjp" class="badge chrome" title="Chrome Web Store" target="_blank">
+        <a href="https://chromewebstore.google.com/detail/owl20-beyond20-to-owlbear/lpogdhcmmpkmafhdlbonpfjfmgcilhjp" class="badge chrome" title="Chrome Web Store" target="_blank" rel="noopener noreferrer">
             Chrome
         </a>
-        <a href="https://microsoftedge.microsoft.com/addons/detail/owl20-beyond20-to-owlbe/bofhilfebkhnchmngeaplaeodjobgdcf" class="badge edge" title="Microsoft Edge Add-ons" target="_blank">
+        <a href="https://microsoftedge.microsoft.com/addons/detail/owl20-beyond20-to-owlbe/bofhilfebkhnchmngeaplaeodjobgdcf" class="badge edge" title="Microsoft Edge Add-ons" target="_blank" rel="noopener noreferrer">
             Edge
         </a>
-        <a href="https://addons.mozilla.org/en-US/firefox/addon/owl20-beyond20-owlbear-bridge/" class="badge firefox" title="Firefox Add-ons" target="_blank">
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/owl20-beyond20-owlbear-bridge/" class="badge firefox" title="Firefox Add-ons" target="_blank" rel="noopener noreferrer">
             Firefox
         </a>
     </div>
@@ -172,12 +187,12 @@
             <div style="background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--primary-color); padding: 1.25rem; border-radius: 8px;">
               <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;">Owl20 Browser Extension</h3>
               <p style="margin: 0;">A Manifest V3 browser extension installed by players (and DMs if they roll). Runs as a content script on <code>owlbear.rodeo</code> pages. Receives Beyond20 events and forwards them into the OBR extension iframe.</p>
-              <p style="margin-top: 0.75rem;"><a href="https://github.com/uberdragon/owl20" target="_blank">View source on GitHub</a></p>
+              <p style="margin-top: 0.75rem;"><a href="https://github.com/uberdragon/owl20" target="_blank" rel="noopener noreferrer">View source on GitHub</a></p>
             </div>
             <div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--secondary-color); padding: 1.25rem; border-radius: 8px;">
               <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">Owl20 OBR Extension</h3>
               <p style="margin: 0;">An Owlbear Rodeo extension installed by the DM. Runs inside an iframe embedded in the Owlbear Rodeo room. Receives the forwarded roll data and renders it for all participants.</p>
-              <p style="margin-top: 0.75rem;"><a href="https://github.com/mvoncken/owl20-owlbear" target="_blank">View source on GitHub</a></p>
+              <p style="margin-top: 0.75rem;"><a href="https://github.com/mvoncken/owl20-owlbear" target="_blank" rel="noopener noreferrer">View source on GitHub</a></p>
             </div>
           </div>
 
@@ -253,7 +268,7 @@ observer.observe(document.body, { childList: true, subtree: true });</code></pre
       <div class="section-card" style="padding: 2rem; margin-bottom: 2rem;">
         <div class="sub-section">
           <h2>Step 4: The OBR Extension — Receiving, Enriching, and Broadcasting</h2>
-          <p>Once the postMessage arrives inside the Owl20 OBR extension iframe, the receiving side takes over. This is the component built by DM Sparks using the official <a href="https://extensions.owlbear.rodeo/" target="_blank">Owlbear Rodeo extension SDK</a>.</p>
+          <p>Once the postMessage arrives inside the Owl20 OBR extension iframe, the receiving side takes over. This is the component built by DM Sparks using the official <a href="https://extensions.owlbear.rodeo/" target="_blank" rel="noopener noreferrer">Owlbear Rodeo extension SDK</a>.</p>
 
           <h3>What happens when the message lands</h3>
           <p>The OBR extension receives the roll data and does three things in quick succession:</p>
@@ -303,8 +318,8 @@ observer.observe(document.body, { childList: true, subtree: true });</code></pre
           <h3 style="margin-top: 1.25rem;">Open source</h3>
           <p>The complete source code for both components is available on GitHub. Anyone can audit exactly what the extensions do:</p>
           <ul>
-            <li><a href="https://github.com/uberdragon/owl20" target="_blank">Owl20 browser extension source</a></li>
-            <li><a href="https://github.com/mvoncken/owl20-owlbear" target="_blank">Owl20 OBR extension source</a></li>
+            <li><a href="https://github.com/uberdragon/owl20" target="_blank" rel="noopener noreferrer">Owl20 browser extension source</a></li>
+            <li><a href="https://github.com/mvoncken/owl20-owlbear" target="_blank" rel="noopener noreferrer">Owl20 OBR extension source</a></li>
           </ul>
         </div>
       </div>
@@ -350,7 +365,7 @@ observer.observe(document.body, { childList: true, subtree: true });</code></pre
           <h2>About the Authors</h2>
           <p>This page was written by <strong>DM UberDragon</strong> and <strong>DM Sparks</strong> — the developers of Owl20. DM UberDragon built the browser extension side with 25+ years of software engineering experience spanning full-stack web development, browser extension APIs (MV2 and MV3), and cross-origin communication architectures. DM Sparks built the Owlbear Rodeo integration that receives and displays the dice rolls.</p>
           <p>The extension was built to solve a real problem: running D&D campaigns in Owlbear Rodeo without losing the convenience of D&D Beyond's digital character sheets and Beyond20's dice rolling. Every design decision described here — the MutationObserver approach, the explicit-origin postMessage, the content-script-only architecture — came from real experience debugging cross-origin messaging in browser extension environments.</p>
-          <p><a href="about.html">Read more about the creators →</a> | <a href="https://github.com/uberdragon/owl20" target="_blank">View the source code →</a></p>
+          <p><a href="about.html">Read more about the creators →</a> | <a href="https://github.com/uberdragon/owl20" target="_blank" rel="noopener noreferrer">View the source code →</a></p>
         </div>
       </div>
 
