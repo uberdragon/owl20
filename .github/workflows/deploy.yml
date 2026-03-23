@@ -30,7 +30,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
         
-      - name: Inject Header Template and Replace GTM ID
+      - name: Replace GTM ID
         shell: bash
         run: |
           # Validate GTMID variable exists
@@ -39,58 +39,21 @@ jobs:
             exit 1
           fi
 
-          # Check if header template exists
-          if [ ! -f "docs/header-template.html" ]; then
-            echo "Error: Header template file not found"
-            exit 1
-          fi
-
-          # Read the header template
-          HEADER_TEMPLATE=$(cat docs/header-template.html)
-
           # Escape special characters in GTMID for sed
           GTMID_ESCAPED=$(echo "${{ vars.GTMID }}" | sed 's/[[\.*^$()+?{|]/\\&/g')
 
-          # Process each HTML file
+          # Replace GTM placeholder in all HTML files
           for file in docs/*.html; do
             if [ -f "$file" ]; then
-              echo "Processing $file..."
-
-              # Create a temporary file
-              temp_file="${file}.tmp"
-
-              # Read the file line by line and inject header template
-              while IFS= read -r line || [ -n "$line" ]; do
-                echo "$line" >> "$temp_file"
-                # Check if this line contains the header-container div
-                if echo "$line" | grep -q '<div id="header-container"></div>'; then
-                  # Inject the header template
-                  echo "$HEADER_TEMPLATE" >> "$temp_file"
-                fi
-              done < "$file"
-
-              # Replace original file with temp file
-              mv "$temp_file" "$file"
-
-              # Replace the GTM placeholder with the environment variable
               if ! sed -i "s/{{GTMID}}/${GTMID_ESCAPED}/g" "$file"; then
                 echo "Error: Failed to replace GTM ID in $file"
                 exit 1
               fi
-
-              # Verify GTM replacement was successful
               if grep -q "{{GTMID}}" "$file"; then
                 echo "Warning: GTM placeholder still found in $file"
                 exit 1
               fi
-
-              # Verify header was injected
-              if grep -q '<div id="header-container"></div>' "$file" && ! grep -q '<header class="header">' "$file"; then
-                echo "Warning: Header template was not injected in $file"
-                exit 1
-              fi
-
-              echo "✓ Successfully processed $file"
+              echo "✓ $file"
             fi
           done
 

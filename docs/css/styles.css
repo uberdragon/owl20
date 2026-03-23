@@ -617,6 +617,7 @@ body::after {
 
 /* Resources Section */
 .resources {
+    margin-top: 3rem;
     margin-bottom: 3rem;
 }
 
