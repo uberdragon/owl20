@@ -806,6 +806,10 @@ body::after {
         grid-template-columns: 1fr;
     }
 
+    .copy-label {
+        width: 100%;
+    }
+
     .section-card {
         padding: 1.25rem !important;
     }
@@ -835,12 +839,19 @@ html {
 .copy-url-container {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 0.75rem;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 0.75rem 1rem;
     margin: 1rem 0;
+}
+
+.copy-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
 }
 
 .manifest-url {
