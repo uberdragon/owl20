@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - Owl20</title>
+  <title>Privacy Policy - Owl20 | No Data Collection</title>
   <meta name="description" content="Owl20 Privacy Policy - Learn how Owl20 protects your privacy. No data collection, no tracking, no storage. Your dice rolls stay private.">
   <link rel="canonical" href="https://owl20.uberdragon.org/privacy.html">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="author" content="DM Sparks & DM UberDragon">
+  <meta name="theme-color" content="#0f172a">
   <link rel="apple-touch-icon" href="/owl20-128.png">
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="css/styles.css">
@@ -16,10 +17,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="js/header.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/script.js"></script>
+  <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script defer src="js/header.js"></script>
+  <script defer src="js/starfield.js"></script>
+  <script defer src="js/script.js"></script>
   
   <!-- Privacy Policy Structured Data -->
   <script type="application/ld+json">
@@ -39,7 +40,17 @@
     }
   }
   </script>
-  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://owl20.uberdragon.org/" },
+      { "@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://owl20.uberdragon.org/privacy.html" }
+    ]
+  }
+  </script>
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Privacy Policy - Owl20">
@@ -52,6 +63,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Privacy Policy - Owl20">
   <meta name="twitter:description" content="Owl20 Privacy Policy - No data collection, no tracking, no storage. Your dice rolls stay private.">
+  <meta name="twitter:url" content="https://owl20.uberdragon.org/privacy.html">
   <meta name="twitter:image" content="https://owl20.uberdragon.org/owl20-512.png">
   <!-- Sitemap -->
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
