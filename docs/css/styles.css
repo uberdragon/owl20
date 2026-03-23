@@ -847,7 +847,8 @@ html {
     flex: 1;
     font-size: 0.9rem;
     color: var(--text-primary);
-    word-break: break-all;
+    overflow-wrap: break-word;
+    word-break: break-word;
     cursor: pointer;
     transition: all 0.2s ease;
 }
