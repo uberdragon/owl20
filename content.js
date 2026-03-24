@@ -3,6 +3,7 @@ if (typeof window.Owl20Bridge === 'undefined') {
   window.Owl20Bridge = class Owl20Bridge {
   constructor() {
     this.iframes = [];
+    this.settings = null;
     this.init();
   }
 
@@ -29,9 +30,28 @@ if (typeof window.Owl20Bridge === 'undefined') {
       }
     });
 
-    // Listen for Beyond20 loaded event
-    document.addEventListener('Beyond20_Loaded', () => {
-      console.log('Owl20: Beyond20 detected and loaded');
+    // Listen for Beyond20 loaded event - fired when Beyond20 extension is active.
+    // Iframes almost never exist this early, so we store settings and push them
+    // to each iframe as it is added.
+    document.addEventListener('Beyond20_Loaded', (event) => {
+      const settings = event.detail && event.detail[0] ? event.detail[0] : null;
+      console.log('Owl20: Beyond20 detected and loaded', settings);
+      this.settings = settings;
+      // Iframes are unlikely to exist yet, but push to any that already do
+      if (settings) {
+        this.sendSettingsToIframes(settings);
+      }
+    });
+
+    // Listen for Beyond20 settings changes - fired when the user updates settings.
+    // Iframes are running by this point, so push immediately.
+    document.addEventListener('Beyond20_NewSettings', (event) => {
+      const settings = event.detail && event.detail[0] ? event.detail[0] : null;
+      console.log('Owl20: Beyond20 settings updated', settings);
+      this.settings = settings;
+      if (settings) {
+        this.sendSettingsToIframes(settings);
+      }
     });
 
     // Listen for iframe changes
@@ -71,12 +91,19 @@ if (typeof window.Owl20Bridge === 'undefined') {
 
   addIframe(iframe) {
     if (this.iframes.includes(iframe)) return;
-    
+
     // Only add iframes that contain "owl20" or "localhost" in their URL
     if (this.shouldIncludeIframe(iframe)) {
       this.iframes.push(iframe);
       console.log('Owl20: Found iframe to owl20-owlbear', iframe.src);
-    } 
+
+      if (this.settings) {
+        // Send immediately in case the iframe is already loaded, and also on
+        // the load event to handle slow machines where the iframe isn't ready yet.
+        this.sendSettingsToIframe(iframe, this.settings);
+        iframe.addEventListener('load', () => this.sendSettingsToIframe(iframe, this.settings));
+      }
+    }
   }
 
   removeIframe(iframe) {
@@ -101,13 +128,29 @@ if (typeof window.Owl20Bridge === 'undefined') {
     this.sendToIframes(rollData);
   }
 
+  sendSettingsToIframe(iframe, settings) {
+    if (!this.isValidIframe(iframe) || !iframe.contentWindow) return;
+
+    iframe.contentWindow.postMessage({
+      type: 'Beyond20_Loaded',
+      data: settings
+    }, '*');
+    console.log('Owl20: Sent Beyond20 settings to iframe');
+  }
+
+  // Send settings to all tracked iframes.
+  sendSettingsToIframes(settings) {
+    this.iframes = this.iframes.filter(iframe => this.isValidIframe(iframe));
+    this.iframes.forEach(iframe => this.sendSettingsToIframe(iframe, settings));
+  }
+
   sendToIframes(rollData) {
     // Clean up stale iframe references before sending
     this.iframes = this.iframes.filter(iframe => this.isValidIframe(iframe));
-    
+
     for (let i = this.iframes.length - 1; i >= 0; i--) {
       const iframe = this.iframes[i];
-      
+
       // Validate iframe before attempting to use it
       if (!this.isValidIframe(iframe)) {
         this.removeIframe(iframe);
