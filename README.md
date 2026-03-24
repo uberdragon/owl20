@@ -32,7 +32,7 @@ D&D Beyond → Beyond20 Extension → Owl20 Bridge → Owlbear Rodeo Owl20 Ifram
 Beyond20 Extension → Beyond20_Loaded / Beyond20_NewSettings → Owl20 Bridge → Owlbear Iframes
 ```
 
-Because `Beyond20_Loaded` fires before iframes exist, the bridge caches settings and replays them to each iframe shortly after it is discovered (with a short delay to allow the OBR extension to initialise). When settings change, `Beyond20_NewSettings` pushes the update to all live iframes immediately. A `Beyond20_BrokenSettings` message is always sent alongside settings — an empty warnings array signals all clear, allowing the Owlbear extension to dismiss any previously displayed warnings.
+Because `Beyond20_Loaded` fires before iframes exist, the bridge caches settings and replays them to each iframe when it is discovered — immediately and again on the iframe's `load` event to handle slow machines. When settings change, `Beyond20_NewSettings` pushes the update to all live iframes immediately.
 
 ## Website Features
 
@@ -97,7 +97,6 @@ iframe.contentWindow.postMessage({ type, data }, '*');
 |---|---|---|
 | `Beyond20_Roll` | Beyond20 roll object | On every roll event |
 | `Beyond20_Loaded` | Beyond20 settings object | When iframe is discovered and settings are known, or on `NewSettings` |
-| `Beyond20_BrokenSettings` | `{ warnings: string[] }` | When a known-bad setting is detected |
 
 #### Roll message example
 
@@ -118,33 +117,6 @@ iframe.contentWindow.postMessage({ type, data }, '*');
 ```javascript
 { type: 'Beyond20_Loaded', data: { /* Beyond20 settings object */ } }
 ```
-
-#### Broken settings warning example
-
-```javascript
-{
-  type: 'Beyond20_BrokenSettings',
-  data: {
-    warnings: [
-      { id: 'digital-dice',  message: 'D&D Beyond Digital Dice is enabled...' },
-      { id: 'whisper-rolls', message: 'Beyond20 "Whisper Rolls to GM" is enabled...' },
-      { id: 'discord',       message: 'Beyond20 Discord integration is enabled...' }
-    ]
-  }
-}
-```
-
-Each warning carries a stable `id` (kebab-case) so the receiving extension can key on it without parsing text, and a human-readable `message` for display.
-
-### Known Broken Settings
-
-The bridge detects the following Beyond20 settings as incompatible and sends a `Beyond20_BrokenSettings` warning:
-
-| ID | Setting | Reason |
-|---|---|---|
-| `digital-dice` | Digital Dice enabled | Roll data may lack structured dice details |
-| `whisper-rolls` | Whisper Rolls to GM | Whispered rolls are not forwarded to VTTs |
-| `discord` | Discord integration enabled | Some roll events may be redirected away from the page |
 
 ## Project Structure
 
@@ -204,11 +176,8 @@ class Owl20Bridge {
   sendToIframes(rollData)        // Send roll data to all valid iframes
 
   // Settings forwarding
-  sendSettingsToIframe(iframe, settings)  // Push settings (+ warnings) to one iframe
+  sendSettingsToIframe(iframe, settings)  // Push raw settings to one iframe
   sendSettingsToIframes(settings)         // Push settings to all tracked iframes
-
-  // Broken settings detection
-  checkBrokenSettings(settings)  // Returns string[] of warnings for bad settings
 }
 ```
 
@@ -229,7 +198,6 @@ class Owl20Bridge {
    - Error handling and edge cases (null contentWindow, stale references)
    - Settings replay: load the page with Beyond20 already active, then open Owlbear — iframe should receive `Beyond20_Loaded` with settings
    - Settings update: change a Beyond20 setting while Owlbear is open — iframe should receive the new settings
-   - Broken settings: enable Digital Dice or Whisper mode — iframe should receive `Beyond20_BrokenSettings` with warnings
 
 3. **Debug Tools**:
    - Browser DevTools Console

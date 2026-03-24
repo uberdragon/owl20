@@ -97,12 +97,11 @@ if (typeof window.Owl20Bridge === 'undefined') {
       this.iframes.push(iframe);
       console.log('Owl20: Found iframe to owl20-owlbear', iframe.src);
 
-      // Replay stored settings after a short delay to allow the OBR extension
-      // inside the iframe to initialise. The iframe is added dynamically by
-      // Owlbear's SPA so the page is already loaded — we can't rely on load
-      // events. A postMessage handshake would be more robust long-term.
       if (this.settings) {
-        setTimeout(() => this.sendSettingsToIframe(iframe, this.settings), 2000);
+        // Send immediately in case the iframe is already loaded, and also on
+        // the load event to handle slow machines where the iframe isn't ready yet.
+        this.sendSettingsToIframe(iframe, this.settings);
+        iframe.addEventListener('load', () => this.sendSettingsToIframe(iframe, this.settings));
       }
     }
   }
@@ -129,54 +128,6 @@ if (typeof window.Owl20Bridge === 'undefined') {
     this.sendToIframes(rollData);
   }
 
-  // Returns an array of warning objects for settings known to cause problems
-  // with owl20. Each entry has a stable { id, message } shape so the Owlbear
-  // extension can key on the ID rather than parsing text.
-  // Returns [] if no issues are found.
-  checkBrokenSettings(settings) {
-    const warnings = [];
-
-    if (!settings) return warnings;
-
-    // Digital dice produce pre-rendered HTML without structured roll data;
-    // owl20 receives the rendered result but the Owlbear extension may not be
-    // able to parse dice details from it.
-    if (settings['use-digital-dice'] === true) {
-      warnings.push({
-        id: 'digital-dice',
-        message:
-          'D&D Beyond Digital Dice is enabled. Roll data sent to Owlbear may be ' +
-          'missing structured dice details. Disable Digital Dice in Beyond20 for ' +
-          'best results.'
-      });
-    }
-
-    // Whispered rolls are not dispatched to VTTs via the DOM API, so they will
-    // never reach owl20 / the Owlbear extension.
-    if (settings['whisper-type'] !== undefined && settings['whisper-type'] !== '0' && settings['whisper-type'] !== 0) {
-      warnings.push({
-        id: 'whisper-rolls',
-        message:
-          'Beyond20 "Whisper Rolls to GM" is enabled. Whispered rolls are not ' +
-          'forwarded to VTTs and will not appear in Owlbear Rodeo.'
-      });
-    }
-
-    // When Discord integration is active Beyond20 may redirect output away
-    // from the page, bypassing the DOM events that owl20 listens to.
-    if (Array.isArray(settings['discord-channels']) && settings['discord-channels'].some(c => c.active === true)) {
-      warnings.push({
-        id: 'discord',
-        message:
-          'Beyond20 Discord integration is enabled. Some roll events may be ' +
-          'redirected to Discord instead of the page, and may not reach Owlbear Rodeo.'
-      });
-    }
-
-    return warnings;
-  }
-
-  // Send settings (and any broken-settings warnings) to a single iframe.
   sendSettingsToIframe(iframe, settings) {
     if (!this.isValidIframe(iframe) || !iframe.contentWindow) return;
 
@@ -185,19 +136,6 @@ if (typeof window.Owl20Bridge === 'undefined') {
       data: settings
     }, '*');
     console.log('Owl20: Sent Beyond20 settings to iframe');
-
-    const warnings = this.checkBrokenSettings(settings);
-    if (warnings.length > 0) {
-      console.log('Owl20: Known Beyond20 broken settings detected', warnings);
-    } else {
-      console.log('Owl20: No Broken Beyond20 settings detected');
-    }
-    // Always send so the Owlbear extension can clear stale warnings when
-    // settings are fixed (empty array = no issues).
-    iframe.contentWindow.postMessage({
-      type: 'Beyond20_BrokenSettings',
-      data: { warnings }
-    }, '*');
   }
 
   // Send settings to all tracked iframes.
