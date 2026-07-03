@@ -73,45 +73,6 @@ function showToast(message) {
     }, 2000);
 }
 
-// Copy manifest URL to clipboard
-function copyManifestUrl(event) {
-    const url = 'https://owl20.FriendlyMimic.com/manifest.json';
-    // Support both passed event and window.event (for inline handlers)
-    const evt = event || window.event;
-    const button = evt ? evt.target.closest('.copy-btn') : null;
-    
-    // Push dataLayer event for GTM tracking
-    if (typeof dataLayer !== 'undefined') {
-        dataLayer.push({
-            'event': 'copy_manifest_url',
-            'url_copied': url,
-            'copy_location': 'dm_setup_section'
-        });
-    }
-    
-    navigator.clipboard.writeText(url).then(function() {
-        showToast('Added to Clipboard');
-        
-        // Update button to show success if it exists
-        if (button) {
-            const icon = button.querySelector('.copy-icon');
-            if (icon) {
-                icon.textContent = '✅';
-                button.title = 'Copied!';
-                
-                // Reset after 2 seconds
-                setTimeout(function() {
-                    icon.textContent = '📋';
-                    button.title = 'Copy URL';
-                }, 2000);
-            }
-        }
-    }).catch(function(err) {
-        console.error('Failed to copy URL:', err);
-        showToast('Failed to copy');
-    });
-}
-
 // Copy Owlbear Rodeo URL to clipboard
 function copyOwlbearUrl(event) {
     const url = 'https://www.owlbear.rodeo/*';

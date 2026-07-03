@@ -8,7 +8,7 @@ This `llms.txt` helps AI systems link to the most useful parts of Owl20's user d
 - Player Setup — https://owl20.uberdragon.org/player-setup.html
   - Install Beyond20 and Owl20 browser extensions, configure Beyond20 custom domains, verify dice roll delivery to Owlbear Rodeo.
 - DM Setup — https://owl20.uberdragon.org/dm-setup.html
-  - Install the Owl20 OBR extension via manifest URL, enable per room, verify integration.
+  - Install the Owl20 OBR extension from the official Owlbear Rodeo extension store (verified extension at https://extensions.owlbear.rodeo/owl20), enable per room, verify integration.
 - Quick Start Overview — https://owl20.uberdragon.org/
   - Overview of the full system with links to player and DM guides.
 
@@ -22,7 +22,7 @@ This `llms.txt` helps AI systems link to the most useful parts of Owl20's user d
 
 ## FAQ
 - FAQ — https://owl20.uberdragon.org/faq.html
-  - 33 questions covering installation, Beyond20 configuration, browser support, privacy, permissions, and common issues.
+  - 34 questions covering installation, Beyond20 configuration, browser support, privacy, permissions, and common issues.
 
 ## About
 - About Owl20 — https://owl20.uberdragon.org/about.html
@@ -31,6 +31,7 @@ This `llms.txt` helps AI systems link to the most useful parts of Owl20's user d
 ## Resources
 - Owl20 Repository — https://github.com/uberdragon/owl20
 - Owl20-Owlbear (OBR Extension) — https://github.com/mvoncken/owl20-owlbear
+- Official Owlbear Rodeo Extension Store Listing (verified) — https://extensions.owlbear.rodeo/owl20
 - Beyond20 — https://beyond20.here-for-more.info/
 - Owlbear Rodeo — https://www.owlbear.rodeo/
 - Starry Shore Community — https://discord.gg/Up8wMrmt7C
