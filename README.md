@@ -301,4 +301,4 @@ MIT License - see LICENSE file for details.
 
 - **Issues**: [GitHub Issues](https://github.com/uberdragon/owl20/issues)
 - **User Documentation**: [owl20.uberdragon.org](https://owl20.uberdragon.org)
-- **OBR Extension**: [Owl20-Owlbear Repository](https://github.com/mvoncken/owl20-owlbear)
+- **OBR Extension**: [Owl20-Owlbear Repository](https://github.com/mvoncken/owl20-owlbear) · [Official verified listing on the Owlbear Rodeo extension store](https://extensions.owlbear.rodeo/owl20)
