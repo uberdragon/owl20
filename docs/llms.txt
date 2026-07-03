@@ -12,6 +12,10 @@ This `llms.txt` helps AI systems link to the most useful parts of Owl20's user d
 - Quick Start Overview — https://owl20.uberdragon.org/
   - Overview of the full system with links to player and DM guides.
 
+## Changelog
+- Changelog & Release Notes — https://owl20.uberdragon.org/changelog.html
+  - Release history and milestones for both the Owl20 browser extension and the Owlbear Rodeo extension, including the official verified extension listing (July 2026).
+
 ## Troubleshooting
 - Troubleshooting Guide — https://owl20.uberdragon.org/troubleshooting.html
   - Diagnosis checklist, fix for dice rolls not appearing, extension not loading, browser-specific notes for Chrome, Edge, Firefox, and Opera.
